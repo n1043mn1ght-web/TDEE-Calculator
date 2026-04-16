@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-<link rel="canonical" href="https://tdee-calculator-dad.pages.dev/">
-<meta name="robots" content="index,follow">
-<meta name="description" content="Free TDEE Calculator to estimate maintenance calories, weight loss, bulking calories, BMI and BMR.">
+<head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="google-site-verification" content="FwXCEUvUxbBsxUMfad-p3xS-5_w7NqZGCoLFg_c4fvo" />
 <title>TDEE Calculator — Calories, Macros, BMI & BMR in One Place</title>
 <meta name="description" content="Free TDEE calculator. Find your Total Daily Energy Expenditure, BMR, BMI, ideal weight, and exact macro targets (protein, carbs, fat) for cutting, bulking, or maintenance — all in one place."/>
 <meta name="keywords" content="TDEE calculator, macro calculator, BMR calculator, calorie calculator, BMI calculator, weight loss calories, bulking macros, cutting calories, daily calorie needs"/>
 <link rel="canonical" href="https://tdee-calculator-dad.pages.dev/"/>
-<!-- test update 123 -->
+
+<!-- Favicon — inline SVG as data URI, no external file needed -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232d6a4f'/><text y='22' x='5' font-size='18' font-family='sans-serif' font-weight='700' fill='white'>T</text></svg>"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232d6a4f'/><text y='22' x='5' font-size='18' font-family='sans-serif' font-weight='700' fill='white'>T</text></svg>"/>
+<meta name="theme-color" content="#2d6a4f"/>
+
 <!-- Open Graph -->
-<meta property="og:title" content="TDEE Calculator — Calories, Macros & BMI"/>
-<meta property="og:description" content="Calculate your daily calorie needs, macros, BMR, and BMI in seconds. Free, accurate, no sign-up."/>
+<meta property="og:title" content="TDEE Calculator — Calories, Macros, BMI & BMR"/>
+<meta property="og:description" content="Calculate your daily calorie needs, macros, BMR, and BMI in seconds. Free, accurate, no sign-up required."/>
 <meta property="og:type" content="website"/>
+<meta property="og:url" content="https://tdee-calculator-dad.pages.dev/"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="TDEE Calculator"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TDEE Calculator — Calories, Macros & BMI"/>
+<meta name="twitter:description" content="Free TDEE calculator with macros, BMR, BMI and ideal weight. No sign-up."/>
+
+<!-- Robots & indexing -->
+<meta name="robots" content="index, follow"/>
+<meta name="googlebot" content="index, follow"/>
 
 <!-- Schema.org structured data — helps Google show rich results -->
 <script type="application/ld+json">
@@ -23,11 +36,29 @@
   "@context":"https://schema.org",
   "@type":"WebApplication",
   "name":"TDEE & Macro Calculator",
+  "url":"https://tdee-calculator-dad.pages.dev/",
   "description":"Calculate Total Daily Energy Expenditure, BMR, BMI, ideal weight, and macros for any fitness goal.",
   "applicationCategory":"HealthApplication",
   "operatingSystem":"Any",
+  "inLanguage":"en",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "featureList":["TDEE calculation","BMR calculation","Macro calculator","BMI calculator","Ideal weight","Imperial and metric units"]
+  "featureList":["TDEE calculation","BMR calculation","Macro calculator","BMI calculator","Ideal weight","Imperial and metric units"],
+  "author":{"@type":"Organization","name":"TDEE Calculator","url":"https://tdee-calculator-dad.pages.dev/"}
+}
+</script>
+
+<!-- FAQ Schema — makes Google show expandable FAQ in search results -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is TDEE and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"TDEE stands for Total Daily Energy Expenditure — the total number of calories your body burns in a 24-hour period. It accounts for your basal metabolic rate, physical activity, and the thermic effect of food. Knowing your TDEE is the most important number for any body composition goal."}},
+    {"@type":"Question","name":"How accurate is this TDEE calculator?","acceptedAnswer":{"@type":"Answer","text":"This calculator uses the Mifflin–St Jeor equation by default, which research identifies as the most accurate formula for the general population (±10% margin). When you provide body fat percentage, it switches to the Katch–McArdle formula."}},
+    {"@type":"Question","name":"What are macros and how are they calculated?","acceptedAnswer":{"@type":"Answer","text":"Macros are the three major nutrients: protein (4 kcal/g), carbohydrates (4 kcal/g), and fat (9 kcal/g). Protein is set at 1g per lb of bodyweight to preserve muscle mass. Carbs and fat fill the remaining calories."}},
+    {"@type":"Question","name":"How many calories should I eat to lose 1 lb per week?","acceptedAnswer":{"@type":"Answer","text":"One pound of fat is roughly 3,500 calories. To lose 1 lb per week, you need a daily deficit of 500 calories below your TDEE. For 0.5 lb/week use a 250 calorie deficit."}},
+    {"@type":"Question","name":"How often should I recalculate my TDEE?","acceptedAnswer":{"@type":"Answer","text":"Recalculate every 4–8 weeks or after losing/gaining more than 10 lbs. As your weight changes, your BMR changes with it, so calorie targets need updating."}}
+  ]
 }
 </script>
 
@@ -312,6 +343,28 @@ footer a{color:var(--text3);text-decoration:underline}
 }
 .fade-up{animation:fadeUp .35s ease both}
 
+/* ── Button loading state ── */
+.btn-calc.loading{
+  opacity:.7;cursor:not-allowed;
+  background:var(--accent);
+}
+
+/* ── Print styles ── */
+@media print{
+  header,footer,.unit-toggle,.btn-calc,.goal-tabs{display:none!important}
+  .card{box-shadow:none;border:1px solid #ccc}
+  body{background:white}
+}
+
+/* ── Skip link for accessibility ── */
+.skip-link{
+  position:absolute;top:-40px;left:0;background:var(--accent);
+  color:white;padding:8px 16px;border-radius:0 0 8px 0;
+  font-size:14px;font-weight:500;z-index:999;
+  transition:top .2s;text-decoration:none;
+}
+.skip-link:focus{top:0}
+
 /* ── Responsive ── */
 @media(max-width:600px){
   .goal-tabs{grid-template-columns:1fr}
@@ -320,20 +373,21 @@ footer a{color:var(--text3);text-decoration:underline}
 </style>
 </head>
 <body>
+<a href="#calculator" class="skip-link">Skip to calculator</a>
 
-<header>
+<header role="banner">
   <div class="header-inner">
-    <a href="/" class="logo">tdee<span>calc</span>.app</a>
+    <a href="/" class="logo">tdee<span>calc</span></a>
     <span class="tagline">Free · Accurate · No sign-up</span>
   </div>
 </header>
 
-<main>
+<main aria-label="TDEE Calculator">
 <div class="wrap">
 
   <!-- Hero -->
-  <section class="hero">
-    <h1>TDEE Calculator — <em>Calories, Macros</em><br>BMI & BMR in One Place</h1>
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">TDEE Calculator — <em>Calories, Macros</em><br>BMI & BMR in One Place</h1>
     <p class="hero-sub">Find exactly how many calories you burn daily and get precise macro targets for your goal — whether you're cutting, maintaining, or bulking.</p>
 
     <!-- Unit toggle -->
@@ -344,7 +398,7 @@ footer a{color:var(--text3);text-decoration:underline}
   </section>
 
   <!-- Calculator form -->
-  <div class="card">
+  <div class="card" id="calculator" role="region" aria-label="Calculator inputs">
     <p class="card-title">Your stats</p>
 
     <div class="form-grid" style="margin-bottom:14px">
@@ -552,7 +606,7 @@ footer a{color:var(--text3);text-decoration:underline}
 <footer>
   <div class="wrap">
     <p>Results are estimates based on validated scientific formulas. Not medical advice. Consult a healthcare professional before making significant changes to your diet.</p>
-    <p style="margin-top:8px">© 2026 tdeecalc — <a href="#">Privacy</a></p>
+    <p>© 2026 TDEE Calculator — <a href="#">Privacy</a></p>
   </div>
 </footer>
 
@@ -767,6 +821,22 @@ function calculate() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter') calculate();
 });
+
+// ── Button loading state ───────────────────────────────────────
+const _origCalc = calculate;
+calculate = function() {
+  const btn = document.querySelector('.btn-calc');
+  btn.classList.add('loading');
+  btn.textContent = 'Calculating…';
+  btn.disabled = true;
+  // tiny delay so browser paints the state before heavy JS
+  setTimeout(() => {
+    try { _origCalc(); } catch(e) { console.error(e); }
+    btn.classList.remove('loading');
+    btn.textContent = 'Calculate My Calories & Macros';
+    btn.disabled = false;
+  }, 30);
+};
 </script>
 
 </body>
