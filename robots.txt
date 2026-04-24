@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: tdee-calculator-dad.pages.dev
 Sitemap: https://tdee-calculator-dad.pages.dev/sitemap.xml
