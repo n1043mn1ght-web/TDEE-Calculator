@@ -374,8 +374,8 @@
     /* Предотвращаем FOUT (Flash of Unstyled Text) */
     body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     /* Резервируем место под hero-img чтобы не было layout shift */
-    .hero-img{aspect-ratio:1/1;max-height:300px}
-    @media(max-width:480px){.hero-img{aspect-ratio:1/1;max-height:220px}}
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
     /* Smooth scroll для anchor-ссылок TOC */
     html{scroll-behavior:smooth;scroll-padding-top:60px}
     /* Улучшаем tap-highlight */
