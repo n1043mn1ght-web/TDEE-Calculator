@@ -119,6 +119,86 @@
     .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
     .footer-links a { font-size: 13px; color: var(--text-muted); }
     .footer-copy { font-size: 12px; color: var(--text-faint); }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
   </style>
   <script type="application/ld+json">
   {
@@ -130,6 +210,9 @@
     "author": {"@type": "Organization", "name": "CaloriesCalc"}
   }
   </script>
+  <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
+  <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="light">
 </head>
 <body>
 
@@ -219,26 +302,26 @@
       <span class="cat-count">20 foods</span>
     </div>
     <div class="food-grid">
-      <span class="food-item"><span class="fi-emoji">🥔</span><div class="fi-info"><div class="fi-name">Potato</div><div class="fi-cal">77 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🍠</span><div class="fi-info"><div class="fi-name">Sweet Potato</div><div class="fi-cal">86 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🍅</span><div class="fi-info"><div class="fi-name">Tomato</div><div class="fi-cal">18 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥒</span><div class="fi-info"><div class="fi-name">Cucumber</div><div class="fi-cal">15 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥕</span><div class="fi-info"><div class="fi-name">Carrot</div><div class="fi-cal">41 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🧅</span><div class="fi-info"><div class="fi-name">Onion</div><div class="fi-cal">40 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥦</span><div class="fi-info"><div class="fi-name">Broccoli</div><div class="fi-cal">34 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥦</span><div class="fi-info"><div class="fi-name">Cauliflower</div><div class="fi-cal">25 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🌿</span><div class="fi-info"><div class="fi-name">Spinach</div><div class="fi-cal">23 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥬</span><div class="fi-info"><div class="fi-name">Lettuce</div><div class="fi-cal">15 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🫑</span><div class="fi-info"><div class="fi-name">Bell Pepper</div><div class="fi-cal">31 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🌽</span><div class="fi-info"><div class="fi-name">Corn</div><div class="fi-cal">86 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🟢</span><div class="fi-info"><div class="fi-name">Peas</div><div class="fi-cal">81 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🎃</span><div class="fi-info"><div class="fi-name">Pumpkin</div><div class="fi-cal">26 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥒</span><div class="fi-info"><div class="fi-name">Zucchini</div><div class="fi-cal">17 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥬</span><div class="fi-info"><div class="fi-name">Cabbage</div><div class="fi-cal">25 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🧄</span><div class="fi-info"><div class="fi-name">Garlic</div><div class="fi-cal">149 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🍄</span><div class="fi-info"><div class="fi-name">Mushroom</div><div class="fi-cal">22 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🥬</span><div class="fi-info"><div class="fi-name">Celery</div><div class="fi-cal">16 kcal/100g</div></div></span>
-      <span class="food-item"><span class="fi-emoji">🫚</span><div class="fi-info"><div class="fi-name">Beetroot</div><div class="fi-cal">43 kcal/100g</div></div></span>
+      <a href="/foods/potato.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥔</span><div class="fi-info"><div class="fi-name">Potato</div><div class="fi-cal">77 kcal/100g</div></div></a>
+      <a href="/foods/sweet-potato.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🍠</span><div class="fi-info"><div class="fi-name">Sweet Potato</div><div class="fi-cal">86 kcal/100g</div></div></a>
+      <a href="/foods/tomato.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🍅</span><div class="fi-info"><div class="fi-name">Tomato</div><div class="fi-cal">18 kcal/100g</div></div></a>
+      <a href="/foods/cucumber.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥒</span><div class="fi-info"><div class="fi-name">Cucumber</div><div class="fi-cal">15 kcal/100g</div></div></a>
+      <a href="/foods/carrot.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥕</span><div class="fi-info"><div class="fi-name">Carrot</div><div class="fi-cal">41 kcal/100g</div></div></a>
+      <a href="/foods/onion.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🧅</span><div class="fi-info"><div class="fi-name">Onion</div><div class="fi-cal">40 kcal/100g</div></div></a>
+      <a href="/foods/broccoli.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥦</span><div class="fi-info"><div class="fi-name">Broccoli</div><div class="fi-cal">34 kcal/100g</div></div></a>
+      <a href="/foods/cauliflower.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥦</span><div class="fi-info"><div class="fi-name">Cauliflower</div><div class="fi-cal">25 kcal/100g</div></div></a>
+      <a href="/foods/spinach.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🌿</span><div class="fi-info"><div class="fi-name">Spinach</div><div class="fi-cal">23 kcal/100g</div></div></a>
+      <a href="/foods/lettuce.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥬</span><div class="fi-info"><div class="fi-name">Lettuce</div><div class="fi-cal">15 kcal/100g</div></div></a>
+      <a href="/foods/bell-pepper.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🫑</span><div class="fi-info"><div class="fi-name">Bell Pepper</div><div class="fi-cal">31 kcal/100g</div></div></a>
+      <a href="/foods/corn.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🌽</span><div class="fi-info"><div class="fi-name">Corn</div><div class="fi-cal">86 kcal/100g</div></div></a>
+      <a href="/foods/peas.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🟢</span><div class="fi-info"><div class="fi-name">Peas</div><div class="fi-cal">81 kcal/100g</div></div></a>
+      <a href="/foods/pumpkin.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🎃</span><div class="fi-info"><div class="fi-name">Pumpkin</div><div class="fi-cal">26 kcal/100g</div></div></a>
+      <a href="/foods/zucchini.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥒</span><div class="fi-info"><div class="fi-name">Zucchini</div><div class="fi-cal">17 kcal/100g</div></div></a>
+      <a href="/foods/cabbage.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥬</span><div class="fi-info"><div class="fi-name">Cabbage</div><div class="fi-cal">25 kcal/100g</div></div></a>
+      <a href="/foods/garlic.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🧄</span><div class="fi-info"><div class="fi-name">Garlic</div><div class="fi-cal">149 kcal/100g</div></div></a>
+      <a href="/foods/mushroom.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🍄</span><div class="fi-info"><div class="fi-name">Mushroom</div><div class="fi-cal">22 kcal/100g</div></div></a>
+      <a href="/foods/celery.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🥬</span><div class="fi-info"><div class="fi-name">Celery</div><div class="fi-cal">16 kcal/100g</div></div></a>
+      <a href="/foods/beetroot.html" class="food-item" style="border-color:#86efac"><span class="fi-emoji">🫚</span><div class="fi-info"><div class="fi-name">Beetroot</div><div class="fi-cal">43 kcal/100g</div></div></a>
     </div>
   </div>
 
