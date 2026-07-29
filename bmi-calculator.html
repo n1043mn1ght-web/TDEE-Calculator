@@ -244,8 +244,8 @@
     /* Предотвращаем FOUT (Flash of Unstyled Text) */
     body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
     /* Резервируем место под hero-img чтобы не было layout shift */
-    .hero-img{aspect-ratio:1/1;max-height:300px}
-    @media(max-width:480px){.hero-img{aspect-ratio:1/1;max-height:220px}}
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
     /* Smooth scroll для anchor-ссылок TOC */
     html{scroll-behavior:smooth;scroll-padding-top:60px}
     /* Улучшаем tap-highlight */
@@ -562,6 +562,7 @@
       <a href="/macro-calculator.html">Macro Calculator</a>
       <a href="/protein-calculator.html">Protein Calculator</a>
       <a href="/bmi-calculator.html">BMI Calculator</a>
+      <a href="/foods/">Foods Database</a>
       <a href="/about.html">About &amp; Methodology</a>
       <a href="/terms.html">Terms of Use</a>
       <a href="/privacy.html">Privacy Policy</a>
