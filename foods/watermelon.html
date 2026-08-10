@@ -128,6 +128,86 @@
     .footer-inner { max-width: var(--max); margin: 0 auto; } .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
     .footer-links a { font-size: 13px; color: var(--text-muted); } .footer-copy { font-size: 12px; color: var(--text-faint); }
     @media print { nav.main-nav,.toc,.ad-sidebar-left,.ad-sidebar-right,.ad-slot,.promo-box,.print-btn,footer,.compare-grid,.foods-grid,.calc-grid{display:none!important} .page-wrapper{display:block!important} main{padding:0!important} }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
   </style>
   <script type="application/ld+json">
   {
@@ -141,7 +221,7 @@
         "@type": "Answer",
         "text": "Watermelon contains 30 calories per 100g. A cup of diced watermelon (152g) has 46 calories. A standard wedge (⅛ of a melon, 286g) has 86 calories. Use the slider above to calculate for any weight."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is watermelon good for weight loss?",
@@ -149,7 +229,7 @@
         "@type": "Answer",
         "text": "Yes — watermelon is one of the best foods for weight loss. At 30 kcal per 100g with 92% water content, it provides enormous volume per calorie. A large 2-cup serving is only 92 calories but takes up significant stomach volume, reducing appetite. Its natural sweetness also helps satisfy sugar cravings."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is watermelon high in sugar?",
@@ -157,7 +237,7 @@
         "@type": "Answer",
         "text": "Moderately. Watermelon contains 6.2g of natural sugar per 100g — less than grapes (15.5g) or bananas (12.2g). A 2-cup serving contains about 19g of sugar. While the GI is high (~76), the glycemic load per cup is only about 5, making it less impactful on blood sugar than its GI suggests."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is watermelon keto?",
@@ -165,7 +245,7 @@
         "@type": "Answer",
         "text": "No. Watermelon has 7.1g of net carbs per 100g and a high glycemic index. It's not suitable for strict keto. A very small portion (50g, ~15 calories) might technically fit, but it's not practical or satisfying."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "What is lycopene in watermelon?",
@@ -173,7 +253,7 @@
         "@type": "Answer",
         "text": "Lycopene is a red carotenoid antioxidant that gives watermelon its characteristic colour. Watermelon contains 7.6mg per 100g — more than any other common fruit. Lycopene is associated with reduced prostate cancer risk, lower cardiovascular risk, and protection against UV skin damage. Unlike tomatoes, watermelon lycopene is fully bioavailable without cooking."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is watermelon good for hydration?",
@@ -185,6 +265,9 @@
     ]
   }
   </script>
+  <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
+  <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="light">
 </head>
 <body>
 <nav class="main-nav" aria-label="Main navigation">

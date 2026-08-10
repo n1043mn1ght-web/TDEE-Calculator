@@ -129,6 +129,86 @@
     .footer-inner{max-width:var(--max);margin:0 auto}.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
     .footer-links a{font-size:13px;color:var(--text-muted)}.footer-copy{font-size:12px;color:var(--text-faint)}
     @media print{nav.main-nav,.toc,.ad-sidebar-left,.ad-sidebar-right,.ad-slot,.promo-box,.print-btn,footer,.compare-grid,.foods-grid,.calc-grid{display:none!important}.page-wrapper{display:block!important}main{padding:0!important}}
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
   </style>
   <script type="application/ld+json">
   {
@@ -142,7 +222,7 @@
         "@type": "Answer",
         "text": "Raspberries contain 52 calories per 100g. A cup of raspberries (123g) has 64 calories. A single raspberry weighs about 2.3g and has approximately 1 calorie. Use the slider above to calculate for any weight."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Are raspberries keto?",
@@ -150,7 +230,7 @@
         "@type": "Answer",
         "text": "Yes — raspberries are the best keto berry. With only 5.4g of net carbs per 100g (total carbs minus fiber), a ½ cup serving contains just 3.3g net carbs. This makes raspberries one of the few fruits that fits comfortably into a strict ketogenic diet."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Are raspberries high in fiber?",
@@ -158,7 +238,7 @@
         "@type": "Answer",
         "text": "Yes — raspberries have the highest fiber content of any common berry at 6.5g per 100g. A cup provides 23% of the adult daily fiber requirement. This exceptional fiber content is why raspberries have such low net carbs despite their carbohydrate content."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Are raspberries good for weight loss?",
@@ -166,7 +246,7 @@
         "@type": "Answer",
         "text": "Yes — raspberries are excellent for weight loss. At 52 kcal per 100g with 6.5g of fiber that creates strong satiety, a cup of raspberries is only 64 calories but extremely filling. Their natural sweetness also helps reduce cravings for high-calorie desserts."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Are frozen raspberries as healthy as fresh?",
@@ -174,7 +254,7 @@
         "@type": "Answer",
         "text": "Almost identical nutritionally. Freezing preserves most vitamins and antioxidants. Vitamin C content may decrease by 10–15% during storage but anthocyanins and ellagic acid are well preserved or even more bioavailable after freezing. Frozen raspberries without added sugar are an excellent year-round alternative to fresh."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Can diabetics eat raspberries?",
@@ -186,6 +266,9 @@
     ]
   }
   </script>
+  <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
+  <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="light">
 </head>
 <body>
 <nav class="main-nav" aria-label="Main navigation">

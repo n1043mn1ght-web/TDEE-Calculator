@@ -128,6 +128,86 @@
     .footer-inner { max-width: var(--max); margin: 0 auto; } .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
     .footer-links a { font-size: 13px; color: var(--text-muted); } .footer-copy { font-size: 12px; color: var(--text-faint); }
     @media print { nav.main-nav,.toc,.ad-sidebar-left,.ad-sidebar-right,.ad-slot,.promo-box,.print-btn,footer,.compare-grid,.foods-grid,.calc-grid{display:none!important} .page-wrapper{display:block!important} main{padding:0!important} }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
   </style>
   <script type="application/ld+json">
   {
@@ -141,7 +221,7 @@
         "@type": "Answer",
         "text": "Avocado contains 160 calories per 100g. Half a medium avocado (68g) has 109 calories. A whole medium avocado (146g) has about 234 calories. Use the slider above to calculate for any weight."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is avocado good for weight loss?",
@@ -149,7 +229,7 @@
         "@type": "Answer",
         "text": "Yes, in appropriate portions. Despite being calorie-dense, avocado's fat and fiber create strong satiety. Studies show people who eat avocado report greater fullness and consume fewer calories at subsequent meals. The key is portion control — half an avocado is a standard serving."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is avocado keto?",
@@ -157,7 +237,7 @@
         "@type": "Answer",
         "text": "Yes — avocado is one of the best keto foods. It contains only 1.8g of net carbs per 100g, with 14.7g of healthy fat. It's a staple in ketogenic diets for its fat content, nutrient density, and extremely low carbohydrate content."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Does avocado have more potassium than banana?",
@@ -165,7 +245,7 @@
         "@type": "Answer",
         "text": "Yes. Avocado contains 485mg of potassium per 100g, compared to 358mg in banana. A whole avocado provides 975mg of potassium — 21% of the daily value — making it one of the best dietary sources of this mineral."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "Is avocado a fruit or vegetable?",
@@ -173,7 +253,7 @@
         "@type": "Answer",
         "text": "Botanically, avocado is a fruit — specifically a large berry with a single seed. It grows on trees and develops from the flower of the plant. Culinary usage varies: avocado is used as both a vegetable (in salads, sandwiches) and a fruit (in smoothies, desserts)."
       }
-    }
+    },
     {
       "@type": "Question",
       "name": "How much fat is in avocado?",
@@ -185,6 +265,9 @@
     ]
   }
   </script>
+  <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
+  <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="light">
 </head>
 <body>
 <nav class="main-nav" aria-label="Main navigation">
