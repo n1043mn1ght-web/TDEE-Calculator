@@ -267,7 +267,70 @@
     /* Prevent horizontal overflow на мобиле */
     body{overflow-x:hidden}
     main{overflow-x:hidden}
-  </style>
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ── HOMEPAGE HUB BLOCKS ── */
+.hub-section{max-width:980px;margin:0 auto 40px;padding:0 20px}
+.hub-section h2{font-size:22px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
+.hub-section .hub-sub{font-size:14px;color:#888;margin-bottom:16px}
+
+/* Goal cards */
+.goal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:600px){.goal-grid{grid-template-columns:repeat(4,1fr)}}
+.goal-card{display:block;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:10px;
+  padding:16px 14px;text-decoration:none;transition:all .18s;cursor:pointer}
+.goal-card:hover{border-color:#2d6a4f;background:#e8f5ee;text-decoration:none;transform:translateY(-2px)}
+.goal-icon{font-size:28px;margin-bottom:8px}
+.goal-name{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.goal-desc{font-size:12px;color:#666;line-height:1.4}
+
+/* Calc cards */
+.hub-calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.hub-calc-card{display:block;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;
+  padding:12px 14px;text-decoration:none;transition:border-color .15s}
+.hub-calc-card:hover{border-color:#2d6a4f;text-decoration:none}
+.hcc-name{font-size:14px;font-weight:600;color:#1a1a1a}
+.hcc-desc{font-size:12px;color:#888;margin-top:2px}
+
+/* Food cards */
+.hub-food-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
+.hub-food-card{display:block;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;
+  padding:12px 8px;text-align:center;text-decoration:none;transition:border-color .15s}
+.hub-food-card:hover{border-color:#2d6a4f;text-decoration:none}
+.hfc-emoji{font-size:28px}
+.hfc-name{font-size:12px;font-weight:600;color:#1a1a1a;margin-top:4px}
+.hfc-cal{font-size:11px;color:#888}
+
+/* View all link */
+.hub-view-all{display:inline-block;margin-top:12px;font-size:13px;
+  color:#2d6a4f;font-weight:600;text-decoration:none}
+.hub-view-all:hover{text-decoration:underline}
+
+/* Divider */
+.hub-divider{border:none;border-top:1px solid #e0e0e0;margin:0 20px 0}
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -600,6 +663,142 @@
     <p style="font-size:12px;color:var(--text-faint);margin-top:12px">Results are estimates based on validated formulas. Not medical advice.</p>
   </div>
 
+
+
+<!-- ══ HUB: GOAL-BASED NAVIGATION ══ -->
+<hr class="hub-divider">
+<section class="hub-section" style="margin-top:40px">
+  <h2>What is your goal?</h2>
+  <p class="hub-sub">Choose your goal — we'll point you to the right tools, foods and resources.</p>
+  <div class="goal-grid">
+    <a href="/goals/weight-loss.html" class="goal-card">
+      <div class="goal-icon">🔥</div>
+      <div class="goal-name">Lose Weight</div>
+      <div class="goal-desc">Calorie deficit calculator, low-calorie foods and weight-loss recipes</div>
+    </a>
+    <a href="/goals/muscle-gain.html" class="goal-card">
+      <div class="goal-icon">💪</div>
+      <div class="goal-name">Build Muscle</div>
+      <div class="goal-desc">Protein calculator, high-protein foods and muscle-building recipes</div>
+    </a>
+    <a href="/goals/healthy-eating.html" class="goal-card">
+      <div class="goal-icon">🥗</div>
+      <div class="goal-name">Eat Healthier</div>
+      <div class="goal-desc">Nutrition facts, balanced recipes and practical eating guides</div>
+    </a>
+    <a href="/" class="goal-card">
+      <div class="goal-icon">📊</div>
+      <div class="goal-name">Track Calories</div>
+      <div class="goal-desc">TDEE calculator, food database and daily calorie tracking tools</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ HUB: POPULAR CALCULATORS ══ -->
+<hr class="hub-divider">
+<section class="hub-section">
+  <h2>Popular Calculators</h2>
+  <p class="hub-sub">Free tools to calculate your calories, macros, protein and more.</p>
+  <div class="hub-calc-grid">
+    <a href="/" class="hub-calc-card">
+      <div class="hcc-name">TDEE Calculator</div>
+      <div class="hcc-desc">Daily calorie needs</div>
+    </a>
+    <a href="/calorie-deficit-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">Calorie Deficit</div>
+      <div class="hcc-desc">Lose weight safely</div>
+    </a>
+    <a href="/macro-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">Macro Calculator</div>
+      <div class="hcc-desc">Protein, carbs & fat</div>
+    </a>
+    <a href="/protein-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">Protein Calculator</div>
+      <div class="hcc-desc">Daily protein target</div>
+    </a>
+    <a href="/bmi-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">BMI Calculator</div>
+      <div class="hcc-desc">Body mass index</div>
+    </a>
+    <a href="/bmr-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">BMR Calculator</div>
+      <div class="hcc-desc">Calories at rest</div>
+    </a>
+    <a href="/weight-loss-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">Weight Loss</div>
+      <div class="hcc-desc">How fast you'll lose</div>
+    </a>
+    <a href="/body-fat-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">Body Fat %</div>
+      <div class="hcc-desc">Estimate body fat</div>
+    </a>
+    <a href="/ideal-weight-calculator.html" class="hub-calc-card">
+      <div class="hcc-name">Ideal Weight</div>
+      <div class="hcc-desc">Your target weight</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ HUB: FOOD NUTRITION ══ -->
+<hr class="hub-divider">
+<section class="hub-section">
+  <h2>Explore Food Nutrition</h2>
+  <p class="hub-sub">Calories and nutrition facts for 135+ foods. USDA data.</p>
+  <div class="hub-food-grid">
+    <a href="/foods/chicken-breast.html" class="hub-food-card">
+      <div class="hfc-emoji">🍗</div>
+      <div class="hfc-name">Chicken Breast</div>
+      <div class="hfc-cal">165 kcal</div>
+    </a>
+    <a href="/foods/egg.html" class="hub-food-card">
+      <div class="hfc-emoji">🥚</div>
+      <div class="hfc-name">Egg</div>
+      <div class="hfc-cal">155 kcal</div>
+    </a>
+    <a href="/foods/banana.html" class="hub-food-card">
+      <div class="hfc-emoji">🍌</div>
+      <div class="hfc-name">Banana</div>
+      <div class="hfc-cal">89 kcal</div>
+    </a>
+    <a href="/foods/apple.html" class="hub-food-card">
+      <div class="hfc-emoji">🍎</div>
+      <div class="hfc-name">Apple</div>
+      <div class="hfc-cal">52 kcal</div>
+    </a>
+    <a href="/foods/salmon.html" class="hub-food-card">
+      <div class="hfc-emoji">🐟</div>
+      <div class="hfc-name">Salmon</div>
+      <div class="hfc-cal">208 kcal</div>
+    </a>
+    <a href="/foods/avocado.html" class="hub-food-card">
+      <div class="hfc-emoji">🥑</div>
+      <div class="hfc-name">Avocado</div>
+      <div class="hfc-cal">160 kcal</div>
+    </a>
+    <a href="/foods/oatmeal.html" class="hub-food-card">
+      <div class="hfc-emoji">🌾</div>
+      <div class="hfc-name">Oatmeal</div>
+      <div class="hfc-cal">71 kcal</div>
+    </a>
+    <a href="/foods/greek-yogurt.html" class="hub-food-card">
+      <div class="hfc-emoji">🫙</div>
+      <div class="hfc-name">Greek Yogurt</div>
+      <div class="hfc-cal">97 kcal</div>
+    </a>
+    <a href="/foods/almonds.html" class="hub-food-card">
+      <div class="hfc-emoji">🥜</div>
+      <div class="hfc-name">Almonds</div>
+      <div class="hfc-cal">579 kcal</div>
+    </a>
+    <a href="/foods/white-rice.html" class="hub-food-card">
+      <div class="hfc-emoji">🍚</div>
+      <div class="hfc-name">White Rice</div>
+      <div class="hfc-cal">130 kcal</div>
+    </a>
+  </div>
+  <a href="/foods/" class="hub-view-all">View all 135 foods →</a>
+</section>
+
 </main>
 
   <aside class="ad-sidebar-right" aria-label="Advertisement">
@@ -615,19 +814,54 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-links">
-      <a href="/">TDEE Calculator</a>
-      <a href="/bmr-calculator.html">BMR Calculator</a>
-      <a href="/macro-calculator.html">Macro Calculator</a>
-      <a href="/protein-calculator.html">Protein Calculator</a>
-      <a href="/bmi-calculator.html">BMI Calculator</a>
-      <a href="/foods/">Foods Database</a>
-      <a href="/about.html">About &amp; Methodology</a>
-      <a href="/terms.html">Terms of Use</a>
-      <a href="/privacy.html">Privacy Policy</a>
-      <a href="mailto:n1043m.n1ght@gmail.com">Contact</a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Foods Database</div>
+        <a href="/foods/">All Foods</a>
+        <a href="/foods/?cat=fruits">Fruits</a>
+        <a href="/foods/?cat=vegetables">Vegetables</a>
+        <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+        <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+        <a href="/foods/?cat=grains">Grains</a>
+        <a href="/foods/?cat=nuts">Nuts &amp; Seeds</a>
+        <a href="/foods/?cat=drinks">Drinks</a>
+        <a href="/foods/?cat=fastfood">Fast Food</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Popular Foods</div>
+        <a href="/foods/chicken-breast.html">Chicken Breast</a>
+        <a href="/foods/egg.html">Eggs</a>
+        <a href="/foods/avocado.html">Avocado</a>
+        <a href="/foods/banana.html">Banana</a>
+        <a href="/foods/salmon.html">Salmon</a>
+        <a href="/foods/oatmeal.html">Oatmeal</a>
+        <a href="/foods/apple.html">Apple</a>
+        <a href="/foods/greek-yogurt.html">Greek Yogurt</a>
+        <a href="/foods/almonds.html">Almonds</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <a href="/about.html">About Us</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 CaloriesCalc.org · Free tool · No sign-up · No data stored</div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
   </div>
 </footer>
 
