@@ -14,9 +14,7 @@
   <meta property="og:description" content="One large egg has 78 calories. Eggs have 155 calories per 100g with 12.6g protein. Full nutrition facts, choline data, and calorie calculator. USDA data.">
   <meta property="og:image" content="https://caloriescalc.org/foods/egg.png">
   <meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Calories in Egg","url":"https://caloriescalc.org/foods/egg.html","dateModified":"2026-07-29","author":{"@type":"Organization","name":"CaloriesCalc"},"mainEntity":{"@type":"NutritionInformation","name":"Egg, whole, raw, fresh","servingSize":"100g","calories":"155 kcal","proteinContent":"12.6g","fatContent":"10.6g","carbohydrateContent":"1.12g"}}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Calories in Egg", "url": "https://caloriescalc.org/foods/egg.html", "dateModified": "2026-07-29", "author": {"@type": "Organization", "name": "CaloriesCalc"}, "mainEntity": {"@type": "NutritionInformation", "name": "Egg, whole, raw, fresh", "servingSize": "100g", "calories": "155 kcal", "proteinContent": "12.6g", "fatContent": "10.6g", "carbohydrateContent": "1.12g", "fiberContent": "0g"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in an egg?","acceptedAnswer":{"@type":"Answer","text":"One large egg (50g) has 78 calories. Per 100g: 155 calories. Two large eggs: 156 calories. The yolk has ~55 kcal and the white ~17 kcal."}},{"@type":"Question","name":"Are eggs healthy?","acceptedAnswer":{"@type":"Answer","text":"Yes — eggs are one of the most nutritious foods. They provide complete protein, choline (53% DV), B12 (46% DV), and are rich in lutein for eye health. Large meta-analyses show egg consumption is not associated with cardiovascular disease in healthy people."}},{"@type":"Question","name":"Is egg yolk bad for cholesterol?","acceptedAnswer":{"@type":"Answer","text":"No — dietary cholesterol from eggs has minimal impact on blood cholesterol for most people. Large meta-analyses of 100,000+ people show no link between moderate egg consumption and heart disease. The yolk contains the majority of vitamins, choline, and healthy fats."}},{"@type":"Question","name":"How many eggs per day is safe?","acceptedAnswer":{"@type":"Answer","text":"Most health authorities consider 1-2 eggs per day safe for healthy adults. Some studies show up to 3 eggs/day have no adverse effect on lipids. People with diabetes or cardiovascular disease should discuss with their doctor."}},{"@type":"Question","name":"Are eggs keto?","acceptedAnswer":{"@type":"Answer","text":"Yes — 1.12g carbs per 100g. Eggs are one of the most popular keto foods due to their high fat and protein content with near-zero carbs."}},{"@type":"Question","name":"Boiled vs fried egg calories?","acceptedAnswer":{"@type":"Answer","text":"Boiled/poached: ~78 kcal per large egg. Fried in butter: ~108 kcal. Scrambled with milk: ~90 kcal. The egg itself is the same — added fats change the total."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -117,24 +115,72 @@
     @media(max-width:900px){.serving-btn{padding:10px 14px;font-size:13px;min-height:44px}.toc-links a{padding:6px 14px;min-height:36px;display:inline-flex;align-items:center}.nav-links a{min-height:36px;display:inline-flex;align-items:center}}
     html{scroll-behavior:smooth;scroll-padding-top:60px}a,button{-webkit-tap-highlight-color:transparent}body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
     @media print{nav.main-nav,.toc,.ad-sidebar-left,.ad-sidebar-right,.ad-slot,.promo-box,.print-btn,footer,.compare-grid,.foods-grid,.calc-grid{display:none!important}.page-wrapper{display:block!important}main{padding:0!important}}
-  </style>
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Egg — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/egg.html"}]}</script>
 </head>
 <body>
-<nav class="main-nav">
+<nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
-    <div class="nav-links">
-      <a href="/">TDEE</a><a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-      <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-      <a href="/calorie-deficit-calculator.html">Deficit</a>
-      <a href="/foods/" class="active">Foods</a><a href="/about.html">About</a>
+    <div class="nav-groups">
+      <div class="nav-group">
+        <span class="nav-group-label">Calculators ▾</span>
+        <div class="nav-dropdown">
+          <a href="/">TDEE Calculator</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/macro-calculator.html">Macro Calculator</a>
+          <a href="/protein-calculator.html">Protein Calculator</a>
+          <a href="/bmi-calculator.html">BMI Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/body-fat-calculator.html">Body Fat</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Foods ▾</span>
+        <div class="nav-dropdown">
+          <a href="/foods/" class="active">All Foods</a>
+          <a href="/foods/?cat=fruits">Fruits</a>
+          <a href="/foods/?cat=vegetables">Vegetables</a>
+          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/?cat=grains">Grains</a>
+          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
+          <a href="/foods/?cat=drinks">Drinks</a>
+        </div>
+      </div>
+      <a href="/about.html" class="nav-link-plain">About</a>
     </div>
   </div>
 </nav>
 <div class="page-wrapper">
   <aside class="ad-sidebar-left"><div class="ad-slot ad-slot--skyscraper ad-slot--placeholder"></div></aside>
 <main>
-  <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/foods/">Foods</a><span>›</span>Egg</nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/foods/">Foods</a><span>›</span>Egg</nav>
   <div class="toc"><div class="toc-title">Contents</div><div class="toc-links">
     <a href="#calories">Calories</a><a href="#calculator">Calculator</a><a href="#nutrition">Nutrition Facts</a>
     <a href="#vitamins">Vitamins</a><a href="#macros">Macros</a><a href="#micronutrients">Micronutrients</a>
@@ -143,7 +189,7 @@
   <div class="hero-wrap" id="calories">
     <div class="hero-left">
       <h1>Calories in Egg</h1>
-      <p class="hero-updated">Updated July 2026 · Reviewed by CaloriesCalc Team · Source: USDA FoodData Central</p>
+      <p class="hero-updated">Source: USDA FoodData Central · Data verified by CaloriesCalc</p>
       <div class="macro-strip">
         <div class="ms-item primary"><div class="ms-val">155</div><div class="ms-unit">kcal</div><div class="ms-label">per 100g</div></div>
         <div class="ms-item"><div class="ms-val">12.6</div><div class="ms-unit">g</div><div class="ms-label">Protein</div></div>
@@ -174,7 +220,7 @@
     <div class="serving-info">Per 100g egg</div>
     <div id="nutr-rows"></div>
     <p class="dv-note">* % Daily Value based on a 2,000 kcal diet.</p>
-    <br><button class="print-btn" onclick="window.print()">🖨 Print Nutrition Label</button>
+    <br><button class="print-btn" onclick="window.print()" aria-label="Print nutrition facts">🖨 Print Nutrition Label</button>
   </div>
   <div class="ai-summary"><strong>Quick summary:</strong> One large egg contains <strong>78 calories</strong> with 6.3g protein and 5.3g fat. Eggs provide 147% of daily choline per 100g — the most concentrated common dietary source. They contain all 9 essential amino acids with a perfect PDCAAS of 1.0. Once falsely blamed for heart disease, eggs are now confirmed safe by large meta-analyses.</div>
   <div class="section" id="vitamins">
@@ -222,10 +268,13 @@
       <a href="/calorie-deficit-calculator.html" class="calc-card"><div class="calc-name">Calorie Deficit</div><div class="calc-desc">Lose weight effectively</div></a>
       <a href="/bmi-calculator.html" class="calc-card"><div class="calc-name">BMI Calculator</div><div class="calc-desc">Body mass index</div></a>
       <a href="/bmr-calculator.html" class="calc-card"><div class="calc-name">BMR Calculator</div><div class="calc-desc">Calories at rest</div></a>
+      <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">Weight Loss</div><div class="calc-desc">How fast you'll lose weight</div></a>
+      <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">Body Fat %</div><div class="calc-desc">Estimate body fat</div></a>
+      <a href="/ideal-weight-calculator.html" class="calc-card"><div class="calc-name">Ideal Weight</div><div class="calc-desc">Your target weight</div></a>
     </div>
   </div>
   <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in an egg?</div><div class="faq-a">One large egg (50g) has <strong>78 calories</strong>. Per 100g: 155 calories. Two large eggs: 156 calories. The yolk has ~55 kcal and the white ~17 kcal.</div></div><div class="faq-item"><div class="faq-q">Are eggs healthy?</div><div class="faq-a">Yes — eggs are one of the most nutritious foods. They provide complete protein, choline (53% DV), B12 (46% DV), and are rich in lutein for eye health. Large meta-analyses show egg consumption is not associated with cardiovascular disease in healthy people.</div></div><div class="faq-item"><div class="faq-q">Is egg yolk bad for cholesterol?</div><div class="faq-a">No — dietary cholesterol from eggs has minimal impact on blood cholesterol for most people. Large meta-analyses of 100,000+ people show no link between moderate egg consumption and heart disease. The yolk contains the majority of vitamins, choline, and healthy fats.</div></div><div class="faq-item"><div class="faq-q">How many eggs per day is safe?</div><div class="faq-a">Most health authorities consider 1-2 eggs per day safe for healthy adults. Some studies show up to 3 eggs/day have no adverse effect on lipids. People with diabetes or cardiovascular disease should discuss with their doctor.</div></div><div class="faq-item"><div class="faq-q">Are eggs keto?</div><div class="faq-a">Yes — 1.12g carbs per 100g. Eggs are one of the most popular keto foods due to their high fat and protein content with near-zero carbs.</div></div><div class="faq-item"><div class="faq-q">Boiled vs fried egg calories?</div><div class="faq-a">Boiled/poached: ~78 kcal per large egg. Fried in butter: ~108 kcal. Scrambled with milk: ~90 kcal. The egg itself is the same — added fats change the total.</div></div></div>
-  <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/egg-white.html" class="food-card"><div class="fc-emoji">🥚</div><div class="fc-name">Egg White</div><div class="fc-cal">52 kcal/100g</div></a><a href="/foods/greek-yogurt.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Greek Yogurt</div><div class="fc-cal">97 kcal/100g</div></a><a href="/foods/cottage-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cottage Cheese</div><div class="fc-cal">98 kcal/100g</div></a><a href="/foods/chicken-breast.html" class="food-card"><div class="fc-emoji">🍗</div><div class="fc-name">Chicken Breast</div><div class="fc-cal">165 kcal/100g</div></a><a href="/foods/milk.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Milk</div><div class="fc-cal">42 kcal/100g</div></a><a href="/foods/cheddar-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cheddar Cheese</div><div class="fc-cal">403 kcal/100g</div></a><a href="/foods/salmon.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Salmon</div><div class="fc-cal">208 kcal/100g</div></a><a href="/foods/turkey-breast.html" class="food-card"><div class="fc-emoji">🦃</div><div class="fc-name">Turkey Breast</div><div class="fc-cal">135 kcal/100g</div></a></div></div>
+  <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/egg-white.html" class="food-card"><div class="fc-emoji">🥚</div><div class="fc-name">Egg White</div><div class="fc-cal">52 kcal/100g</div></a><a href="/foods/greek-yogurt.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Greek Yogurt</div><div class="fc-cal">97 kcal/100g</div></a><a href="/foods/cottage-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cottage Cheese</div><div class="fc-cal">98 kcal/100g</div></a><a href="/foods/chicken-breast.html" class="food-card"><div class="fc-emoji">🍗</div><div class="fc-name">Chicken Breast</div><div class="fc-cal">165 kcal/100g</div></a><a href="/foods/milk.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Milk</div><div class="fc-cal">42 kcal/100g</div></a><a href="/foods/cheddar-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cheddar Cheese</div><div class="fc-cal">403 kcal/100g</div></a><a href="/foods/salmon.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Salmon</div><div class="fc-cal">208 kcal/100g</div></a><a href="/foods/turkey-breast.html" class="food-card"><div class="fc-emoji">🦃</div><div class="fc-name">Turkey Breast</div><div class="fc-cal">135 kcal/100g</div></a><a href="/foods/protein-powder.html" class="food-card"><div class="fc-emoji">💪</div><div class="fc-name">Protein Powder</div><div class="fc-cal">375 kcal/100g</div></a><a href="/foods/yogurt.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Yogurt</div><div class="fc-cal">61 kcal/100g</div></a><a href="/foods/whey-protein.html" class="food-card"><div class="fc-emoji">💪</div><div class="fc-name">Whey Protein</div><div class="fc-cal">370 kcal/100g</div></a></div></div>
   <div class="section">
     <h2>Sources</h2>
     <ul class="sources-list">
@@ -238,16 +287,58 @@
 </main>
   <aside class="ad-sidebar-right"><div class="ad-slot ad-slot--skyscraper ad-slot--placeholder"></div></aside>
 </div>
-<footer><div class="footer-inner">
-  <div class="footer-links">
-    <a href="/">TDEE Calculator</a><a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
-    <a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-    <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-    <a href="/foods/">Foods Database</a><a href="/about.html">About</a>
-    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Foods Database</div>
+        <a href="/foods/">All Foods</a>
+        <a href="/foods/?cat=fruits">Fruits</a>
+        <a href="/foods/?cat=vegetables">Vegetables</a>
+        <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+        <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+        <a href="/foods/?cat=grains">Grains</a>
+        <a href="/foods/?cat=nuts">Nuts &amp; Seeds</a>
+        <a href="/foods/?cat=drinks">Drinks</a>
+        <a href="/foods/?cat=fastfood">Fast Food</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Popular Foods</div>
+        <a href="/foods/chicken-breast.html">Chicken Breast</a>
+        <a href="/foods/egg.html">Eggs</a>
+        <a href="/foods/avocado.html">Avocado</a>
+        <a href="/foods/banana.html">Banana</a>
+        <a href="/foods/salmon.html">Salmon</a>
+        <a href="/foods/oatmeal.html">Oatmeal</a>
+        <a href="/foods/apple.html">Apple</a>
+        <a href="/foods/greek-yogurt.html">Greek Yogurt</a>
+        <a href="/foods/almonds.html">Almonds</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <a href="/about.html">About Us</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 CaloriesCalc.org · Free tool · No sign-up · No data stored</div>
-</div></footer>
+</footer>
 <script>
 const N={calories:155,protein:12.6,fat:10.6,carbs:1.12,sodium:124,potassium:138,vitB6:0.17,magnesium:12};
 const DV={calories:2000,protein:50,fat:78,carbs:275,sodium:2300,potassium:4700,vitB6:1.7,magnesium:420};
