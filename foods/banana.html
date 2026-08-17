@@ -383,25 +383,69 @@
     /* Prevent horizontal overflow на мобиле */
     body{overflow-x:hidden}
     main{overflow-x:hidden}
-  </style>
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
   <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
   <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="light">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"a Banana — Nutrition Facts","item":"https://caloriescalc.org/foods/banana.html"}]}</script>
 </head>
 <body>
 
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
-    <div class="nav-links">
-      <a href="/">TDEE</a>
-      <a href="/bmr-calculator.html">BMR</a>
-      <a href="/macro-calculator.html">Macros</a>
-      <a href="/protein-calculator.html">Protein</a>
-      <a href="/bmi-calculator.html">BMI</a>
-      <a href="/calorie-deficit-calculator.html">Deficit</a>
-      <a href="/foods/" class="active">Foods</a>
-      <a href="/about.html">About</a>
+    <div class="nav-groups">
+      <div class="nav-group">
+        <span class="nav-group-label">Calculators ▾</span>
+        <div class="nav-dropdown">
+          <a href="/">TDEE Calculator</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/macro-calculator.html">Macro Calculator</a>
+          <a href="/protein-calculator.html">Protein Calculator</a>
+          <a href="/bmi-calculator.html">BMI Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/body-fat-calculator.html">Body Fat</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Foods ▾</span>
+        <div class="nav-dropdown">
+          <a href="/foods/" class="active">All Foods</a>
+          <a href="/foods/?cat=fruits">Fruits</a>
+          <a href="/foods/?cat=vegetables">Vegetables</a>
+          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/?cat=grains">Grains</a>
+          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
+          <a href="/foods/?cat=drinks">Drinks</a>
+        </div>
+      </div>
+      <a href="/about.html" class="nav-link-plain">About</a>
     </div>
   </div>
 </nav>
@@ -442,7 +486,7 @@
   <div class="hero-wrap" id="calories">
     <div class="hero-left">
       <h1>Calories in a Banana</h1>
-      <p class="hero-updated">Updated July 2026 · Reviewed by CaloriesCalc Team · Source: USDA FoodData Central</p>
+      <p class="hero-updated">Source: USDA FoodData Central · Data verified by CaloriesCalc</p>
 
       <!-- Macro strip — первое что видит пользователь -->
       <div class="macro-strip">
@@ -540,7 +584,7 @@
     <div id="nutr-rows"></div>
     <p class="dv-note">* % Daily Value based on a 2,000 kcal diet.</p>
     <br>
-    <button class="print-btn" onclick="window.print()">🖨 Print Nutrition Label</button>
+    <button class="print-btn" onclick="window.print()" aria-label="Print nutrition facts">🖨 Print Nutrition Label</button>
   </div>
 
   <!-- AI Summary — после того как пользователь увидел цифры -->
@@ -743,6 +787,9 @@
       <a href="/protein-calculator.html" class="calc-card"><div class="calc-name">Protein Calculator</div><div class="calc-desc">Daily protein target</div></a>
       <a href="/bmi-calculator.html" class="calc-card"><div class="calc-name">BMI Calculator</div><div class="calc-desc">Body mass index</div></a>
       <a href="/bmr-calculator.html" class="calc-card"><div class="calc-name">BMR Calculator</div><div class="calc-desc">Calories burned at rest</div></a>
+      <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">Weight Loss</div><div class="calc-desc">How fast you'll lose weight</div></a>
+      <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">Body Fat %</div><div class="calc-desc">Estimate body fat</div></a>
+      <a href="/ideal-weight-calculator.html" class="calc-card"><div class="calc-name">Ideal Weight</div><div class="calc-desc">Your target weight</div></a>
     </div>
   </div>
 
@@ -818,19 +865,54 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-links">
-      <a href="/">TDEE Calculator</a>
-      <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
-      <a href="/bmr-calculator.html">BMR</a>
-      <a href="/macro-calculator.html">Macros</a>
-      <a href="/protein-calculator.html">Protein</a>
-      <a href="/bmi-calculator.html">BMI</a>
-      <a href="/foods/">Foods Database</a>
-      <a href="/about.html">About</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/privacy.html">Privacy</a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Foods Database</div>
+        <a href="/foods/">All Foods</a>
+        <a href="/foods/?cat=fruits">Fruits</a>
+        <a href="/foods/?cat=vegetables">Vegetables</a>
+        <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+        <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+        <a href="/foods/?cat=grains">Grains</a>
+        <a href="/foods/?cat=nuts">Nuts &amp; Seeds</a>
+        <a href="/foods/?cat=drinks">Drinks</a>
+        <a href="/foods/?cat=fastfood">Fast Food</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Popular Foods</div>
+        <a href="/foods/chicken-breast.html">Chicken Breast</a>
+        <a href="/foods/egg.html">Eggs</a>
+        <a href="/foods/avocado.html">Avocado</a>
+        <a href="/foods/banana.html">Banana</a>
+        <a href="/foods/salmon.html">Salmon</a>
+        <a href="/foods/oatmeal.html">Oatmeal</a>
+        <a href="/foods/apple.html">Apple</a>
+        <a href="/foods/greek-yogurt.html">Greek Yogurt</a>
+        <a href="/foods/almonds.html">Almonds</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <a href="/about.html">About Us</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 CaloriesCalc.org · Free tool · No sign-up · No data stored</div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
   </div>
 </footer>
 
