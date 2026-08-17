@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://caloriescalc.org/</loc>
     <lastmod>2026-07-22</lastmod>
@@ -181,7 +180,6 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
-
   <url>
     <loc>https://caloriescalc.org/foods/potato.html</loc>
     <lastmod>2026-07-28</lastmod>
@@ -299,66 +297,6 @@
   <url>
     <loc>https://caloriescalc.org/foods/beetroot.html</loc>
     <lastmod>2026-07-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/chicken-breast.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/chicken-thigh.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/chicken-wings.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/turkey-breast.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/ground-beef.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/beef-steak.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/pork-chop.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/bacon.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/ham.html</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/lamb.html</loc>
-    <lastmod>2026-07-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -748,66 +686,6 @@
   </url>
   <url>
     <loc>https://caloriescalc.org/foods/energy-drink.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/pizza.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/cheeseburger.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/hamburger.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/french-fries.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/hot-dog.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/fried-chicken.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/chicken-nuggets.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/taco.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/burrito.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://caloriescalc.org/foods/sushi.html</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
