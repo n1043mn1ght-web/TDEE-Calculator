@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Body Fat Calculator — Estimate Your Body Fat Percentage | CaloriesCalc</title>
+  <meta name="description" content="Free body fat percentage calculator using the US Navy method. Enter neck, waist and hip measurements to estimate your body fat % and fat mass. Instant results.">
+  <link rel="canonical" href="https://caloriescalc.org/body-fat-calculator.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2d6a4f">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/ad-layout.css">
+  <meta property="og:title" content="Body Fat Calculator — Estimate Your Body Fat Percentage | CaloriesCalc">
+  <meta property="og:description" content="Free body fat percentage calculator using the US Navy method. Enter neck, waist and hip measurements to estimate your body fat % and fat mass. Instant results.">
+  <meta property="og:url" content="https://caloriescalc.org/body-fat-calculator.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Body Fat Percentage Calculator", "url": "https://caloriescalc.org/body-fat-calculator.html", "description": "Free body fat percentage calculator using the US Navy method.", "applicationCategory": "HealthApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "CaloriesCalc"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://caloriescalc.org/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://caloriescalc.org/calculators/"}, {"@type": "ListItem", "position": 3, "name": "Body Fat Percentage Calculator", "item": "https://caloriescalc.org/body-fat-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is the US Navy body fat calculator?","acceptedAnswer":{"@type":"Answer","text":"The US Navy method has an accuracy of \u00b13\u20134% compared to DEXA scans. It's one of the most accurate field methods available, comparable to skinfold calipers when measurements are taken correctly."}},{"@type":"Question","name":"What is a healthy body fat percentage?","acceptedAnswer":{"@type":"Answer","text":"For men: 10\u201320% is considered healthy (fitness to average range). For women: 18\u201328% is healthy. Athletes may be lower (6\u201313% men, 14\u201320% women). Essential fat minimum is 2\u20135% for men and 10\u201313% for women."}},{"@type":"Question","name":"How do I reduce body fat percentage?","acceptedAnswer":{"@type":"Answer","text":"Create a moderate calorie deficit (400\u2013500 kcal/day), maintain high protein intake (1.6\u20132.2g/kg body weight), do resistance training 3\u20134x/week, and include cardio 2\u20133x/week. Aim for 0.5\u20131% body fat reduction per month."}},{"@type":"Question","name":"Can I have a normal BMI but high body fat?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 this is called 'normal weight obesity' or 'skinny fat'. BMI doesn't distinguish between fat and muscle. A person can have BMI 22 (normal) but 30% body fat. Body fat % is a more accurate health indicator than BMI alone."}},{"@type":"Question","name":"How long does it take to go from 25% to 15% body fat?","acceptedAnswer":{"@type":"Answer","text":"Losing 10% body fat typically takes 4\u20136 months with a consistent 500 kcal/day deficit and resistance training. For a 80kg man at 25% BF (20kg fat), losing 8kg of fat takes approximately 22\u201324 weeks."}},{"@type":"Question","name":"Is the Navy method accurate for very muscular people?","acceptedAnswer":{"@type":"Answer","text":"Less accurate for very muscular individuals \u2014 large neck circumference in muscular people can underestimate body fat. DEXA scan or hydrostatic weighing is more accurate for athletes."}},{"@type":"Question","name":"What is the difference between body fat % and BMI?","acceptedAnswer":{"@type":"Answer","text":"BMI uses only height and weight \u2014 it cannot distinguish muscle from fat. Body fat % directly measures the proportion of fat tissue. A bodybuilder may have BMI 30 (obese) but 8% body fat. BMI is a population screening tool; body fat % is more meaningful individually."}},{"@type":"Question","name":"How often should I measure body fat?","acceptedAnswer":{"@type":"Answer","text":"Every 4 weeks is ideal. More frequent measurements are not useful as changes are too small to detect accurately. Always measure under the same conditions: morning, after bathroom, before food or exercise."}}]}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2d6a4f; --green-light: #e8f5ee; --green-dark: #1b4332;
+      --text: #1a1a1a; --text-muted: #555; --text-faint: #888;
+      --border: #e0e0e0; --bg: #fff; --bg-soft: #f8f9fa;
+      --radius: 10px; --radius-sm: 6px;
+      --shadow: 0 2px 8px rgba(0,0,0,.07);
+      --max: 780px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .skip-link { position: absolute; left: -9999px; top: 4px; background: var(--green); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px; z-index: 9999; }
+    .skip-link:focus { left: 4px; }
+    nav { background: var(--green); padding: 0 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 4px; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 17px; margin-right: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo:hover { opacity: .85; text-decoration: none; }
+    .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+    .nav-links a { color: rgba(255,255,255,.85); padding: 6px 10px; border-radius: var(--radius-sm); font-size: 14px; transition: background .15s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.18); color: #fff; text-decoration: none; }
+    main { padding: 0 20px 60px; }
+    .hero { text-align: center; padding: 36px 0 24px; }
+    .hero h1 { font-size: clamp(22px, 5vw, 32px); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero p { color: var(--text-muted); font-size: 16px; max-width: 520px; margin: 0 auto 18px; }
+    .hero-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-links a { font-size: 13px; color: var(--green); border: 1px solid var(--green); border-radius: 20px; padding: 4px 14px; transition: all .15s; }
+    .hero-links a:hover { background: var(--green); color: #fff; text-decoration: none; }
+    .unit-toggle { display: flex; background: var(--bg-soft); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; width: fit-content; }
+    .unit-toggle button { padding: 7px 20px; font-size: 14px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); transition: all .15s; }
+    .unit-toggle button.active { background: var(--green); color: #fff; font-weight: 500; }
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
+    .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .calc-header h2 { font-size: 17px; font-weight: 600; }
+    .sample-banner { display: flex; align-items: center; gap: 8px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 13px; color: #1e40af; margin-bottom: 18px; flex-wrap: wrap; }
+    .sample-banner svg { flex-shrink: 0; }
+    .sample-banner button.reset-link { background: none; border: none; color: #1d4ed8; text-decoration: underline; font-size: 13px; cursor: pointer; margin-left: auto; padding: 0; flex-shrink: 0; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    @media(max-width:520px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .form-group input, .form-group select { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 15px; color: var(--text); background: var(--bg); transition: border-color .15s, color .15s; width: 100%; }
+    .form-group input.is-sample { color: #9ca3af; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--green); }
+    .form-group .hint { font-size: 12px; color: var(--text-faint); }
+    .height-row { display: flex; gap: 8px; }
+    .height-row input { flex: 1; }
+    .sex-row { display: flex; gap: 8px; }
+    .sex-btn { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); cursor: pointer; font-size: 14px; color: var(--text-muted); transition: all .15s; text-align: center; }
+    .sex-btn.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
+    .calc-btn { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s; }
+    .calc-btn:hover { background: var(--green-dark); }
+    .results { margin-top: 24px; }
+    .results-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .result-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .result-card.primary { background: var(--green-light); border-color: var(--green); }
+    .result-val { font-size: 26px; font-weight: 700; color: var(--green); line-height: 1; }
+    .result-card.primary .result-val { font-size: 30px; }
+    .result-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .result-sub { font-size: 11px; color: var(--text-faint); }
+    .copy-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: transparent; border: 1px solid var(--green); color: var(--green); border-radius: 20px; font-size: 13px; cursor: pointer; transition: all .15s; margin-bottom: 16px; }
+    .copy-btn:hover { background: var(--green); color: #fff; }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .content-section { margin-bottom: 36px; }
+    .content-section h2 { font-size: 21px; font-weight: 700; margin-bottom: 12px; }
+    .content-section h3 { font-size: 16px; font-weight: 600; margin: 18px 0 6px; }
+    .content-section p { color: var(--text-muted); font-size: 15px; margin-bottom: 10px; line-height: 1.7; }
+    .content-section ul { color: var(--text-muted); font-size: 15px; padding-left: 20px; margin-bottom: 10px; }
+    .content-section li { margin-bottom: 4px; line-height: 1.6; }
+    .formula { background: var(--bg-soft); border-left: 3px solid var(--green); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 16px; font-family: monospace; font-size: 13px; color: var(--text); margin: 8px 0 14px; line-height: 1.8; }
+    .example-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .example-box h4 { font-size: 14px; font-weight: 600; color: #0369a1; margin-bottom: 12px; }
+    .example-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; border-bottom: 1px solid #e0f2fe; padding: 6px 0; }
+    .example-row:last-child { border-bottom: none; }
+    .example-row .er-label { color: #0369a1; }
+    .example-row .er-val { font-weight: 600; color: #0c4a6e; }
+    .mistakes-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .mistakes-box h4 { font-size: 14px; font-weight: 600; color: #9a3412; margin-bottom: 10px; }
+    .mistake-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+    .mistake-item .mi-icon { color: #ea580c; flex-shrink: 0; font-weight: 700; }
+    .mistake-item .mi-text { color: #7c2d12; line-height: 1.5; }
+    .mistake-item .mi-text strong { color: #9a3412; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
+    .compare-table th { background: var(--bg-soft); padding: 9px 12px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+    .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .recommended { background: var(--green-light); }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
+    .badge-green { background: var(--green); color: #fff; }
+    .badge-blue { background: #3b82f6; color: #fff; }
+    .tdee-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0 16px; }
+    .tdee-table th { background: var(--bg-soft); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .tdee-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .tdee-table tr.active-row { background: var(--green-light); font-weight: 500; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+    .related-card { display: block; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; text-decoration: none; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--green); text-decoration: none; }
+    .related-card.current { border-color: var(--green); background: var(--green-light); }
+    .related-card .rc-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .related-card .rc-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .related-card.current .rc-name { color: var(--green); }
+    .promo-link { display: flex; align-items: center; justify-content: space-between; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 16px; text-decoration: none; transition: border-color .15s; }
+    .promo-link:hover { border-color: var(--green); text-decoration: none; }
+    .promo-link .pl-title { font-weight: 600; font-size: 14px; color: var(--text); }
+    .promo-link .pl-sub { font-size: 12px; color: var(--text-muted); }
+    .promo-link .pl-arrow { font-size: 18px; color: var(--green); }
+    footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 28px 20px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); }
+    .footer-copy { font-size: 12px; color: var(--text-faint); }
+    @keyframes pulse-green { 0%,100%{ box-shadow:0 0 0 0 rgba(45,106,79,.3); } 50%{ box-shadow:0 0 0 6px rgba(45,106,79,0); } }
+    .result-pulse { animation: pulse-green .6s ease-out; }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
+  <style>
+.calc-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:32px 20px 28px;text-align:center;border-radius:0 0 16px 16px;margin-bottom:24px}
+.calc-hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;line-height:1.2}
+.calc-hero p{font-size:15px;opacity:.85;max-width:580px;margin:0 auto}
+.calc-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:12px;padding:24px;margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:14px;font-weight:600;color:#333}
+.form-group input,.form-group select{padding:10px 12px;border:1px solid #d0d5dd;border-radius:8px;font-size:15px;background:#fff;color:#1a1a1a}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#2d6a4f;box-shadow:0 0 0 3px rgba(45,106,79,.12)}
+.radio-group{display:flex;gap:8px}
+.radio-group label{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border:1px solid #d0d5dd;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:all .15s}
+.radio-group input[type=radio]{display:none}
+.radio-group label:has(input:checked){background:#e8f5ee;border-color:#2d6a4f;color:#2d6a4f}
+.btn-calc{width:100%;padding:14px;background:#2d6a4f;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .15s}
+.btn-calc:hover{background:#1b4332}
+.result-box{display:none;background:#e8f5ee;border:2px solid #2d6a4f;border-radius:12px;padding:24px;margin-top:16px;text-align:center}
+.result-box.show{display:block}
+.result-main{font-size:52px;font-weight:800;color:#2d6a4f;line-height:1}
+.result-unit{font-size:18px;color:#52b788;font-weight:600;margin-top:4px}
+.result-label{font-size:14px;color:#555;margin-top:6px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:16px}
+.result-card{background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:12px 8px;text-align:center}
+.rc-val{font-size:22px;font-weight:700;color:#2d6a4f}
+.rc-lbl{font-size:12px;color:#666;margin-top:2px}
+.unit-toggle{display:flex;gap:0;margin-bottom:16px;border:1px solid #d0d5dd;border-radius:8px;overflow:hidden;width:fit-content}
+.unit-btn{padding:8px 20px;font-size:14px;font-weight:600;border:none;background:#fff;color:#666;cursor:pointer;transition:all .15s}
+.unit-btn.active{background:#2d6a4f;color:#fff}
+.info-box{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#856404;line-height:1.5}
+.section-content{max-width:760px}
+.section-content h2{font-size:20px;font-weight:700;color:#1a1a1a;margin:28px 0 10px}
+.section-content h3{font-size:16px;font-weight:600;color:#2d6a4f;margin:18px 0 6px}
+.section-content p{font-size:15px;color:#444;line-height:1.7;margin-bottom:10px}
+.section-content ul{padding-left:20px;margin-bottom:10px}
+.section-content li{font-size:15px;color:#444;line-height:1.7;margin-bottom:4px}
+.formula-box{background:#f8f9fa;border-left:4px solid #2d6a4f;padding:14px 16px;border-radius:0 8px 8px 0;font-family:monospace;font-size:14px;color:#333;margin:12px 0;line-height:1.8}
+.faq-item{border-bottom:1px solid #e0e0e0;padding:14px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:6px}
+.faq-a{font-size:14px;color:#555;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:12px}
+.related-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center;text-decoration:none;transition:border-color .15s;display:block}
+.related-card:hover{border-color:#2d6a4f;text-decoration:none}
+.rc-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.rc-desc{font-size:11px;color:#888;margin-top:2px}
+.next-step{background:#e8f5ee;border:1px solid #2d6a4f;border-radius:12px;padding:20px 24px;margin:24px 0}
+.next-step h3{font-size:16px;font-weight:700;color:#1b4332;margin-bottom:12px}
+.next-step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.ns-card{display:block;background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:10px 12px;text-decoration:none;font-size:13px;color:#2d6a4f;font-weight:500;transition:all .15s}
+.ns-card:hover{background:#2d6a4f;color:#fff;text-decoration:none}
+.bf-table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+.bf-table th{background:#2d6a4f;color:#fff;padding:8px 12px;text-align:left}
+.bf-table td{padding:8px 12px;border-bottom:1px solid #e0e0e0}
+.bf-table tr:nth-child(even){background:#f8f9fa}
+.gauge-wrap{position:relative;width:180px;margin:0 auto 12px}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CaloriesCalc</a>
+    <div class="nav-links">
+      <a href="/">TDEE</a>
+      <a href="/bmr-calculator.html">BMR</a>
+      <a href="/macro-calculator.html">Macros</a>
+      <a href="/protein-calculator.html">Protein</a>
+      <a href="/bmi-calculator.html">BMI</a>
+      <a href="/calorie-deficit-calculator.html">Deficit</a>
+      <a href="/foods/">Foods</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</nav>
+<div class="page-wrapper">
+<aside class="ad-sidebar-left" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 LEFT — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+<main>
+  <div class="calc-hero">
+    <h1>Body Fat Percentage Calculator</h1>
+    <p>Estimate your body fat percentage using the US Navy circumference method. Enter your measurements to get your body fat %, fat mass and lean mass.</p>
+  </div>
+  <div class="ad-slot ad-slot--inline ad-slot--placeholder" aria-label="Advertisement"></div>
+  
+<div class="calc-box">
+  <div class="unit-toggle">
+    <button class="unit-btn active" onclick="bfSetUnit('metric',this)">Metric (cm)</button>
+    <button class="unit-btn" onclick="bfSetUnit('imperial',this)">Imperial (in)</button>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Sex</label>
+      <div class="radio-group">
+        <label><input type="radio" name="bfsex" value="male" checked onchange="bfToggleSex()"><span>♂ Male</span></label>
+        <label><input type="radio" name="bfsex" value="female" onchange="bfToggleSex()"><span>♀ Female</span></label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="bf-age">Age</label>
+      <input type="number" id="bf-age" value="30" min="16" max="80">
+    </div>
+    <div class="form-group">
+      <label for="bf-height">Height <span id="bf-hunit">(cm)</span></label>
+      <input type="number" id="bf-height" value="175" step="0.5">
+    </div>
+    <div class="form-group">
+      <label for="bf-weight">Weight <span id="bf-wunit">(kg)</span></label>
+      <input type="number" id="bf-weight" value="80" step="0.5">
+    </div>
+    <div class="form-group">
+      <label for="bf-neck">Neck circumference <span id="bf-nunit">(cm)</span></label>
+      <input type="number" id="bf-neck" value="38" step="0.5">
+    </div>
+    <div class="form-group">
+      <label for="bf-waist">Waist circumference <span id="bf-waunit">(cm)</span></label>
+      <input type="number" id="bf-waist" value="88" step="0.5">
+    </div>
+    <div class="form-group" id="bf-hip-group">
+      <label for="bf-hip">Hip circumference <span id="bf-hiunit">(cm)</span></label>
+      <input type="number" id="bf-hip" value="100" step="0.5">
+    </div>
+  </div>
+  <button class="btn-calc" onclick="calcBF()">Calculate Body Fat %</button>
+  <div class="result-box" id="bf-result">
+    <div class="result-main" id="bf-pct">—</div>
+    <div class="result-unit">% body fat</div>
+    <div class="result-label" id="bf-category"></div>
+    <div class="result-grid">
+      <div class="result-card"><div class="rc-val" id="bf-fatmass">—</div><div class="rc-lbl">Fat mass (kg)</div></div>
+      <div class="result-card"><div class="rc-val" id="bf-leanmass">—</div><div class="rc-lbl">Lean mass (kg)</div></div>
+      <div class="result-card"><div class="rc-val" id="bf-ideal-lo">—</div><div class="rc-lbl">Ideal BF% low</div></div>
+      <div class="result-card"><div class="rc-val" id="bf-ideal-hi">—</div><div class="rc-lbl">Ideal BF% high</div></div>
+    </div>
+    <div class="info-box" id="bf-info"></div>
+  </div>
+</div>
+<div class="next-step">
+  <h3>📋 Next steps based on your body fat</h3>
+  <div class="next-step-grid">
+    <a href="/weight-loss-calculator.html" class="ns-card">🔥 Weight Loss Calculator</a>
+    <a href="/" class="ns-card">🧮 Calculate your TDEE</a>
+    <a href="/ideal-weight-calculator.html" class="ns-card">⚖️ Ideal Weight Calculator</a>
+    <a href="/goals/weight-loss.html" class="ns-card">📋 Weight Loss Guide</a>
+  </div>
+</div>
+
+  <div class="section-content">
+    
+<h2>How the Body Fat Calculator works</h2>
+<p>This calculator uses the <strong>US Navy Circumference Method</strong>, developed by Hodgdon and Beckett (1984). It uses body measurements to estimate body fat percentage without expensive equipment.</p>
+<div class="formula-box">
+Men: BF% = 495 / (1.0324 − 0.19077 × log₁₀(waist−neck) + 0.15456 × log₁₀(height)) − 450<br>
+Women: BF% = 495 / (1.29579 − 0.35004 × log₁₀(waist+hip−neck) + 0.22100 × log₁₀(height)) − 450
+</div>
+<h3>How to measure correctly</h3>
+<ul>
+<li><strong>Neck:</strong> measure just below the larynx (Adam's apple), sloping slightly downward</li>
+<li><strong>Waist (men):</strong> at the navel level; <strong>Waist (women):</strong> at the narrowest point</li>
+<li><strong>Hips (women only):</strong> at the widest point of the hips/buttocks</li>
+<li>Measure in the morning, standing straight, stomach relaxed</li>
+</ul>
+<h3>Body fat percentage categories</h3>
+<table class="bf-table">
+<tr><th>Category</th><th>Men</th><th>Women</th></tr>
+<tr><td>Essential fat</td><td>2–5%</td><td>10–13%</td></tr>
+<tr><td>Athletic</td><td>6–13%</td><td>14–20%</td></tr>
+<tr><td>Fitness</td><td>14–17%</td><td>21–24%</td></tr>
+<tr><td>Average</td><td>18–24%</td><td>25–31%</td></tr>
+<tr><td>Obese</td><td>25%+</td><td>32%+</td></tr>
+</table>
+
+    <h2>How to use your results</h2>
+    
+<p>If your body fat is in the <strong>Average or Obese</strong> category, focus on creating a moderate calorie deficit (400–500 kcal/day) combined with resistance training to lose fat while preserving muscle.</p>
+<p>If you're in the <strong>Athletic or Fitness</strong> range, your goal might be body recomposition — building muscle while maintaining fat. This requires eating at maintenance with high protein (2g/kg).</p>
+<p>Track your measurements every 4 weeks. The scale alone is misleading — body fat % and measurements tell a more accurate story of progress.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><div class="faq-q">How accurate is the US Navy body fat calculator?</div><div class="faq-a">The US Navy method has an accuracy of ±3–4% compared to DEXA scans. It's one of the most accurate field methods available, comparable to skinfold calipers when measurements are taken correctly.</div></div>
+<div class="faq-item"><div class="faq-q">What is a healthy body fat percentage?</div><div class="faq-a">For men: 10–20% is considered healthy (fitness to average range). For women: 18–28% is healthy. Athletes may be lower (6–13% men, 14–20% women). Essential fat minimum is 2–5% for men and 10–13% for women.</div></div>
+<div class="faq-item"><div class="faq-q">How do I reduce body fat percentage?</div><div class="faq-a">Create a moderate calorie deficit (400–500 kcal/day), maintain high protein intake (1.6–2.2g/kg body weight), do resistance training 3–4x/week, and include cardio 2–3x/week. Aim for 0.5–1% body fat reduction per month.</div></div>
+<div class="faq-item"><div class="faq-q">Can I have a normal BMI but high body fat?</div><div class="faq-a">Yes — this is called 'normal weight obesity' or 'skinny fat'. BMI doesn't distinguish between fat and muscle. A person can have BMI 22 (normal) but 30% body fat. Body fat % is a more accurate health indicator than BMI alone.</div></div>
+<div class="faq-item"><div class="faq-q">How long does it take to go from 25% to 15% body fat?</div><div class="faq-a">Losing 10% body fat typically takes 4–6 months with a consistent 500 kcal/day deficit and resistance training. For a 80kg man at 25% BF (20kg fat), losing 8kg of fat takes approximately 22–24 weeks.</div></div>
+<div class="faq-item"><div class="faq-q">Is the Navy method accurate for very muscular people?</div><div class="faq-a">Less accurate for very muscular individuals — large neck circumference in muscular people can underestimate body fat. DEXA scan or hydrostatic weighing is more accurate for athletes.</div></div>
+<div class="faq-item"><div class="faq-q">What is the difference between body fat % and BMI?</div><div class="faq-a">BMI uses only height and weight — it cannot distinguish muscle from fat. Body fat % directly measures the proportion of fat tissue. A bodybuilder may have BMI 30 (obese) but 8% body fat. BMI is a population screening tool; body fat % is more meaningful individually.</div></div>
+<div class="faq-item"><div class="faq-q">How often should I measure body fat?</div><div class="faq-a">Every 4 weeks is ideal. More frequent measurements are not useful as changes are too small to detect accurately. Always measure under the same conditions: morning, after bathroom, before food or exercise.</div></div>
+
+    <h2>Related free calculators</h2>
+    <div class="related-grid"><a href="/" class="related-card"><div class="rc-name">TDEE</div><div class="rc-desc">Daily calories</div></a>
+<a href="/weight-loss-calculator.html" class="related-card"><div class="rc-name">Weight Loss</div><div class="rc-desc">Timeline calculator</div></a>
+<a href="/calorie-deficit-calculator.html" class="related-card"><div class="rc-name">Calorie Deficit</div><div class="rc-desc">How much to cut</div></a>
+<a href="/bmr-calculator.html" class="related-card"><div class="rc-name">BMR</div><div class="rc-desc">Calories at rest</div></a>
+<a href="/macro-calculator.html" class="related-card"><div class="rc-name">Macro Calculator</div><div class="rc-desc">Protein, carbs & fat</div></a>
+<a href="/bmi-calculator.html" class="related-card"><div class="rc-name">BMI</div><div class="rc-desc">Body mass index</div></a>
+<a href="/protein-calculator.html" class="related-card"><div class="rc-name">Protein</div><div class="rc-desc">Daily protein target</div></a>
+<a href="/ideal-weight-calculator.html" class="related-card"><div class="rc-name">Ideal Weight</div><div class="rc-desc">Your target weight</div></a>
+</div>
+  </div>
+</main>
+<aside class="ad-sidebar-right" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 RIGHT TOP — вставить код сюда после одобрения -->
+    </div>
+    <div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px">
+      <!-- AdSense 160x250 RIGHT BOTTOM — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
+  </div>
+</footer>
+<script>
+var bfUnit='metric';
+function bfSetUnit(u,btn){
+  bfUnit=u;
+  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  var m=u==='metric';
+  ['bf-hunit','bf-nunit','bf-waunit','bf-hiunit'].forEach(function(id){
+    document.getElementById(id).textContent=m?'(cm)':'(in)';
+  });
+  document.getElementById('bf-wunit').textContent=m?'(kg)':'(lbs)';
+  document.getElementById('bf-height').value=m?175:69;
+  document.getElementById('bf-weight').value=m?80:176;
+  document.getElementById('bf-neck').value=m?38:15;
+  document.getElementById('bf-waist').value=m?88:35;
+  document.getElementById('bf-hip').value=m?100:39;
+  document.getElementById('bf-result').classList.remove('show');
+}
+function bfToggleSex(){
+  var female=document.querySelector('input[name="bfsex"]:checked').value==='female';
+  document.getElementById('bf-hip-group').style.display=female?'flex':'none';
+}
+function calcBF(){
+  var sex=document.querySelector('input[name="bfsex"]:checked').value;
+  var h=parseFloat(document.getElementById('bf-height').value);
+  var w=parseFloat(document.getElementById('bf-weight').value);
+  var neck=parseFloat(document.getElementById('bf-neck').value);
+  var waist=parseFloat(document.getElementById('bf-waist').value);
+  var hip=parseFloat(document.getElementById('bf-hip').value)||0;
+  if(bfUnit==='imperial'){h*=2.54;w*=0.453592;neck*=2.54;waist*=2.54;hip*=2.54;}
+  var bf;
+  if(sex==='male'){
+    bf=495/(1.0324-0.19077*Math.log10(waist-neck)+0.15456*Math.log10(h))-450;
+  } else {
+    bf=495/(1.29579-0.35004*Math.log10(waist+hip-neck)+0.22100*Math.log10(h))-450;
+  }
+  bf=Math.max(2,Math.min(60,bf));
+  var fatMass=(w*bf/100).toFixed(1);
+  var leanMass=(w*(1-bf/100)).toFixed(1);
+  var cats,idealLo,idealHi,info;
+  if(sex==='male'){
+    cats=[{max:6,label:'Essential fat',color:'#3b82f6'},{max:13,label:'Athletic',color:'#10b981'},
+          {max:17,label:'Fitness',color:'#22c55e'},{max:24,label:'Average',color:'#f59e0b'},
+          {max:100,label:'Obese',color:'#ef4444'}];
+    idealLo=10;idealHi=20;
+  } else {
+    cats=[{max:14,label:'Essential fat',color:'#3b82f6'},{max:20,label:'Athletic',color:'#10b981'},
+          {max:24,label:'Fitness',color:'#22c55e'},{max:31,label:'Average',color:'#f59e0b'},
+          {max:100,label:'Obese',color:'#ef4444'}];
+    idealLo=18;idealHi=28;
+  }
+  var cat=cats.find(c=>bf<=c.max)||cats[cats.length-1];
+  document.getElementById('bf-pct').textContent=bf.toFixed(1)+'%';
+  document.getElementById('bf-category').textContent='Category: '+cat.label;
+  document.getElementById('bf-fatmass').textContent=fatMass+' kg';
+  document.getElementById('bf-leanmass').textContent=leanMass+' kg';
+  document.getElementById('bf-ideal-lo').textContent=idealLo+'%';
+  document.getElementById('bf-ideal-hi').textContent=idealHi+'%';
+  var msgs={
+    'Essential fat':'Very low body fat — essential for organ function. May indicate health risks.',
+    'Athletic':'Excellent body fat level — typical for competitive athletes.',
+    'Fitness':'Good body fat level — fit and healthy.',
+    'Average':'Average body fat — some room for improvement through diet and exercise.',
+    'Obese':'High body fat — consider consulting a healthcare provider about a weight loss plan.'
+  };
+  document.getElementById('bf-info').textContent=msgs[cat.label]||'';
+  document.getElementById('bf-result').classList.add('show');
+  updateShareURL({'h': document.getElementById('bf-height').value, 'w': document.getElementById('bf-weight').value, 'neck': document.getElementById('bf-neck').value, 'waist': document.getElementById('bf-waist').value, 'unit': bfUnit});
+}
+document.addEventListener('DOMContentLoaded',function(){bfToggleSex();});
+
+// ── Shareable Result URL ──────────────────────────────────
+function updateShareURL(params) {
+  var url = new URL(window.location.href);
+  url.search = '';
+  Object.keys(params).forEach(function(k) {
+    if (params[k] !== null && params[k] !== undefined && params[k] !== '') {
+      url.searchParams.set(k, params[k]);
+    }
+  });
+  history.replaceState(null, '', url.toString());
+  var bar = document.getElementById('share-bar');
+  if (bar) {
+    document.getElementById('share-url-text').textContent = url.toString();
+    bar.style.display = 'flex';
+  }
+}
+function copyShareURL() {
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    var btn = document.getElementById('share-copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy link';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+</script>
+</body>
+</html>

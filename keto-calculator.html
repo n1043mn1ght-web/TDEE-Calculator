@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Keto Calculator — Calculate Your Keto Macros | CaloriesCalc</title>
+  <meta name="description" content="Free keto macro calculator. Calculate your exact carb, fat and protein targets for a ketogenic diet based on your TDEE and goals. Standard, strict and cyclical keto.">
+  <link rel="canonical" href="https://caloriescalc.org/keto-calculator.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2d6a4f">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/ad-layout.css">
+  <meta property="og:title" content="Keto Calculator — Calculate Your Keto Macros | CaloriesCalc">
+  <meta property="og:description" content="Free keto macro calculator. Calculate your exact carb, fat and protein targets for a ketogenic diet based on your TDEE and goals. Standard, strict and cyclical keto.">
+  <meta property="og:url" content="https://caloriescalc.org/keto-calculator.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Keto Calculator", "url": "https://caloriescalc.org/keto-calculator.html", "description": "Free ketogenic diet macro calculator. Calculate net carbs, protein and fat for keto.", "applicationCategory": "HealthApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "CaloriesCalc"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://caloriescalc.org/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://caloriescalc.org/calculators/"}, {"@type": "ListItem", "position": 3, "name": "Keto Calculator \u2014 Ketogenic Diet Macros", "item": "https://caloriescalc.org/keto-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many carbs can I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"Standard keto: 20\u201330g net carbs per day (5% of calories). Strict keto: maximum 20g net carbs. Moderate low-carb: 50\u2013100g net carbs. Most people achieve ketosis at under 30g net carbs."}},{"@type":"Question","name":"How much protein should I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"1.6\u20132.2g protein per kg of body weight is recommended. Too little protein causes muscle loss; too much protein (gluconeogenesis) may reduce ketosis in some people. 1.8g/kg is a good starting point."}},{"@type":"Question","name":"How much fat should I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"Fat makes up 65\u201380% of keto calories. Don't eat fat to a target \u2014 eat fat to satiety after hitting your protein and carb targets. Fat is the primary fuel source and calorie adjuster on keto."}},{"@type":"Question","name":"How long does it take to enter ketosis?","acceptedAnswer":{"@type":"Answer","text":"Typically 2\u20134 days of keeping net carbs under 20\u201330g. Glycogen depletion (from exercise or fasting) speeds up the process. Blood ketones above 0.5 mmol/L indicate nutritional ketosis."}},{"@type":"Question","name":"Is keto safe for everyone?","acceptedAnswer":{"@type":"Answer","text":"Keto is safe for most healthy adults. It's not recommended for people with pancreatitis, liver failure, fat metabolism disorders, or those on certain diabetes medications without medical supervision."}},{"@type":"Question","name":"What foods can I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"High-fat foods: meat, fish, eggs, cheese, butter, olive oil, avocado, nuts. Low-carb vegetables: spinach, broccoli, cauliflower, zucchini, pepper. Avoid: bread, pasta, rice, potatoes, sugar, most fruit, beans."}},{"@type":"Question","name":"Will I lose muscle on keto?","acceptedAnswer":{"@type":"Answer","text":"Not if protein intake is adequate (1.8\u20132.2g/kg) and resistance training is maintained. Some initial weight loss is water and glycogen (2\u20133 kg in the first week) \u2014 not muscle."}},{"@type":"Question","name":"How is keto different from other low-carb diets?","acceptedAnswer":{"@type":"Answer","text":"Keto (under 30g net carbs) specifically aims to induce ketosis \u2014 the metabolic state where fat is the primary fuel. General low-carb (100\u2013150g carbs) reduces insulin and aids weight loss but doesn't necessarily achieve ketosis."}}]}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2d6a4f; --green-light: #e8f5ee; --green-dark: #1b4332;
+      --text: #1a1a1a; --text-muted: #555; --text-faint: #888;
+      --border: #e0e0e0; --bg: #fff; --bg-soft: #f8f9fa;
+      --radius: 10px; --radius-sm: 6px;
+      --shadow: 0 2px 8px rgba(0,0,0,.07);
+      --max: 780px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .skip-link { position: absolute; left: -9999px; top: 4px; background: var(--green); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px; z-index: 9999; }
+    .skip-link:focus { left: 4px; }
+    nav { background: var(--green); padding: 0 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 4px; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 17px; margin-right: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo:hover { opacity: .85; text-decoration: none; }
+    .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+    .nav-links a { color: rgba(255,255,255,.85); padding: 6px 10px; border-radius: var(--radius-sm); font-size: 14px; transition: background .15s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.18); color: #fff; text-decoration: none; }
+    main { padding: 0 20px 60px; }
+    .hero { text-align: center; padding: 36px 0 24px; }
+    .hero h1 { font-size: clamp(22px, 5vw, 32px); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero p { color: var(--text-muted); font-size: 16px; max-width: 520px; margin: 0 auto 18px; }
+    .hero-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-links a { font-size: 13px; color: var(--green); border: 1px solid var(--green); border-radius: 20px; padding: 4px 14px; transition: all .15s; }
+    .hero-links a:hover { background: var(--green); color: #fff; text-decoration: none; }
+    .unit-toggle { display: flex; background: var(--bg-soft); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; width: fit-content; }
+    .unit-toggle button { padding: 7px 20px; font-size: 14px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); transition: all .15s; }
+    .unit-toggle button.active { background: var(--green); color: #fff; font-weight: 500; }
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
+    .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .calc-header h2 { font-size: 17px; font-weight: 600; }
+    .sample-banner { display: flex; align-items: center; gap: 8px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 13px; color: #1e40af; margin-bottom: 18px; flex-wrap: wrap; }
+    .sample-banner svg { flex-shrink: 0; }
+    .sample-banner button.reset-link { background: none; border: none; color: #1d4ed8; text-decoration: underline; font-size: 13px; cursor: pointer; margin-left: auto; padding: 0; flex-shrink: 0; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    @media(max-width:520px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .form-group input, .form-group select { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 15px; color: var(--text); background: var(--bg); transition: border-color .15s, color .15s; width: 100%; }
+    .form-group input.is-sample { color: #9ca3af; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--green); }
+    .form-group .hint { font-size: 12px; color: var(--text-faint); }
+    .height-row { display: flex; gap: 8px; }
+    .height-row input { flex: 1; }
+    .sex-row { display: flex; gap: 8px; }
+    .sex-btn { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); cursor: pointer; font-size: 14px; color: var(--text-muted); transition: all .15s; text-align: center; }
+    .sex-btn.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
+    .calc-btn { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s; }
+    .calc-btn:hover { background: var(--green-dark); }
+    .results { margin-top: 24px; }
+    .results-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .result-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .result-card.primary { background: var(--green-light); border-color: var(--green); }
+    .result-val { font-size: 26px; font-weight: 700; color: var(--green); line-height: 1; }
+    .result-card.primary .result-val { font-size: 30px; }
+    .result-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .result-sub { font-size: 11px; color: var(--text-faint); }
+    .copy-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: transparent; border: 1px solid var(--green); color: var(--green); border-radius: 20px; font-size: 13px; cursor: pointer; transition: all .15s; margin-bottom: 16px; }
+    .copy-btn:hover { background: var(--green); color: #fff; }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .content-section { margin-bottom: 36px; }
+    .content-section h2 { font-size: 21px; font-weight: 700; margin-bottom: 12px; }
+    .content-section h3 { font-size: 16px; font-weight: 600; margin: 18px 0 6px; }
+    .content-section p { color: var(--text-muted); font-size: 15px; margin-bottom: 10px; line-height: 1.7; }
+    .content-section ul { color: var(--text-muted); font-size: 15px; padding-left: 20px; margin-bottom: 10px; }
+    .content-section li { margin-bottom: 4px; line-height: 1.6; }
+    .formula { background: var(--bg-soft); border-left: 3px solid var(--green); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 16px; font-family: monospace; font-size: 13px; color: var(--text); margin: 8px 0 14px; line-height: 1.8; }
+    .example-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .example-box h4 { font-size: 14px; font-weight: 600; color: #0369a1; margin-bottom: 12px; }
+    .example-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; border-bottom: 1px solid #e0f2fe; padding: 6px 0; }
+    .example-row:last-child { border-bottom: none; }
+    .example-row .er-label { color: #0369a1; }
+    .example-row .er-val { font-weight: 600; color: #0c4a6e; }
+    .mistakes-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .mistakes-box h4 { font-size: 14px; font-weight: 600; color: #9a3412; margin-bottom: 10px; }
+    .mistake-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+    .mistake-item .mi-icon { color: #ea580c; flex-shrink: 0; font-weight: 700; }
+    .mistake-item .mi-text { color: #7c2d12; line-height: 1.5; }
+    .mistake-item .mi-text strong { color: #9a3412; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
+    .compare-table th { background: var(--bg-soft); padding: 9px 12px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+    .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .recommended { background: var(--green-light); }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
+    .badge-green { background: var(--green); color: #fff; }
+    .badge-blue { background: #3b82f6; color: #fff; }
+    .tdee-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0 16px; }
+    .tdee-table th { background: var(--bg-soft); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .tdee-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .tdee-table tr.active-row { background: var(--green-light); font-weight: 500; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+    .related-card { display: block; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; text-decoration: none; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--green); text-decoration: none; }
+    .related-card.current { border-color: var(--green); background: var(--green-light); }
+    .related-card .rc-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .related-card .rc-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .related-card.current .rc-name { color: var(--green); }
+    .promo-link { display: flex; align-items: center; justify-content: space-between; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 16px; text-decoration: none; transition: border-color .15s; }
+    .promo-link:hover { border-color: var(--green); text-decoration: none; }
+    .promo-link .pl-title { font-weight: 600; font-size: 14px; color: var(--text); }
+    .promo-link .pl-sub { font-size: 12px; color: var(--text-muted); }
+    .promo-link .pl-arrow { font-size: 18px; color: var(--green); }
+    footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 28px 20px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); }
+    .footer-copy { font-size: 12px; color: var(--text-faint); }
+    @keyframes pulse-green { 0%,100%{ box-shadow:0 0 0 0 rgba(45,106,79,.3); } 50%{ box-shadow:0 0 0 6px rgba(45,106,79,0); } }
+    .result-pulse { animation: pulse-green .6s ease-out; }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
+  <style>
+.calc-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:32px 20px 28px;text-align:center;border-radius:0 0 16px 16px;margin-bottom:24px}
+.calc-hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;line-height:1.2}
+.calc-hero p{font-size:15px;opacity:.85;max-width:580px;margin:0 auto}
+.calc-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:12px;padding:24px;margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:14px;font-weight:600;color:#333}
+.form-group input,.form-group select{padding:10px 12px;border:1px solid #d0d5dd;border-radius:8px;font-size:15px;background:#fff;color:#1a1a1a}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#2d6a4f;box-shadow:0 0 0 3px rgba(45,106,79,.12)}
+.radio-group{display:flex;gap:8px}
+.radio-group label{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border:1px solid #d0d5dd;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:all .15s}
+.radio-group input[type=radio]{display:none}
+.radio-group label:has(input:checked){background:#e8f5ee;border-color:#2d6a4f;color:#2d6a4f}
+.btn-calc{width:100%;padding:14px;background:#2d6a4f;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .15s}
+.btn-calc:hover{background:#1b4332}
+.result-box{display:none;background:#e8f5ee;border:2px solid #2d6a4f;border-radius:12px;padding:24px;margin-top:16px;text-align:center}
+.result-box.show{display:block}
+.result-main{font-size:52px;font-weight:800;color:#2d6a4f;line-height:1}
+.result-unit{font-size:18px;color:#52b788;font-weight:600;margin-top:4px}
+.result-label{font-size:14px;color:#555;margin-top:6px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:16px}
+.result-card{background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:12px 8px;text-align:center}
+.rc-val{font-size:22px;font-weight:700;color:#2d6a4f}
+.rc-lbl{font-size:12px;color:#666;margin-top:2px}
+.unit-toggle{display:flex;gap:0;margin-bottom:16px;border:1px solid #d0d5dd;border-radius:8px;overflow:hidden;width:fit-content}
+.unit-btn{padding:8px 20px;font-size:14px;font-weight:600;border:none;background:#fff;color:#666;cursor:pointer;transition:all .15s}
+.unit-btn.active{background:#2d6a4f;color:#fff}
+.info-box{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#856404;line-height:1.5}
+.section-content{max-width:760px}
+.section-content h2{font-size:20px;font-weight:700;color:#1a1a1a;margin:28px 0 10px}
+.section-content h3{font-size:16px;font-weight:600;color:#2d6a4f;margin:18px 0 6px}
+.section-content p{font-size:15px;color:#444;line-height:1.7;margin-bottom:10px}
+.section-content ul{padding-left:20px;margin-bottom:10px}
+.section-content li{font-size:15px;color:#444;line-height:1.7;margin-bottom:4px}
+.formula-box{background:#f8f9fa;border-left:4px solid #2d6a4f;padding:14px 16px;border-radius:0 8px 8px 0;font-family:monospace;font-size:14px;color:#333;margin:12px 0;line-height:1.8}
+.faq-item{border-bottom:1px solid #e0e0e0;padding:14px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:6px}
+.faq-a{font-size:14px;color:#555;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:12px}
+.related-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center;text-decoration:none;transition:border-color .15s;display:block}
+.related-card:hover{border-color:#2d6a4f;text-decoration:none}
+.rc-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.rc-desc{font-size:11px;color:#888;margin-top:2px}
+.next-step{background:#e8f5ee;border:1px solid #2d6a4f;border-radius:12px;padding:20px 24px;margin:24px 0}
+.next-step h3{font-size:16px;font-weight:700;color:#1b4332;margin-bottom:12px}
+.next-step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.ns-card{display:block;background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:10px 12px;text-decoration:none;font-size:13px;color:#2d6a4f;font-weight:500;transition:all .15s}
+.ns-card:hover{background:#2d6a4f;color:#fff;text-decoration:none}
+.bf-table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+.bf-table th{background:#2d6a4f;color:#fff;padding:8px 12px;text-align:left}
+.bf-table td{padding:8px 12px;border-bottom:1px solid #e0e0e0}
+.bf-table tr:nth-child(even){background:#f8f9fa}
+.gauge-wrap{position:relative;width:180px;margin:0 auto 12px}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CaloriesCalc</a>
+    <div class="nav-links">
+      <a href="/">TDEE</a>
+      <a href="/bmr-calculator.html">BMR</a>
+      <a href="/macro-calculator.html">Macros</a>
+      <a href="/protein-calculator.html">Protein</a>
+      <a href="/bmi-calculator.html">BMI</a>
+      <a href="/calorie-deficit-calculator.html">Deficit</a>
+      <a href="/foods/">Foods</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</nav>
+<div class="page-wrapper">
+<aside class="ad-sidebar-left" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 LEFT — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+<main>
+  <div class="calc-hero">
+    <h1>Keto Calculator — Ketogenic Diet Macros</h1>
+    <p>Calculate your exact keto macros: net carbs, protein and fat targets based on your calorie needs and ketogenic goals.</p>
+  </div>
+  <div class="ad-slot ad-slot--inline ad-slot--placeholder" aria-label="Advertisement"></div>
+  
+<div class="calc-box">
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="keto-tdee">Your TDEE / Daily Calories</label>
+      <input type="number" id="keto-tdee" value="2000" min="1000" max="5000" step="50">
+      <small style="color:#888;font-size:12px">Don't know your TDEE? <a href="/">Calculate it here →</a></small>
+    </div>
+    <div class="form-group">
+      <label for="keto-goal">Goal</label>
+      <select id="keto-goal">
+        <option value="deficit">Lose weight (20% deficit)</option>
+        <option value="maintain" selected>Maintain weight</option>
+        <option value="surplus">Gain weight (10% surplus)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="keto-weight">Body Weight (kg)</label>
+      <input type="number" id="keto-weight" value="80" step="0.5">
+    </div>
+    <div class="form-group">
+      <label for="keto-type">Keto Type</label>
+      <select id="keto-type">
+        <option value="standard" selected>Standard Keto (SKD) — 5% carbs</option>
+        <option value="strict">Strict Keto — 20g net carbs max</option>
+        <option value="moderate">Moderate Low-Carb — 10% carbs</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="keto-protein">Protein target</label>
+      <select id="keto-protein">
+        <option value="1.6">1.6 g/kg — Minimum (sedentary)</option>
+        <option value="1.8" selected>1.8 g/kg — Moderate (light exercise)</option>
+        <option value="2.0">2.0 g/kg — Active (regular training)</option>
+        <option value="2.2">2.2 g/kg — High (strength training)</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn-calc" onclick="calcKeto()">Calculate Keto Macros</button>
+  <div class="result-box" id="keto-result">
+    <div class="result-main" id="keto-calories">—</div>
+    <div class="result-unit">kcal per day</div>
+    <div class="result-label" id="keto-goal-label"></div>
+    <div class="result-grid">
+      <div class="result-card"><div class="rc-val" id="keto-carbs">—</div><div class="rc-lbl">Net Carbs (g)</div></div>
+      <div class="result-card"><div class="rc-val" id="keto-protein-g">—</div><div class="rc-lbl">Protein (g)</div></div>
+      <div class="result-card"><div class="rc-val" id="keto-fat-g">—</div><div class="rc-lbl">Fat (g)</div></div>
+      <div class="result-card"><div class="rc-val" id="keto-carbs-pct">—</div><div class="rc-lbl">Carbs %</div></div>
+      <div class="result-card"><div class="rc-val" id="keto-protein-pct">—</div><div class="rc-lbl">Protein %</div></div>
+      <div class="result-card"><div class="rc-val" id="keto-fat-pct">—</div><div class="rc-lbl">Fat %</div></div>
+    </div>
+    <div class="info-box" id="keto-info">💡 To stay in ketosis, keep net carbs under your daily limit. Net carbs = total carbs − fiber − sugar alcohols.</div>
+  </div>
+</div>
+<div class="next-step">
+  <h3>🥑 Next steps for your keto diet</h3>
+  <div class="next-step-grid">
+    <a href="/" class="ns-card">🧮 Calculate TDEE first</a>
+    <a href="/macro-calculator.html" class="ns-card">📊 Macro Calculator</a>
+    <a href="/goals/weight-loss.html" class="ns-card">🔥 Weight Loss Guide</a>
+    <a href="/foods/" class="ns-card">🥑 Keto-friendly foods</a>
+  </div>
+</div>
+
+  <div class="section-content">
+    
+<h2>How the Keto Macro Calculator works</h2>
+<p>The calculator uses your Total Daily Energy Expenditure (TDEE) and adjusts it based on your goal, then distributes calories according to ketogenic ratios.</p>
+<div class="formula-box">
+Target calories = TDEE × goal multiplier (0.80 / 1.0 / 1.10)<br>
+Carbs = 4–10% of calories ÷ 4 kcal/g<br>
+Protein = body weight × protein per kg target<br>
+Fat = remaining calories ÷ 9 kcal/g
+</div>
+<h3>Keto macro ratios</h3>
+<table class="bf-table">
+<tr><th>Type</th><th>Net Carbs</th><th>Protein</th><th>Fat</th></tr>
+<tr><td>Standard Keto (SKD)</td><td>5% (~20–30g)</td><td>20–25%</td><td>70–75%</td></tr>
+<tr><td>Strict Keto</td><td>Max 20g/day</td><td>20–25%</td><td>70–80%</td></tr>
+<tr><td>Moderate Low-Carb</td><td>10% (~50–80g)</td><td>25–30%</td><td>60–65%</td></tr>
+</table>
+<h3>What is net carbs?</h3>
+<p>Net carbs = Total carbs − Fibre − Sugar alcohols (erythritol). Fibre and most sugar alcohols don't raise blood sugar significantly and don't break ketosis.</p>
+
+    <h2>How to use your results</h2>
+    
+<p>Start by calculating your TDEE using the <a href="/">TDEE Calculator</a>. Then enter it here to get your personalised keto macros.</p>
+<p>The most important number is <strong>net carbs</strong>. Staying under your daily carb limit is what triggers and maintains ketosis. Protein and fat can be adjusted based on hunger and preference within the ratios shown.</p>
+<p>Use a food tracking app to log net carbs for the first 4–6 weeks until you've memorised the carb content of common keto foods. Most people reach ketosis within 2–4 days of strict carb restriction.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><div class="faq-q">How many carbs can I eat on keto?</div><div class="faq-a">Standard keto: 20–30g net carbs per day (5% of calories). Strict keto: maximum 20g net carbs. Moderate low-carb: 50–100g net carbs. Most people achieve ketosis at under 30g net carbs.</div></div>
+<div class="faq-item"><div class="faq-q">How much protein should I eat on keto?</div><div class="faq-a">1.6–2.2g protein per kg of body weight is recommended. Too little protein causes muscle loss; too much protein (gluconeogenesis) may reduce ketosis in some people. 1.8g/kg is a good starting point.</div></div>
+<div class="faq-item"><div class="faq-q">How much fat should I eat on keto?</div><div class="faq-a">Fat makes up 65–80% of keto calories. Don't eat fat to a target — eat fat to satiety after hitting your protein and carb targets. Fat is the primary fuel source and calorie adjuster on keto.</div></div>
+<div class="faq-item"><div class="faq-q">How long does it take to enter ketosis?</div><div class="faq-a">Typically 2–4 days of keeping net carbs under 20–30g. Glycogen depletion (from exercise or fasting) speeds up the process. Blood ketones above 0.5 mmol/L indicate nutritional ketosis.</div></div>
+<div class="faq-item"><div class="faq-q">Is keto safe for everyone?</div><div class="faq-a">Keto is safe for most healthy adults. It's not recommended for people with pancreatitis, liver failure, fat metabolism disorders, or those on certain diabetes medications without medical supervision.</div></div>
+<div class="faq-item"><div class="faq-q">What foods can I eat on keto?</div><div class="faq-a">High-fat foods: meat, fish, eggs, cheese, butter, olive oil, avocado, nuts. Low-carb vegetables: spinach, broccoli, cauliflower, zucchini, pepper. Avoid: bread, pasta, rice, potatoes, sugar, most fruit, beans.</div></div>
+<div class="faq-item"><div class="faq-q">Will I lose muscle on keto?</div><div class="faq-a">Not if protein intake is adequate (1.8–2.2g/kg) and resistance training is maintained. Some initial weight loss is water and glycogen (2–3 kg in the first week) — not muscle.</div></div>
+<div class="faq-item"><div class="faq-q">How is keto different from other low-carb diets?</div><div class="faq-a">Keto (under 30g net carbs) specifically aims to induce ketosis — the metabolic state where fat is the primary fuel. General low-carb (100–150g carbs) reduces insulin and aids weight loss but doesn't necessarily achieve ketosis.</div></div>
+
+    <h2>Related free calculators</h2>
+    <div class="related-grid"><a href="/" class="related-card"><div class="rc-name">TDEE</div><div class="rc-desc">Daily calories</div></a>
+<a href="/weight-loss-calculator.html" class="related-card"><div class="rc-name">Weight Loss</div><div class="rc-desc">Timeline calculator</div></a>
+<a href="/calorie-deficit-calculator.html" class="related-card"><div class="rc-name">Calorie Deficit</div><div class="rc-desc">How much to cut</div></a>
+<a href="/bmr-calculator.html" class="related-card"><div class="rc-name">BMR</div><div class="rc-desc">Calories at rest</div></a>
+<a href="/macro-calculator.html" class="related-card"><div class="rc-name">Macro Calculator</div><div class="rc-desc">Protein, carbs & fat</div></a>
+<a href="/bmi-calculator.html" class="related-card"><div class="rc-name">BMI</div><div class="rc-desc">Body mass index</div></a>
+<a href="/protein-calculator.html" class="related-card"><div class="rc-name">Protein</div><div class="rc-desc">Daily protein target</div></a>
+<a href="/ideal-weight-calculator.html" class="related-card"><div class="rc-name">Ideal Weight</div><div class="rc-desc">Your target weight</div></a>
+</div>
+  </div>
+</main>
+<aside class="ad-sidebar-right" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 RIGHT TOP — вставить код сюда после одобрения -->
+    </div>
+    <div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px">
+      <!-- AdSense 160x250 RIGHT BOTTOM — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
+  </div>
+</footer>
+<script>
+function calcKeto(){
+  var tdee=parseInt(document.getElementById('keto-tdee').value);
+  var goal=document.getElementById('keto-goal').value;
+  var weight=parseFloat(document.getElementById('keto-weight').value);
+  var type=document.getElementById('keto-type').value;
+  var proteinPerKg=parseFloat(document.getElementById('keto-protein').value);
+  var goalMultiplier={deficit:0.80,maintain:1.0,surplus:1.10}[goal];
+  var targetCals=Math.round(tdee*goalMultiplier);
+  var carbPct={standard:0.05,strict:0.04,moderate:0.10}[type];
+  var proteinG=Math.round(weight*proteinPerKg);
+  var proteinCals=proteinG*4;
+  var carbCals=Math.round(targetCals*carbPct);
+  var carbG=Math.round(carbCals/4);
+  if(type==='strict') carbG=Math.min(carbG,20);
+  carbCals=carbG*4;
+  var fatCals=targetCals-proteinCals-carbCals;
+  var fatG=Math.round(fatCals/9);
+  var totalCals=carbCals+proteinCals+fatCals;
+  var goalLabels={deficit:'Goal: Weight Loss (20% calorie deficit)',maintain:'Goal: Maintain Weight',surplus:'Goal: Weight Gain (10% calorie surplus)'};
+  document.getElementById('keto-calories').textContent=targetCals;
+  document.getElementById('keto-goal-label').textContent=goalLabels[goal];
+  document.getElementById('keto-carbs').textContent=carbG+'g';
+  document.getElementById('keto-protein-g').textContent=proteinG+'g';
+  document.getElementById('keto-fat-g').textContent=fatG+'g';
+  document.getElementById('keto-carbs-pct').textContent=Math.round(carbCals/totalCals*100)+'%';
+  document.getElementById('keto-protein-pct').textContent=Math.round(proteinCals/totalCals*100)+'%';
+  document.getElementById('keto-fat-pct').textContent=Math.round(fatCals/totalCals*100)+'%';
+  var infoText=type==='strict'?'⚠️ Strict keto: max 20g net carbs/day. This is the fastest route to ketosis but hardest to maintain long-term.':type==='moderate'?'ℹ️ Moderate low-carb (10% carbs): easier to sustain. May not achieve ketosis for everyone.':'💡 Standard keto (5% carbs): the classic ketogenic ratio. Most people reach ketosis within 2–4 days.';
+  document.getElementById('keto-info').textContent=infoText;
+  document.getElementById('keto-result').classList.add('show');
+  updateShareURL({'tdee': document.getElementById('keto-tdee').value, 'goal': document.getElementById('keto-goal').value, 'type': document.getElementById('keto-type').value});
+}
+
+// ── Shareable Result URL ──────────────────────────────────
+function updateShareURL(params) {
+  var url = new URL(window.location.href);
+  url.search = '';
+  Object.keys(params).forEach(function(k) {
+    if (params[k] !== null && params[k] !== undefined && params[k] !== '') {
+      url.searchParams.set(k, params[k]);
+    }
+  });
+  history.replaceState(null, '', url.toString());
+  var bar = document.getElementById('share-bar');
+  if (bar) {
+    document.getElementById('share-url-text').textContent = url.toString();
+    bar.style.display = 'flex';
+  }
+}
+function copyShareURL() {
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    var btn = document.getElementById('share-copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy link';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ideal Weight Calculator — Find Your Healthy Weight Range | CaloriesCalc</title>
+  <meta name="description" content="Free ideal weight calculator. Find your ideal body weight using 4 proven formulas (Devine, Robinson, Miller, Hamwi). Enter height and sex for instant results.">
+  <link rel="canonical" href="https://caloriescalc.org/ideal-weight-calculator.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2d6a4f">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/ad-layout.css">
+  <meta property="og:title" content="Ideal Weight Calculator — Find Your Healthy Weight Range | CaloriesCalc">
+  <meta property="og:description" content="Free ideal weight calculator. Find your ideal body weight using 4 proven formulas (Devine, Robinson, Miller, Hamwi). Enter height and sex for instant results.">
+  <meta property="og:url" content="https://caloriescalc.org/ideal-weight-calculator.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Ideal Weight Calculator", "url": "https://caloriescalc.org/ideal-weight-calculator.html", "description": "Free ideal weight calculator using 4 proven medical formulas.", "applicationCategory": "HealthApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "CaloriesCalc"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://caloriescalc.org/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://caloriescalc.org/calculators/"}, {"@type": "ListItem", "position": 3, "name": "Ideal Weight Calculator", "item": "https://caloriescalc.org/ideal-weight-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate are ideal weight formulas?","acceptedAnswer":{"@type":"Answer","text":"These formulas are estimates developed for clinical settings (medication dosing). They don't account for muscle mass, body fat distribution, or ethnicity. The healthy BMI range (18.5\u201324.9) is a broader but equally valid reference."}},{"@type":"Question","name":"What is my ideal weight for my height?","acceptedAnswer":{"@type":"Answer","text":"Use the calculator above to get your personalised result. As a general guide: for a 175cm man, ideal weight is approximately 68\u201376 kg. For a 165cm woman, approximately 55\u201365 kg."}},{"@type":"Question","name":"Is BMI or ideal weight formula more accurate?","acceptedAnswer":{"@type":"Answer","text":"Neither is perfect. BMI is simpler but ignores body composition. Ideal weight formulas give a single number target. Body fat percentage is the most meaningful measure of health."}},{"@type":"Question","name":"How do I reach my ideal weight?","acceptedAnswer":{"@type":"Answer","text":"If above ideal weight: create a 500 kcal/day calorie deficit. If below: eat 300\u2013500 kcal above maintenance with high protein and resistance training. Use the TDEE calculator to find your maintenance calories."}},{"@type":"Question","name":"Does ideal weight change with age?","acceptedAnswer":{"@type":"Answer","text":"The formulas don't change with age, but health organisations note that slightly higher weight (BMI 23\u201327) may be protective for adults over 65, reducing osteoporosis and frailty risk."}},{"@type":"Question","name":"What is the difference between ideal weight and healthy weight?","acceptedAnswer":{"@type":"Answer","text":"Ideal weight is a single target from formulas. Healthy weight is a range (BMI 18.5\u201324.9). You can be healthy anywhere within the healthy weight range \u2014 there's no single 'perfect' weight."}},{"@type":"Question","name":"Is ideal weight the same as goal weight?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Your personal goal weight should factor in how you feel, your body composition, and your fitness level \u2014 not just a formula number. Athletes often weigh more than formula ideal weight due to muscle mass."}},{"@type":"Question","name":"How long to reach ideal weight from being overweight?","acceptedAnswer":{"@type":"Answer","text":"At a 500 kcal/day deficit (0.5 kg/week), losing 10 kg takes approximately 20 weeks. Use the Weight Loss Calculator for a personalised timeline."}}]}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2d6a4f; --green-light: #e8f5ee; --green-dark: #1b4332;
+      --text: #1a1a1a; --text-muted: #555; --text-faint: #888;
+      --border: #e0e0e0; --bg: #fff; --bg-soft: #f8f9fa;
+      --radius: 10px; --radius-sm: 6px;
+      --shadow: 0 2px 8px rgba(0,0,0,.07);
+      --max: 780px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .skip-link { position: absolute; left: -9999px; top: 4px; background: var(--green); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px; z-index: 9999; }
+    .skip-link:focus { left: 4px; }
+    nav { background: var(--green); padding: 0 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 4px; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 17px; margin-right: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo:hover { opacity: .85; text-decoration: none; }
+    .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+    .nav-links a { color: rgba(255,255,255,.85); padding: 6px 10px; border-radius: var(--radius-sm); font-size: 14px; transition: background .15s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.18); color: #fff; text-decoration: none; }
+    main { padding: 0 20px 60px; }
+    .hero { text-align: center; padding: 36px 0 24px; }
+    .hero h1 { font-size: clamp(22px, 5vw, 32px); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero p { color: var(--text-muted); font-size: 16px; max-width: 520px; margin: 0 auto 18px; }
+    .hero-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-links a { font-size: 13px; color: var(--green); border: 1px solid var(--green); border-radius: 20px; padding: 4px 14px; transition: all .15s; }
+    .hero-links a:hover { background: var(--green); color: #fff; text-decoration: none; }
+    .unit-toggle { display: flex; background: var(--bg-soft); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; width: fit-content; }
+    .unit-toggle button { padding: 7px 20px; font-size: 14px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); transition: all .15s; }
+    .unit-toggle button.active { background: var(--green); color: #fff; font-weight: 500; }
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
+    .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .calc-header h2 { font-size: 17px; font-weight: 600; }
+    .sample-banner { display: flex; align-items: center; gap: 8px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 13px; color: #1e40af; margin-bottom: 18px; flex-wrap: wrap; }
+    .sample-banner svg { flex-shrink: 0; }
+    .sample-banner button.reset-link { background: none; border: none; color: #1d4ed8; text-decoration: underline; font-size: 13px; cursor: pointer; margin-left: auto; padding: 0; flex-shrink: 0; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    @media(max-width:520px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .form-group input, .form-group select { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 15px; color: var(--text); background: var(--bg); transition: border-color .15s, color .15s; width: 100%; }
+    .form-group input.is-sample { color: #9ca3af; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--green); }
+    .form-group .hint { font-size: 12px; color: var(--text-faint); }
+    .height-row { display: flex; gap: 8px; }
+    .height-row input { flex: 1; }
+    .sex-row { display: flex; gap: 8px; }
+    .sex-btn { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); cursor: pointer; font-size: 14px; color: var(--text-muted); transition: all .15s; text-align: center; }
+    .sex-btn.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
+    .calc-btn { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s; }
+    .calc-btn:hover { background: var(--green-dark); }
+    .results { margin-top: 24px; }
+    .results-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .result-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .result-card.primary { background: var(--green-light); border-color: var(--green); }
+    .result-val { font-size: 26px; font-weight: 700; color: var(--green); line-height: 1; }
+    .result-card.primary .result-val { font-size: 30px; }
+    .result-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .result-sub { font-size: 11px; color: var(--text-faint); }
+    .copy-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: transparent; border: 1px solid var(--green); color: var(--green); border-radius: 20px; font-size: 13px; cursor: pointer; transition: all .15s; margin-bottom: 16px; }
+    .copy-btn:hover { background: var(--green); color: #fff; }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .content-section { margin-bottom: 36px; }
+    .content-section h2 { font-size: 21px; font-weight: 700; margin-bottom: 12px; }
+    .content-section h3 { font-size: 16px; font-weight: 600; margin: 18px 0 6px; }
+    .content-section p { color: var(--text-muted); font-size: 15px; margin-bottom: 10px; line-height: 1.7; }
+    .content-section ul { color: var(--text-muted); font-size: 15px; padding-left: 20px; margin-bottom: 10px; }
+    .content-section li { margin-bottom: 4px; line-height: 1.6; }
+    .formula { background: var(--bg-soft); border-left: 3px solid var(--green); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 16px; font-family: monospace; font-size: 13px; color: var(--text); margin: 8px 0 14px; line-height: 1.8; }
+    .example-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .example-box h4 { font-size: 14px; font-weight: 600; color: #0369a1; margin-bottom: 12px; }
+    .example-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; border-bottom: 1px solid #e0f2fe; padding: 6px 0; }
+    .example-row:last-child { border-bottom: none; }
+    .example-row .er-label { color: #0369a1; }
+    .example-row .er-val { font-weight: 600; color: #0c4a6e; }
+    .mistakes-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .mistakes-box h4 { font-size: 14px; font-weight: 600; color: #9a3412; margin-bottom: 10px; }
+    .mistake-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+    .mistake-item .mi-icon { color: #ea580c; flex-shrink: 0; font-weight: 700; }
+    .mistake-item .mi-text { color: #7c2d12; line-height: 1.5; }
+    .mistake-item .mi-text strong { color: #9a3412; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
+    .compare-table th { background: var(--bg-soft); padding: 9px 12px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+    .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .recommended { background: var(--green-light); }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
+    .badge-green { background: var(--green); color: #fff; }
+    .badge-blue { background: #3b82f6; color: #fff; }
+    .tdee-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0 16px; }
+    .tdee-table th { background: var(--bg-soft); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .tdee-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .tdee-table tr.active-row { background: var(--green-light); font-weight: 500; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+    .related-card { display: block; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; text-decoration: none; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--green); text-decoration: none; }
+    .related-card.current { border-color: var(--green); background: var(--green-light); }
+    .related-card .rc-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .related-card .rc-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .related-card.current .rc-name { color: var(--green); }
+    .promo-link { display: flex; align-items: center; justify-content: space-between; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 16px; text-decoration: none; transition: border-color .15s; }
+    .promo-link:hover { border-color: var(--green); text-decoration: none; }
+    .promo-link .pl-title { font-weight: 600; font-size: 14px; color: var(--text); }
+    .promo-link .pl-sub { font-size: 12px; color: var(--text-muted); }
+    .promo-link .pl-arrow { font-size: 18px; color: var(--green); }
+    footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 28px 20px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); }
+    .footer-copy { font-size: 12px; color: var(--text-faint); }
+    @keyframes pulse-green { 0%,100%{ box-shadow:0 0 0 0 rgba(45,106,79,.3); } 50%{ box-shadow:0 0 0 6px rgba(45,106,79,0); } }
+    .result-pulse { animation: pulse-green .6s ease-out; }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
+  <style>
+.calc-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:32px 20px 28px;text-align:center;border-radius:0 0 16px 16px;margin-bottom:24px}
+.calc-hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;line-height:1.2}
+.calc-hero p{font-size:15px;opacity:.85;max-width:580px;margin:0 auto}
+.calc-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:12px;padding:24px;margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:14px;font-weight:600;color:#333}
+.form-group input,.form-group select{padding:10px 12px;border:1px solid #d0d5dd;border-radius:8px;font-size:15px;background:#fff;color:#1a1a1a}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#2d6a4f;box-shadow:0 0 0 3px rgba(45,106,79,.12)}
+.radio-group{display:flex;gap:8px}
+.radio-group label{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border:1px solid #d0d5dd;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:all .15s}
+.radio-group input[type=radio]{display:none}
+.radio-group label:has(input:checked){background:#e8f5ee;border-color:#2d6a4f;color:#2d6a4f}
+.btn-calc{width:100%;padding:14px;background:#2d6a4f;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .15s}
+.btn-calc:hover{background:#1b4332}
+.result-box{display:none;background:#e8f5ee;border:2px solid #2d6a4f;border-radius:12px;padding:24px;margin-top:16px;text-align:center}
+.result-box.show{display:block}
+.result-main{font-size:52px;font-weight:800;color:#2d6a4f;line-height:1}
+.result-unit{font-size:18px;color:#52b788;font-weight:600;margin-top:4px}
+.result-label{font-size:14px;color:#555;margin-top:6px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:16px}
+.result-card{background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:12px 8px;text-align:center}
+.rc-val{font-size:22px;font-weight:700;color:#2d6a4f}
+.rc-lbl{font-size:12px;color:#666;margin-top:2px}
+.unit-toggle{display:flex;gap:0;margin-bottom:16px;border:1px solid #d0d5dd;border-radius:8px;overflow:hidden;width:fit-content}
+.unit-btn{padding:8px 20px;font-size:14px;font-weight:600;border:none;background:#fff;color:#666;cursor:pointer;transition:all .15s}
+.unit-btn.active{background:#2d6a4f;color:#fff}
+.info-box{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#856404;line-height:1.5}
+.section-content{max-width:760px}
+.section-content h2{font-size:20px;font-weight:700;color:#1a1a1a;margin:28px 0 10px}
+.section-content h3{font-size:16px;font-weight:600;color:#2d6a4f;margin:18px 0 6px}
+.section-content p{font-size:15px;color:#444;line-height:1.7;margin-bottom:10px}
+.section-content ul{padding-left:20px;margin-bottom:10px}
+.section-content li{font-size:15px;color:#444;line-height:1.7;margin-bottom:4px}
+.formula-box{background:#f8f9fa;border-left:4px solid #2d6a4f;padding:14px 16px;border-radius:0 8px 8px 0;font-family:monospace;font-size:14px;color:#333;margin:12px 0;line-height:1.8}
+.faq-item{border-bottom:1px solid #e0e0e0;padding:14px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:6px}
+.faq-a{font-size:14px;color:#555;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:12px}
+.related-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center;text-decoration:none;transition:border-color .15s;display:block}
+.related-card:hover{border-color:#2d6a4f;text-decoration:none}
+.rc-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.rc-desc{font-size:11px;color:#888;margin-top:2px}
+.next-step{background:#e8f5ee;border:1px solid #2d6a4f;border-radius:12px;padding:20px 24px;margin:24px 0}
+.next-step h3{font-size:16px;font-weight:700;color:#1b4332;margin-bottom:12px}
+.next-step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.ns-card{display:block;background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:10px 12px;text-decoration:none;font-size:13px;color:#2d6a4f;font-weight:500;transition:all .15s}
+.ns-card:hover{background:#2d6a4f;color:#fff;text-decoration:none}
+.bf-table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+.bf-table th{background:#2d6a4f;color:#fff;padding:8px 12px;text-align:left}
+.bf-table td{padding:8px 12px;border-bottom:1px solid #e0e0e0}
+.bf-table tr:nth-child(even){background:#f8f9fa}
+.gauge-wrap{position:relative;width:180px;margin:0 auto 12px}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CaloriesCalc</a>
+    <div class="nav-links">
+      <a href="/">TDEE</a>
+      <a href="/bmr-calculator.html">BMR</a>
+      <a href="/macro-calculator.html">Macros</a>
+      <a href="/protein-calculator.html">Protein</a>
+      <a href="/bmi-calculator.html">BMI</a>
+      <a href="/calorie-deficit-calculator.html">Deficit</a>
+      <a href="/foods/">Foods</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</nav>
+<div class="page-wrapper">
+<aside class="ad-sidebar-left" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 LEFT — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+<main>
+  <div class="calc-hero">
+    <h1>Ideal Weight Calculator</h1>
+    <p>Calculate your ideal body weight using 4 medically validated formulas. See your healthy weight range and how far you are from your goal.</p>
+  </div>
+  <div class="ad-slot ad-slot--inline ad-slot--placeholder" aria-label="Advertisement"></div>
+  
+<div class="calc-box">
+  <div class="unit-toggle">
+    <button class="unit-btn active" onclick="iwSetUnit('metric',this)">Metric (cm/kg)</button>
+    <button class="unit-btn" onclick="iwSetUnit('imperial',this)">Imperial (ft/lbs)</button>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Sex</label>
+      <div class="radio-group">
+        <label><input type="radio" name="iwsex" value="male" checked><span>♂ Male</span></label>
+        <label><input type="radio" name="iwsex" value="female"><span>♀ Female</span></label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="iw-height">Height <span id="iw-hunit">(cm)</span></label>
+      <input type="number" id="iw-height" value="175" step="1">
+    </div>
+    <div class="form-group">
+      <label for="iw-current">Current Weight <span id="iw-wunit">(kg)</span> <small style="color:#888">(optional)</small></label>
+      <input type="number" id="iw-current" value="80" step="0.5">
+    </div>
+    <div class="form-group">
+      <label for="iw-frame">Body Frame</label>
+      <select id="iw-frame">
+        <option value="small">Small frame</option>
+        <option value="medium" selected>Medium frame</option>
+        <option value="large">Large frame</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn-calc" onclick="calcIW()">Calculate Ideal Weight</button>
+  <div class="result-box" id="iw-result">
+    <div class="result-main" id="iw-avg">—</div>
+    <div class="result-unit" id="iw-avgunit">kg ideal weight (average)</div>
+    <div class="result-label" id="iw-diff"></div>
+    <div class="result-grid">
+      <div class="result-card"><div class="rc-val" id="iw-devine">—</div><div class="rc-lbl">Devine formula</div></div>
+      <div class="result-card"><div class="rc-val" id="iw-robinson">—</div><div class="rc-lbl">Robinson formula</div></div>
+      <div class="result-card"><div class="rc-val" id="iw-miller">—</div><div class="rc-lbl">Miller formula</div></div>
+      <div class="result-card"><div class="rc-val" id="iw-hamwi">—</div><div class="rc-lbl">Hamwi formula</div></div>
+      <div class="result-card"><div class="rc-val" id="iw-bmi-lo">—</div><div class="rc-lbl">Healthy BMI low</div></div>
+      <div class="result-card"><div class="rc-val" id="iw-bmi-hi">—</div><div class="rc-lbl">Healthy BMI high</div></div>
+    </div>
+  </div>
+</div>
+<div class="next-step">
+  <h3>📋 Next steps toward your ideal weight</h3>
+  <div class="next-step-grid">
+    <a href="/weight-loss-calculator.html" class="ns-card">⏱️ Weight Loss Timeline</a>
+    <a href="/" class="ns-card">🧮 Calculate TDEE</a>
+    <a href="/calorie-deficit-calculator.html" class="ns-card">📉 Calorie Deficit</a>
+    <a href="/goals/weight-loss.html" class="ns-card">🔥 Weight Loss Guide</a>
+  </div>
+</div>
+
+  <div class="section-content">
+    
+<h2>How the Ideal Weight Calculator works</h2>
+<p>This calculator uses <strong>four medically validated formulas</strong> and averages them to give a robust estimate of your ideal body weight.</p>
+<table class="bf-table">
+<tr><th>Formula</th><th>Men (base + per inch)</th><th>Women (base + per inch)</th></tr>
+<tr><td>Devine (1974)</td><td>50 kg + 2.3 kg/inch</td><td>45.5 kg + 2.3 kg/inch</td></tr>
+<tr><td>Robinson (1983)</td><td>52 kg + 1.9 kg/inch</td><td>49 kg + 1.7 kg/inch</td></tr>
+<tr><td>Miller (1983)</td><td>56.2 kg + 1.41 kg/inch</td><td>53.1 kg + 1.36 kg/inch</td></tr>
+<tr><td>Hamwi (1964)</td><td>48 kg + 2.7 kg/inch</td><td>45.5 kg + 2.2 kg/inch</td></tr>
+</table>
+<p>All formulas calculate based on height above 5 feet (152 cm). The BMI range (18.5–24.9) healthy weight range is also shown for reference.</p>
+<h3>Body frame adjustment</h3>
+<p>People with larger bone frames can carry more weight healthily. The calculator adjusts ±5% based on your selected frame size.</p>
+
+    <h2>How to use your results</h2>
+    
+<p>The average of the four formulas is your best estimate of ideal weight. The healthy BMI range (18.5–24.9) gives you a wider window that accounts for body composition variation.</p>
+<p>If you're above your ideal weight, use the <a href="/weight-loss-calculator.html">Weight Loss Calculator</a> to see how long it will take to reach your goal. If you're below, the <a href="/weight-gain-calculator.html">Weight Gain Calculator</a> can help you plan.</p>
+<p>Remember: ideal weight formulas were developed for medical dosing purposes, not body image goals. A healthy weight is one where your body fat is in a healthy range and you feel energetic and strong.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><div class="faq-q">How accurate are ideal weight formulas?</div><div class="faq-a">These formulas are estimates developed for clinical settings (medication dosing). They don't account for muscle mass, body fat distribution, or ethnicity. The healthy BMI range (18.5–24.9) is a broader but equally valid reference.</div></div>
+<div class="faq-item"><div class="faq-q">What is my ideal weight for my height?</div><div class="faq-a">Use the calculator above to get your personalised result. As a general guide: for a 175cm man, ideal weight is approximately 68–76 kg. For a 165cm woman, approximately 55–65 kg.</div></div>
+<div class="faq-item"><div class="faq-q">Is BMI or ideal weight formula more accurate?</div><div class="faq-a">Neither is perfect. BMI is simpler but ignores body composition. Ideal weight formulas give a single number target. Body fat percentage is the most meaningful measure of health.</div></div>
+<div class="faq-item"><div class="faq-q">How do I reach my ideal weight?</div><div class="faq-a">If above ideal weight: create a 500 kcal/day calorie deficit. If below: eat 300–500 kcal above maintenance with high protein and resistance training. Use the TDEE calculator to find your maintenance calories.</div></div>
+<div class="faq-item"><div class="faq-q">Does ideal weight change with age?</div><div class="faq-a">The formulas don't change with age, but health organisations note that slightly higher weight (BMI 23–27) may be protective for adults over 65, reducing osteoporosis and frailty risk.</div></div>
+<div class="faq-item"><div class="faq-q">What is the difference between ideal weight and healthy weight?</div><div class="faq-a">Ideal weight is a single target from formulas. Healthy weight is a range (BMI 18.5–24.9). You can be healthy anywhere within the healthy weight range — there's no single 'perfect' weight.</div></div>
+<div class="faq-item"><div class="faq-q">Is ideal weight the same as goal weight?</div><div class="faq-a">Not necessarily. Your personal goal weight should factor in how you feel, your body composition, and your fitness level — not just a formula number. Athletes often weigh more than formula ideal weight due to muscle mass.</div></div>
+<div class="faq-item"><div class="faq-q">How long to reach ideal weight from being overweight?</div><div class="faq-a">At a 500 kcal/day deficit (0.5 kg/week), losing 10 kg takes approximately 20 weeks. Use the Weight Loss Calculator for a personalised timeline.</div></div>
+
+    <h2>Related free calculators</h2>
+    <div class="related-grid"><a href="/" class="related-card"><div class="rc-name">TDEE</div><div class="rc-desc">Daily calories</div></a>
+<a href="/weight-loss-calculator.html" class="related-card"><div class="rc-name">Weight Loss</div><div class="rc-desc">Timeline calculator</div></a>
+<a href="/calorie-deficit-calculator.html" class="related-card"><div class="rc-name">Calorie Deficit</div><div class="rc-desc">How much to cut</div></a>
+<a href="/bmr-calculator.html" class="related-card"><div class="rc-name">BMR</div><div class="rc-desc">Calories at rest</div></a>
+<a href="/macro-calculator.html" class="related-card"><div class="rc-name">Macro Calculator</div><div class="rc-desc">Protein, carbs & fat</div></a>
+<a href="/bmi-calculator.html" class="related-card"><div class="rc-name">BMI</div><div class="rc-desc">Body mass index</div></a>
+<a href="/protein-calculator.html" class="related-card"><div class="rc-name">Protein</div><div class="rc-desc">Daily protein target</div></a>
+<a href="/ideal-weight-calculator.html" class="related-card"><div class="rc-name">Ideal Weight</div><div class="rc-desc">Your target weight</div></a>
+</div>
+  </div>
+</main>
+<aside class="ad-sidebar-right" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 RIGHT TOP — вставить код сюда после одобрения -->
+    </div>
+    <div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px">
+      <!-- AdSense 160x250 RIGHT BOTTOM — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
+  </div>
+</footer>
+<script>
+var iwUnit='metric';
+function iwSetUnit(u,btn){
+  iwUnit=u;
+  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  var m=u==='metric';
+  document.getElementById('iw-hunit').textContent=m?'(cm)':'(in)';
+  document.getElementById('iw-wunit').textContent=m?'(kg)':'(lbs)';
+  document.getElementById('iw-height').value=m?175:69;
+  document.getElementById('iw-current').value=m?80:176;
+  document.getElementById('iw-result').classList.remove('show');
+}
+function calcIW(){
+  var sex=document.querySelector('input[name="iwsex"]:checked').value;
+  var h=parseFloat(document.getElementById('iw-height').value);
+  var cur=parseFloat(document.getElementById('iw-current').value)||0;
+  var frame=document.getElementById('iw-frame').value;
+  var hCm=iwUnit==='imperial'?h*2.54:h;
+  var curKg=iwUnit==='imperial'?cur*0.453592:cur;
+  var frameAdj={small:-0.05,medium:0,large:0.05};
+  var adj=frameAdj[frame];
+  var inchOver=(hCm/2.54)-60;
+  var devine,robinson,miller,hamwi;
+  if(sex==='male'){
+    devine=50+2.3*inchOver;
+    robinson=52+1.9*inchOver;
+    miller=56.2+1.41*inchOver;
+    hamwi=48+2.7*inchOver;
+  } else {
+    devine=45.5+2.3*inchOver;
+    robinson=49+1.7*inchOver;
+    miller=53.1+1.36*inchOver;
+    hamwi=45.5+2.2*inchOver;
+  }
+  devine=Math.max(devine*(1+adj),30);robinson=Math.max(robinson*(1+adj),30);
+  miller=Math.max(miller*(1+adj),30);hamwi=Math.max(hamwi*(1+adj),30);
+  var avg=(devine+robinson+miller+hamwi)/4;
+  var hM=hCm/100;
+  var bmiLo=18.5*hM*hM;
+  var bmiHi=24.9*hM*hM;
+  var fmt=function(kg){
+    if(iwUnit==='imperial') return (kg*2.20462).toFixed(1)+' lbs';
+    return kg.toFixed(1)+' kg';
+  };
+  document.getElementById('iw-avg').textContent=fmt(avg);
+  document.getElementById('iw-avgunit').textContent=(iwUnit==='imperial'?'lbs':'kg')+' ideal weight (average of 4 formulas)';
+  if(curKg>0){
+    var diff=curKg-avg;
+    var diffStr=diff>0?('You are '+fmt(Math.abs(diff))+' above your ideal weight'):diff<0?('You are '+fmt(Math.abs(diff))+' below your ideal weight'):'You are at your ideal weight!';
+    document.getElementById('iw-diff').textContent=diffStr;
+  }
+  document.getElementById('iw-devine').textContent=fmt(devine);
+  document.getElementById('iw-robinson').textContent=fmt(robinson);
+  document.getElementById('iw-miller').textContent=fmt(miller);
+  document.getElementById('iw-hamwi').textContent=fmt(hamwi);
+  document.getElementById('iw-bmi-lo').textContent=fmt(bmiLo);
+  document.getElementById('iw-bmi-hi').textContent=fmt(bmiHi);
+  document.getElementById('iw-result').classList.add('show');
+  updateShareURL({'h': document.getElementById('iw-height').value, 'w': document.getElementById('iw-current').value, 'unit': iwUnit});
+}
+
+// ── Shareable Result URL ──────────────────────────────────
+function updateShareURL(params) {
+  var url = new URL(window.location.href);
+  url.search = '';
+  Object.keys(params).forEach(function(k) {
+    if (params[k] !== null && params[k] !== undefined && params[k] !== '') {
+      url.searchParams.set(k, params[k]);
+    }
+  });
+  history.replaceState(null, '', url.toString());
+  var bar = document.getElementById('share-bar');
+  if (bar) {
+    document.getElementById('share-url-text').textContent = url.toString();
+    bar.style.display = 'flex';
+  }
+}
+function copyShareURL() {
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    var btn = document.getElementById('share-copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy link';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+</script>
+</body>
+</html>

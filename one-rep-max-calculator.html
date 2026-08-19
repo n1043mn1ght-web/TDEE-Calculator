@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>One Rep Max Calculator — Calculate Your 1RM | CaloriesCalc</title>
+  <meta name="description" content="Free one rep max (1RM) calculator. Calculate your maximum strength for any exercise using Epley, Brzycki and other formulas. Find your training percentages.">
+  <link rel="canonical" href="https://caloriescalc.org/one-rep-max-calculator.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2d6a4f">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/ad-layout.css">
+  <meta property="og:title" content="One Rep Max Calculator — Calculate Your 1RM | CaloriesCalc">
+  <meta property="og:description" content="Free one rep max (1RM) calculator. Calculate your maximum strength for any exercise using Epley, Brzycki and other formulas. Find your training percentages.">
+  <meta property="og:url" content="https://caloriescalc.org/one-rep-max-calculator.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "One Rep Max Calculator", "url": "https://caloriescalc.org/one-rep-max-calculator.html", "description": "Calculate your one rep max using Epley, Brzycki and other formulas.", "applicationCategory": "HealthApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "CaloriesCalc"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://caloriescalc.org/"}, {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://caloriescalc.org/calculators/"}, {"@type": "ListItem", "position": 3, "name": "One Rep Max (1RM) Calculator", "item": "https://caloriescalc.org/one-rep-max-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a one rep max (1RM)?","acceptedAnswer":{"@type":"Answer","text":"A one rep max (1RM) is the maximum weight you can lift for exactly one repetition with proper form. It's the standard measure of strength in powerlifting and weightlifting."}},{"@type":"Question","name":"How accurate is the 1RM calculator?","acceptedAnswer":{"@type":"Answer","text":"The calculator is accurate to within 5\u201310% for most people using 2\u20138 rep sets. Accuracy decreases with higher reps (12+) and varies by exercise and training style."}},{"@type":"Question","name":"Is it safe to test my actual 1RM?","acceptedAnswer":{"@type":"Answer","text":"Testing an actual 1RM is safe for experienced lifters with good technique and a spotter. Beginners should estimate from the calculator using a comfortable 5\u20138 rep set rather than attempting true maximal lifts."}},{"@type":"Question","name":"How often should I test my 1RM?","acceptedAnswer":{"@type":"Answer","text":"Every 4\u20138 weeks is a reasonable frequency for experienced lifters. More frequent testing doesn't improve strength and increases injury risk. Many programs test 1RM every training cycle (8\u201316 weeks)."}},{"@type":"Question","name":"What percentage of my 1RM should I train at?","acceptedAnswer":{"@type":"Answer","text":"Hypertrophy (muscle growth): 70\u201385% for 6\u201312 reps. Strength: 85\u201395% for 1\u20135 reps. Power: 60\u201380% for explosive sets. General fitness: 60\u201375% for 10\u201315 reps."}},{"@type":"Question","name":"How quickly can I increase my 1RM?","acceptedAnswer":{"@type":"Answer","text":"Beginners may see 5\u201310% monthly increases. Intermediate lifters: 2\u20135% monthly. Advanced: 1\u20132% monthly or less. Strength gains are slower but more permanent than early beginner progress."}},{"@type":"Question","name":"Does body weight affect 1RM?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 heavier people generally lift more in absolute terms but not necessarily relative to body weight. Strength-to-weight ratio (1RM / body weight) is used for comparing across weight classes."}},{"@type":"Question","name":"What is a good 1RM for bench press?","acceptedAnswer":{"@type":"Answer","text":"For untrained men: bodyweight (\u00d71.0). Intermediate: \u00d71.25. Advanced: \u00d71.5+. Elite: \u00d72.0+. For women: untrained \u00d70.55, intermediate \u00d70.75, advanced \u00d71.0+. Standards vary significantly by age and training history."}}]}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2d6a4f; --green-light: #e8f5ee; --green-dark: #1b4332;
+      --text: #1a1a1a; --text-muted: #555; --text-faint: #888;
+      --border: #e0e0e0; --bg: #fff; --bg-soft: #f8f9fa;
+      --radius: 10px; --radius-sm: 6px;
+      --shadow: 0 2px 8px rgba(0,0,0,.07);
+      --max: 780px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .skip-link { position: absolute; left: -9999px; top: 4px; background: var(--green); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px; z-index: 9999; }
+    .skip-link:focus { left: 4px; }
+    nav { background: var(--green); padding: 0 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 4px; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 17px; margin-right: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo:hover { opacity: .85; text-decoration: none; }
+    .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+    .nav-links a { color: rgba(255,255,255,.85); padding: 6px 10px; border-radius: var(--radius-sm); font-size: 14px; transition: background .15s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.18); color: #fff; text-decoration: none; }
+    main { padding: 0 20px 60px; }
+    .hero { text-align: center; padding: 36px 0 24px; }
+    .hero h1 { font-size: clamp(22px, 5vw, 32px); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero p { color: var(--text-muted); font-size: 16px; max-width: 520px; margin: 0 auto 18px; }
+    .hero-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-links a { font-size: 13px; color: var(--green); border: 1px solid var(--green); border-radius: 20px; padding: 4px 14px; transition: all .15s; }
+    .hero-links a:hover { background: var(--green); color: #fff; text-decoration: none; }
+    .unit-toggle { display: flex; background: var(--bg-soft); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; width: fit-content; }
+    .unit-toggle button { padding: 7px 20px; font-size: 14px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); transition: all .15s; }
+    .unit-toggle button.active { background: var(--green); color: #fff; font-weight: 500; }
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
+    .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .calc-header h2 { font-size: 17px; font-weight: 600; }
+    .sample-banner { display: flex; align-items: center; gap: 8px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 13px; color: #1e40af; margin-bottom: 18px; flex-wrap: wrap; }
+    .sample-banner svg { flex-shrink: 0; }
+    .sample-banner button.reset-link { background: none; border: none; color: #1d4ed8; text-decoration: underline; font-size: 13px; cursor: pointer; margin-left: auto; padding: 0; flex-shrink: 0; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    @media(max-width:520px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .form-group input, .form-group select { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 15px; color: var(--text); background: var(--bg); transition: border-color .15s, color .15s; width: 100%; }
+    .form-group input.is-sample { color: #9ca3af; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--green); }
+    .form-group .hint { font-size: 12px; color: var(--text-faint); }
+    .height-row { display: flex; gap: 8px; }
+    .height-row input { flex: 1; }
+    .sex-row { display: flex; gap: 8px; }
+    .sex-btn { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); cursor: pointer; font-size: 14px; color: var(--text-muted); transition: all .15s; text-align: center; }
+    .sex-btn.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
+    .calc-btn { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s; }
+    .calc-btn:hover { background: var(--green-dark); }
+    .results { margin-top: 24px; }
+    .results-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .result-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .result-card.primary { background: var(--green-light); border-color: var(--green); }
+    .result-val { font-size: 26px; font-weight: 700; color: var(--green); line-height: 1; }
+    .result-card.primary .result-val { font-size: 30px; }
+    .result-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .result-sub { font-size: 11px; color: var(--text-faint); }
+    .copy-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: transparent; border: 1px solid var(--green); color: var(--green); border-radius: 20px; font-size: 13px; cursor: pointer; transition: all .15s; margin-bottom: 16px; }
+    .copy-btn:hover { background: var(--green); color: #fff; }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .content-section { margin-bottom: 36px; }
+    .content-section h2 { font-size: 21px; font-weight: 700; margin-bottom: 12px; }
+    .content-section h3 { font-size: 16px; font-weight: 600; margin: 18px 0 6px; }
+    .content-section p { color: var(--text-muted); font-size: 15px; margin-bottom: 10px; line-height: 1.7; }
+    .content-section ul { color: var(--text-muted); font-size: 15px; padding-left: 20px; margin-bottom: 10px; }
+    .content-section li { margin-bottom: 4px; line-height: 1.6; }
+    .formula { background: var(--bg-soft); border-left: 3px solid var(--green); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 16px; font-family: monospace; font-size: 13px; color: var(--text); margin: 8px 0 14px; line-height: 1.8; }
+    .example-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .example-box h4 { font-size: 14px; font-weight: 600; color: #0369a1; margin-bottom: 12px; }
+    .example-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; border-bottom: 1px solid #e0f2fe; padding: 6px 0; }
+    .example-row:last-child { border-bottom: none; }
+    .example-row .er-label { color: #0369a1; }
+    .example-row .er-val { font-weight: 600; color: #0c4a6e; }
+    .mistakes-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .mistakes-box h4 { font-size: 14px; font-weight: 600; color: #9a3412; margin-bottom: 10px; }
+    .mistake-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+    .mistake-item .mi-icon { color: #ea580c; flex-shrink: 0; font-weight: 700; }
+    .mistake-item .mi-text { color: #7c2d12; line-height: 1.5; }
+    .mistake-item .mi-text strong { color: #9a3412; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
+    .compare-table th { background: var(--bg-soft); padding: 9px 12px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+    .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .recommended { background: var(--green-light); }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
+    .badge-green { background: var(--green); color: #fff; }
+    .badge-blue { background: #3b82f6; color: #fff; }
+    .tdee-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0 16px; }
+    .tdee-table th { background: var(--bg-soft); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .tdee-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .tdee-table tr.active-row { background: var(--green-light); font-weight: 500; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+    .related-card { display: block; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; text-decoration: none; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--green); text-decoration: none; }
+    .related-card.current { border-color: var(--green); background: var(--green-light); }
+    .related-card .rc-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .related-card .rc-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .related-card.current .rc-name { color: var(--green); }
+    .promo-link { display: flex; align-items: center; justify-content: space-between; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 16px; text-decoration: none; transition: border-color .15s; }
+    .promo-link:hover { border-color: var(--green); text-decoration: none; }
+    .promo-link .pl-title { font-weight: 600; font-size: 14px; color: var(--text); }
+    .promo-link .pl-sub { font-size: 12px; color: var(--text-muted); }
+    .promo-link .pl-arrow { font-size: 18px; color: var(--green); }
+    footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 28px 20px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); }
+    .footer-copy { font-size: 12px; color: var(--text-faint); }
+    @keyframes pulse-green { 0%,100%{ box-shadow:0 0 0 0 rgba(45,106,79,.3); } 50%{ box-shadow:0 0 0 6px rgba(45,106,79,0); } }
+    .result-pulse { animation: pulse-green .6s ease-out; }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style><style>
+.calc-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:32px 20px 28px;text-align:center;border-radius:0 0 16px 16px;margin-bottom:24px}
+.calc-hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;line-height:1.2}
+.calc-hero p{font-size:15px;opacity:.85;max-width:580px;margin:0 auto}
+.calc-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:12px;padding:24px;margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:14px;font-weight:600;color:#333}
+.form-group input,.form-group select{padding:10px 12px;border:1px solid #d0d5dd;border-radius:8px;font-size:15px;background:#fff;color:#1a1a1a}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#2d6a4f;box-shadow:0 0 0 3px rgba(45,106,79,.12)}
+.radio-group{display:flex;gap:8px}
+.radio-group label{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border:1px solid #d0d5dd;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:all .15s}
+.radio-group input[type=radio]{display:none}
+.radio-group label:has(input:checked){background:#e8f5ee;border-color:#2d6a4f;color:#2d6a4f}
+.btn-calc{width:100%;padding:14px;background:#2d6a4f;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;margin-top:8px;transition:background .15s}
+.btn-calc:hover{background:#1b4332}
+.result-box{display:none;background:#e8f5ee;border:2px solid #2d6a4f;border-radius:12px;padding:24px;margin-top:16px;text-align:center}
+.result-box.show{display:block}
+.result-main{font-size:52px;font-weight:800;color:#2d6a4f;line-height:1}
+.result-unit{font-size:18px;color:#52b788;font-weight:600;margin-top:4px}
+.result-label{font-size:14px;color:#555;margin-top:6px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:16px}
+.result-card{background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:12px 8px;text-align:center}
+.rc-val{font-size:22px;font-weight:700;color:#2d6a4f}
+.rc-lbl{font-size:12px;color:#666;margin-top:2px}
+.unit-toggle{display:flex;gap:0;margin-bottom:16px;border:1px solid #d0d5dd;border-radius:8px;overflow:hidden;width:fit-content}
+.unit-btn{padding:8px 20px;font-size:14px;font-weight:600;border:none;background:#fff;color:#666;cursor:pointer;transition:all .15s}
+.unit-btn.active{background:#2d6a4f;color:#fff}
+.info-box{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;color:#856404;line-height:1.5}
+.section-content{max-width:760px}
+.section-content h2{font-size:20px;font-weight:700;color:#1a1a1a;margin:28px 0 10px}
+.section-content h3{font-size:16px;font-weight:600;color:#2d6a4f;margin:18px 0 6px}
+.section-content p{font-size:15px;color:#444;line-height:1.7;margin-bottom:10px}
+.section-content ul{padding-left:20px;margin-bottom:10px}
+.section-content li{font-size:15px;color:#444;line-height:1.7;margin-bottom:4px}
+.formula-box{background:#f8f9fa;border-left:4px solid #2d6a4f;padding:14px 16px;border-radius:0 8px 8px 0;font-family:monospace;font-size:14px;color:#333;margin:12px 0;line-height:1.8}
+.faq-item{border-bottom:1px solid #e0e0e0;padding:14px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:6px}
+.faq-a{font-size:14px;color:#555;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:12px}
+.related-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center;text-decoration:none;transition:border-color .15s;display:block}
+.related-card:hover{border-color:#2d6a4f;text-decoration:none}
+.rc-name{font-size:13px;font-weight:600;color:#1a1a1a}
+.rc-desc{font-size:11px;color:#888;margin-top:2px}
+.next-step{background:#e8f5ee;border:1px solid #2d6a4f;border-radius:12px;padding:20px 24px;margin:24px 0}
+.next-step h3{font-size:16px;font-weight:700;color:#1b4332;margin-bottom:12px}
+.next-step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.ns-card{display:block;background:#fff;border:1px solid #b7e3c7;border-radius:8px;padding:10px 12px;text-decoration:none;font-size:13px;color:#2d6a4f;font-weight:500;transition:all .15s}
+.ns-card:hover{background:#2d6a4f;color:#fff;text-decoration:none}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0}
+.data-table th{background:#2d6a4f;color:#fff;padding:8px 12px;text-align:left}
+.data-table td{padding:8px 12px;border-bottom:1px solid #e0e0e0}
+.data-table tr:nth-child(even){background:#f8f9fa}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CaloriesCalc</a>
+    <div class="nav-links">
+      <a href="/">TDEE</a>
+      <a href="/bmr-calculator.html">BMR</a>
+      <a href="/macro-calculator.html">Macros</a>
+      <a href="/protein-calculator.html">Protein</a>
+      <a href="/bmi-calculator.html">BMI</a>
+      <a href="/calorie-deficit-calculator.html">Deficit</a>
+      <a href="/foods/">Foods</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</nav>
+<div class="page-wrapper"><aside class="ad-sidebar-left" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 LEFT — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+<main>
+  <div class="calc-hero"><h1>One Rep Max (1RM) Calculator</h1><p>Calculate your one rep maximum for any lift using proven formulas. Find training weights for any percentage of your 1RM.</p></div>
+  <div class="ad-slot ad-slot--inline ad-slot--placeholder" aria-label="Advertisement"></div>
+  
+<div class="calc-box">
+  <div class="unit-toggle">
+    <button class="unit-btn active" onclick="ormSetUnit('metric',this)">Metric (kg)</button>
+    <button class="unit-btn" onclick="ormSetUnit('imperial',this)">Imperial (lbs)</button>
+  </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="orm-weight">Weight Lifted <span id="orm-wunit">(kg)</span></label>
+      <input type="number" id="orm-weight" value="100" step="2.5">
+    </div>
+    <div class="form-group">
+      <label for="orm-reps">Reps Performed</label>
+      <input type="number" id="orm-reps" value="5" min="1" max="20">
+    </div>
+    <div class="form-group">
+      <label for="orm-exercise">Exercise (optional)</label>
+      <select id="orm-exercise">
+        <option value="general">General / Any exercise</option>
+        <option value="squat">Squat</option>
+        <option value="bench">Bench Press</option>
+        <option value="deadlift">Deadlift</option>
+        <option value="ohp">Overhead Press</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn-calc" onclick="calcORM()">Calculate 1RM</button>
+  <div class="result-box" id="orm-result">
+    <div class="result-main" id="orm-1rm">—</div>
+    <div class="result-unit" id="orm-unit-label">kg one rep max</div>
+    <div class="result-label" id="orm-formula-avg"></div>
+    <div class="result-grid">
+      <div class="result-card"><div class="rc-val" id="orm-epley">—</div><div class="rc-lbl">Epley</div></div>
+      <div class="result-card"><div class="rc-val" id="orm-brzycki">—</div><div class="rc-lbl">Brzycki</div></div>
+      <div class="result-card"><div class="rc-val" id="orm-lander">—</div><div class="rc-lbl">Lander</div></div>
+      <div class="result-card"><div class="rc-val" id="orm-oconner">—</div><div class="rc-lbl">O'Conner</div></div>
+    </div>
+    <h3 style="margin:16px 0 8px;font-size:15px;font-weight:700;text-align:left">Training percentages</h3>
+    <div id="orm-pcts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;text-align:left"></div>
+  </div>
+</div>
+<div class="next-step">
+  <h3>💪 More fitness tools</h3>
+  <div class="next-step-grid">
+    <a href="/" class="ns-card">🧮 TDEE Calculator</a>
+    <a href="/protein-calculator.html" class="ns-card">🥩 Protein Calculator</a>
+    <a href="/body-fat-calculator.html" class="ns-card">📊 Body Fat Calculator</a>
+    <a href="/goals/muscle-gain.html" class="ns-card">💪 Muscle Gain Guide</a>
+  </div>
+</div>
+  <div class="section-content">
+    <h2>How the 1RM Calculator works</h2>
+<p>Four validated formulas are averaged to give the most reliable estimate:</p>
+<table class="data-table"><tr><th>Formula</th><th>Equation</th><th>Best for</th></tr>
+<tr><td>Epley (1985)</td><td>w × (1 + r/30)</td><td>General use, most common</td></tr>
+<tr><td>Brzycki (1993)</td><td>w × 36/(37−r)</td><td>Lower rep ranges (1–10)</td></tr>
+<tr><td>Lander</td><td>w × 100/(101.3−2.67×r)</td><td>Higher rep ranges</td></tr>
+<tr><td>O'Conner</td><td>w × (1 + 0.025×r)</td><td>Conservative estimate</td></tr></table>
+<p>Accuracy decreases with higher reps (15+). Best results with 2–8 rep sets.</p>
+    <h2>How to use your results</h2><p>Use your 1RM to set training weights for different goals:</p>
+<ul>
+<li><strong>Strength (1–5 reps):</strong> 85–100% 1RM</li>
+<li><strong>Hypertrophy (6–12 reps):</strong> 67–85% 1RM</li>
+<li><strong>Muscular endurance (12–20 reps):</strong> 50–67% 1RM</li>
+</ul>
+<p>Test your 1RM with caution: warm up thoroughly, use a spotter, and only attempt true maximal lifts after 6+ months of consistent training.</p>
+    <h2>Frequently asked questions</h2><div class="faq-item"><div class="faq-q">What is a one rep max (1RM)?</div><div class="faq-a">A one rep max (1RM) is the maximum weight you can lift for exactly one repetition with proper form. It's the standard measure of strength in powerlifting and weightlifting.</div></div>
+<div class="faq-item"><div class="faq-q">How accurate is the 1RM calculator?</div><div class="faq-a">The calculator is accurate to within 5–10% for most people using 2–8 rep sets. Accuracy decreases with higher reps (12+) and varies by exercise and training style.</div></div>
+<div class="faq-item"><div class="faq-q">Is it safe to test my actual 1RM?</div><div class="faq-a">Testing an actual 1RM is safe for experienced lifters with good technique and a spotter. Beginners should estimate from the calculator using a comfortable 5–8 rep set rather than attempting true maximal lifts.</div></div>
+<div class="faq-item"><div class="faq-q">How often should I test my 1RM?</div><div class="faq-a">Every 4–8 weeks is a reasonable frequency for experienced lifters. More frequent testing doesn't improve strength and increases injury risk. Many programs test 1RM every training cycle (8–16 weeks).</div></div>
+<div class="faq-item"><div class="faq-q">What percentage of my 1RM should I train at?</div><div class="faq-a">Hypertrophy (muscle growth): 70–85% for 6–12 reps. Strength: 85–95% for 1–5 reps. Power: 60–80% for explosive sets. General fitness: 60–75% for 10–15 reps.</div></div>
+<div class="faq-item"><div class="faq-q">How quickly can I increase my 1RM?</div><div class="faq-a">Beginners may see 5–10% monthly increases. Intermediate lifters: 2–5% monthly. Advanced: 1–2% monthly or less. Strength gains are slower but more permanent than early beginner progress.</div></div>
+<div class="faq-item"><div class="faq-q">Does body weight affect 1RM?</div><div class="faq-a">Yes — heavier people generally lift more in absolute terms but not necessarily relative to body weight. Strength-to-weight ratio (1RM / body weight) is used for comparing across weight classes.</div></div>
+<div class="faq-item"><div class="faq-q">What is a good 1RM for bench press?</div><div class="faq-a">For untrained men: bodyweight (×1.0). Intermediate: ×1.25. Advanced: ×1.5+. Elite: ×2.0+. For women: untrained ×0.55, intermediate ×0.75, advanced ×1.0+. Standards vary significantly by age and training history.</div></div>
+
+    <h2>Related free calculators</h2>
+    <div class="related-grid"><a href="/" class="related-card"><div class="rc-name">TDEE</div><div class="rc-desc">Daily calories</div></a>
+<a href="/weight-loss-calculator.html" class="related-card"><div class="rc-name">Weight Loss</div><div class="rc-desc">Timeline</div></a>
+<a href="/calorie-deficit-calculator.html" class="related-card"><div class="rc-name">Calorie Deficit</div><div class="rc-desc">How much to cut</div></a>
+<a href="/bmr-calculator.html" class="related-card"><div class="rc-name">BMR</div><div class="rc-desc">Calories at rest</div></a>
+<a href="/macro-calculator.html" class="related-card"><div class="rc-name">Macro Calculator</div><div class="rc-desc">Protein, carbs & fat</div></a>
+<a href="/bmi-calculator.html" class="related-card"><div class="rc-name">BMI</div><div class="rc-desc">Body mass index</div></a>
+<a href="/body-fat-calculator.html" class="related-card"><div class="rc-name">Body Fat %</div><div class="rc-desc">Estimate body fat</div></a>
+<a href="/ideal-weight-calculator.html" class="related-card"><div class="rc-name">Ideal Weight</div><div class="rc-desc">Target weight</div></a>
+</div>
+  </div>
+</main><aside class="ad-sidebar-right" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 RIGHT TOP — вставить код сюда после одобрения -->
+    </div>
+    <div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px">
+      <!-- AdSense 160x250 RIGHT BOTTOM — вставить код сюда после одобрения -->
+    </div>
+  </aside></div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
+  </div>
+</footer>
+<script>
+var ormUnit='metric';
+function ormSetUnit(u,btn){
+  ormUnit=u;document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.getElementById('orm-wunit').textContent=u==='metric'?'(kg)':'(lbs)';
+  document.getElementById('orm-weight').value=u==='metric'?100:225;
+  document.getElementById('orm-result').classList.remove('show');
+}
+function calcORM(){
+  var w=parseFloat(document.getElementById('orm-weight').value);
+  var r=parseInt(document.getElementById('orm-reps').value);
+  if(r<1||r>20){alert('Please enter 1–20 reps');return;}
+  var epley=r===1?w:w*(1+r/30);
+  var brzycki=r===1?w:w*(36/(37-r));
+  var lander=r===1?w:w*100/(101.3-2.67123*r);
+  var oconner=r===1?w:w*(1+0.025*r);
+  var avg=(epley+brzycki+lander+oconner)/4;
+  var fmt=function(v){return (ormUnit==='metric'?v.toFixed(1)+' kg':(v*2.20462).toFixed(1)+' lbs');};
+  document.getElementById('orm-1rm').textContent=fmt(avg);
+  document.getElementById('orm-unit-label').textContent=(ormUnit==='metric'?'kg':'lbs')+' one rep max (average)';
+  document.getElementById('orm-formula-avg').textContent='Average of 4 formulas';
+  document.getElementById('orm-epley').textContent=fmt(epley);
+  document.getElementById('orm-brzycki').textContent=fmt(brzycki);
+  document.getElementById('orm-lander').textContent=fmt(lander);
+  document.getElementById('orm-oconner').textContent=fmt(oconner);
+  var pcts=[100,95,90,85,80,75,70,65,60,55,50];
+  var html='';
+  pcts.forEach(function(p){
+    var v=avg*p/100;
+    html+='<div class="result-card"><div class="rc-val">'+fmt(v)+'</div><div class="rc-lbl">'+p+'% 1RM</div></div>';
+  });
+  document.getElementById('orm-pcts').innerHTML=html;
+  document.getElementById('orm-result').classList.add('show');
+  updateShareURL({'w': document.getElementById('orm-weight').value, 'r': document.getElementById('orm-reps').value, 'unit': ormUnit});
+}
+// ── Shareable Result URL ──────────────────────────────────
+function updateShareURL(params) {
+  var url = new URL(window.location.href);
+  url.search = '';
+  Object.keys(params).forEach(function(k) {
+    if (params[k] !== null && params[k] !== undefined && params[k] !== '') {
+      url.searchParams.set(k, params[k]);
+    }
+  });
+  history.replaceState(null, '', url.toString());
+  var bar = document.getElementById('share-bar');
+  if (bar) {
+    document.getElementById('share-url-text').textContent = url.toString();
+    bar.style.display = 'flex';
+  }
+}
+function copyShareURL() {
+  var url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    var btn = document.getElementById('share-copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy link';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+</script>
+</body></html>
