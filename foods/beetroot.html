@@ -123,17 +123,65 @@
     @media(max-width:900px){.serving-btn{padding:10px 14px;font-size:13px;min-height:44px}.toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}.print-btn{min-height:44px;padding:10px 20px}.promo-box a{min-height:44px;display:inline-flex;align-items:center}.nav-links a{min-height:36px;display:inline-flex;align-items:center}}
     html{scroll-behavior:smooth;scroll-padding-top:60px}a,button{-webkit-tap-highlight-color:transparent}body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
     @media print{nav.main-nav,.toc,.ad-sidebar-left,.ad-sidebar-right,.ad-slot,.promo-box,.print-btn,footer,.compare-grid,.foods-grid,.calc-grid{display:none!important}.page-wrapper{display:block!important}main{padding:0!important}}
-  </style>
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Beetroot — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/beetroot.html"}]}</script>
 </head>
 <body>
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
-    <div class="nav-links">
-      <a href="/">TDEE</a><a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-      <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-      <a href="/calorie-deficit-calculator.html">Deficit</a>
-      <a href="/foods/" class="active">Foods</a><a href="/about.html">About</a>
+    <div class="nav-groups">
+      <div class="nav-group">
+        <span class="nav-group-label">Calculators ▾</span>
+        <div class="nav-dropdown">
+          <a href="/">TDEE Calculator</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/macro-calculator.html">Macro Calculator</a>
+          <a href="/protein-calculator.html">Protein Calculator</a>
+          <a href="/bmi-calculator.html">BMI Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/body-fat-calculator.html">Body Fat</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Foods ▾</span>
+        <div class="nav-dropdown">
+          <a href="/foods/" class="active">All Foods</a>
+          <a href="/foods/?cat=fruits">Fruits</a>
+          <a href="/foods/?cat=vegetables">Vegetables</a>
+          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/?cat=grains">Grains</a>
+          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
+          <a href="/foods/?cat=drinks">Drinks</a>
+        </div>
+      </div>
+      <a href="/about.html" class="nav-link-plain">About</a>
     </div>
   </div>
 </nav>
@@ -150,7 +198,7 @@
   <div class="hero-wrap" id="calories">
     <div class="hero-left">
       <h1>Calories in Beetroot</h1>
-      <p class="hero-updated">Updated July 2026 · Reviewed by CaloriesCalc Team · Source: USDA FoodData Central</p>
+      <p class="hero-updated">Source: USDA FoodData Central · Data verified by CaloriesCalc</p>
       <div class="macro-strip">
         <div class="ms-item primary"><div class="ms-val">43</div><div class="ms-unit">kcal</div><div class="ms-label">per 100g</div></div>
         <div class="ms-item"><div class="ms-val">9.56</div><div class="ms-unit">g</div><div class="ms-label">Carbs</div></div>
@@ -183,7 +231,7 @@
     <div class="serving-toggle"><button class="serving-btn active" onclick="setServing(100,this)">Per 100g</button><button class="serving-btn" onclick="setServing(82,this)">⭐ 1 medium beetroot (82g)</button><button class="serving-btn" onclick="setServing(164,this)">1 large beetroot (164g)</button><button class="serving-btn" onclick="setServing(136,this)">1 cup sliced (136g)</button><button class="serving-btn" onclick="setServing(240,this)">1 cup beet juice (240ml)</button><button class="serving-btn" onclick="setServing(28,this)">1 oz (28g)</button></div>
     <div id="nutr-rows"></div>
     <p class="dv-note">* % Daily Value based on a 2,000 kcal diet.</p>
-    <br><button class="print-btn" onclick="window.print()">🖨 Print Nutrition Label</button>
+    <br><button class="print-btn" onclick="window.print()" aria-label="Print nutrition facts">🖨 Print Nutrition Label</button>
   </div>
   <div class="ai-summary"><strong>Quick summary:</strong> Beetroot contains <strong>43 calories per 100g</strong> and 35 calories per medium beet. It is the richest dietary source of nitrates (~250mg/100g), which convert to nitric oxide and improve exercise endurance by 16% and reduce blood pressure by ~4.4 mmHg in clinical trials. Unique betalain pigments provide anti-inflammatory effects comparable to aspirin. Beetroot also provides 27% of daily folate per 100g.</div>
   <div class="section" id="vitamins">
@@ -239,10 +287,38 @@
       <a href="/protein-calculator.html" class="calc-card"><div class="calc-name">Protein Calculator</div><div class="calc-desc">Daily protein target</div></a>
       <a href="/bmi-calculator.html" class="calc-card"><div class="calc-name">BMI Calculator</div><div class="calc-desc">Body mass index</div></a>
       <a href="/bmr-calculator.html" class="calc-card"><div class="calc-name">BMR Calculator</div><div class="calc-desc">Calories burned at rest</div></a>
+      <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">Weight Loss</div><div class="calc-desc">How fast you'll lose weight</div></a>
+      <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">Body Fat %</div><div class="calc-desc">Estimate body fat</div></a>
+      <a href="/ideal-weight-calculator.html" class="calc-card"><div class="calc-name">Ideal Weight</div><div class="calc-desc">Your target weight</div></a>
     </div>
   </div>
+  <div class="section" id="use-with-calculators">
+  <h2>Use This With Our Free Calculators</h2>
+  <div class="calc-grid">
+    <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">🔥 Weight Loss Calculator</div><div class="calc-desc">Your timeline to goal weight</div></a>
+    <a href="/calorie-deficit-calculator.html" class="calc-card"><div class="calc-name">📉 Calorie Deficit Calculator</div><div class="calc-desc">How much to cut</div></a>
+    <a href="/" class="calc-card"><div class="calc-name">🧮 TDEE Calculator</div><div class="calc-desc">Your daily calorie needs</div></a>
+    <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">📊 Body Fat Calculator</div><div class="calc-desc">Track your body fat %</div></a>
+  </div>
+  <div style="margin-top:12px;padding:12px 16px;background:#e8f5ee;border:1px solid #2d6a4f;border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <span style="font-size:14px;font-weight:600;color:#1b4332">🔥 Reach your goal with a personalised plan</span>
+    <a href="/goals/weight-loss.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Weight Loss Guide →</a>
+  </div>
+</div>
   <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in beetroot?</div><div class="faq-a">Beetroot contains <strong>43 calories per 100g</strong>. A medium beetroot (82g) has 35 calories. A cup of sliced beetroot (136g) has 58 calories. A cup of beet juice (240ml) has about 100 calories. Use the slider above for any weight.</div></div><div class="faq-item"><div class="faq-q">Does beetroot improve athletic performance?</div><div class="faq-a">Yes — clinical evidence is strong. Beetroot's high nitrate content converts to nitric oxide, which dilates blood vessels and improves oxygen delivery to muscles. Studies show beetroot juice improves endurance capacity by 16%, reduces the oxygen cost of exercise by 3-5%, and improves time trial performance by 2.7%. Athletes typically drink 500ml of beet juice 2-3 hours before competition.</div></div><div class="faq-item"><div class="faq-q">Does beetroot lower blood pressure?</div><div class="faq-a">Yes. A meta-analysis of 16 trials found beetroot juice reduced systolic blood pressure by 4.4 mmHg. A 2015 trial found 250ml daily over 4 weeks reduced blood pressure in hypertensive patients comparably to some medications in some participants.</div></div><div class="faq-item"><div class="faq-q">Why does beetroot turn urine pink?</div><div class="faq-a">Beeturia (pink/red urine after eating beets) occurs in 10-14% of people. It is caused by betalain pigments that are normally broken down in the gut — in some people with certain gut bacteria profiles or lower stomach acidity, betalains pass into the bloodstream and are excreted by the kidneys. It is harmless.</div></div><div class="faq-item"><div class="faq-q">Is beetroot keto?</div><div class="faq-a">In moderation. Beetroot has 6.8g of net carbs per 100g — a medium beetroot has 5.1g of net carbs. Small portions (½ medium beet) can fit into flexible low-carb diets, but large portions exceed keto carb limits.</div></div><div class="faq-item"><div class="faq-q">Are canned beets as healthy as fresh?</div><div class="faq-a">Canned beets retain most nutrients but lose about 25% of folate and some nitrates during processing. They are also significantly higher in sodium (salt added for preservation). Fresh or vacuum-packed beets are preferable nutritionally, but canned beets are still a nutritious and convenient option.</div></div></div>
-  <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/carrot.html" class="food-card"><div class="fc-emoji">🥕</div><div class="fc-name">Carrot</div><div class="fc-cal">41 kcal/100g</div></a><a href="/foods/potato.html" class="food-card"><div class="fc-emoji">🥔</div><div class="fc-name">Potato</div><div class="fc-cal">77 kcal/100g</div></a><a href="/foods/sweet-potato.html" class="food-card"><div class="fc-emoji">🍠</div><div class="fc-name">Sweet Potato</div><div class="fc-cal">86 kcal/100g</div></a><a href="/foods/onion.html" class="food-card"><div class="fc-emoji">🧅</div><div class="fc-name">Onion</div><div class="fc-cal">40 kcal/100g</div></a><a href="/foods/broccoli.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Broccoli</div><div class="fc-cal">34 kcal/100g</div></a><a href="/foods/tomato.html" class="food-card"><div class="fc-emoji">🍅</div><div class="fc-name">Tomato</div><div class="fc-cal">18 kcal/100g</div></a><a href="/foods/spinach.html" class="food-card"><div class="fc-emoji">🥬</div><div class="fc-name">Spinach</div><div class="fc-cal">23 kcal/100g</div></a><a href="/foods/corn.html" class="food-card"><div class="fc-emoji">🌽</div><div class="fc-name">Corn</div><div class="fc-cal">86 kcal/100g</div></a></div></div>
+  <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/carrot.html" class="food-card"><div class="fc-emoji">🥕</div><div class="fc-name">Carrot</div><div class="fc-cal">41 kcal/100g</div></a><a href="/foods/potato.html" class="food-card"><div class="fc-emoji">🥔</div><div class="fc-name">Potato</div><div class="fc-cal">77 kcal/100g</div></a><a href="/foods/sweet-potato.html" class="food-card"><div class="fc-emoji">🍠</div><div class="fc-name">Sweet Potato</div><div class="fc-cal">86 kcal/100g</div></a><a href="/foods/onion.html" class="food-card"><div class="fc-emoji">🧅</div><div class="fc-name">Onion</div><div class="fc-cal">40 kcal/100g</div></a><a href="/foods/broccoli.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Broccoli</div><div class="fc-cal">34 kcal/100g</div></a><a href="/foods/tomato.html" class="food-card"><div class="fc-emoji">🍅</div><div class="fc-name">Tomato</div><div class="fc-cal">18 kcal/100g</div></a><a href="/foods/spinach.html" class="food-card"><div class="fc-emoji">🥬</div><div class="fc-name">Spinach</div><div class="fc-cal">23 kcal/100g</div></a><a href="/foods/corn.html" class="food-card"><div class="fc-emoji">🌽</div><div class="fc-name">Corn</div><div class="fc-cal">86 kcal/100g</div></a><a href="/foods/pumpkin.html" class="food-card"><div class="fc-emoji">🎃</div><div class="fc-name">Pumpkin</div><div class="fc-cal">26 kcal/100g</div></a></div></div>
+  <div class="section" id="more-from-category">
+  <h2>More Vegetables</h2>
+  <div class="foods-grid">
+<a href="/foods/cauliflower.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Cauliflower</div><div class="fc-cal">25 kcal/100g</div></a>
+<a href="/foods/lettuce.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Lettuce</div><div class="fc-cal">15 kcal/100g</div></a>
+<a href="/foods/bell-pepper.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Bell Pepper</div><div class="fc-cal">31 kcal/100g</div></a>
+<a href="/foods/peas.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Peas</div><div class="fc-cal">81 kcal/100g</div></a>
+<a href="/foods/zucchini.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Zucchini</div><div class="fc-cal">17 kcal/100g</div></a>
+<a href="/foods/cabbage.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Cabbage</div><div class="fc-cal">25 kcal/100g</div></a>
+  </div>
+  <a href="/foods/" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--green);font-weight:600;text-decoration:none">View all 135 foods →</a>
+</div>
   <div class="section">
     <h2>Sources</h2>
     <ul class="sources-list">
@@ -255,16 +331,32 @@
 </main>
   <aside class="ad-sidebar-right"><div class="ad-slot ad-slot--skyscraper ad-slot--placeholder"></div><div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px"></div></aside>
 </div>
-<footer><div class="footer-inner">
-  <div class="footer-links">
-    <a href="/">TDEE Calculator</a><a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
-    <a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-    <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-    <a href="/foods/">Foods Database</a><a href="/about.html">About</a>
-    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 CaloriesCalc.org · Free tool · No sign-up · No data stored</div>
-</div></footer>
+</footer>
 <script>
 const N={calories:43,carbs:9.56,sugar:6.76,fiber:2.8,protein:1.61,fat:0.17,sodium:78,potassium:325,vitB6:0.067,vitC:4.9,magnesium:23};
 const DV={calories:2000,carbs:275,sugar:50,fiber:28,protein:50,fat:78,sodium:2300,potassium:4700,vitB6:1.7,vitC:90,magnesium:420};

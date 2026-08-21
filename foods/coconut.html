@@ -209,7 +209,30 @@
     /* Prevent horizontal overflow на мобиле */
     body{overflow-x:hidden}
     main{overflow-x:hidden}
-  </style>
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -269,16 +292,41 @@
   <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
   <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="light">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Coconut — Nutrition Facts","item":"https://caloriescalc.org/foods/coconut.html"}]}</script>
 </head>
 <body>
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
-    <div class="nav-links">
-      <a href="/">TDEE</a><a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-      <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-      <a href="/calorie-deficit-calculator.html">Deficit</a>
-      <a href="/foods/" class="active">Foods</a><a href="/about.html">About</a>
+    <div class="nav-groups">
+      <div class="nav-group">
+        <span class="nav-group-label">Calculators ▾</span>
+        <div class="nav-dropdown">
+          <a href="/">TDEE Calculator</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/macro-calculator.html">Macro Calculator</a>
+          <a href="/protein-calculator.html">Protein Calculator</a>
+          <a href="/bmi-calculator.html">BMI Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/body-fat-calculator.html">Body Fat</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Foods ▾</span>
+        <div class="nav-dropdown">
+          <a href="/foods/" class="active">All Foods</a>
+          <a href="/foods/?cat=fruits">Fruits</a>
+          <a href="/foods/?cat=vegetables">Vegetables</a>
+          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/?cat=grains">Grains</a>
+          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
+          <a href="/foods/?cat=drinks">Drinks</a>
+        </div>
+      </div>
+      <a href="/about.html" class="nav-link-plain">About</a>
     </div>
   </div>
 </nav>
@@ -298,7 +346,7 @@
   <div class="hero-wrap" id="calories">
     <div class="hero-left">
       <h1>Calories in Coconut</h1>
-      <p class="hero-updated">Updated July 2026 · Reviewed by CaloriesCalc Team · Source: USDA FoodData Central</p>
+      <p class="hero-updated">Source: USDA FoodData Central · Data verified by CaloriesCalc</p>
       <div class="macro-strip">
         <div class="ms-item primary"><div class="ms-val">354</div><div class="ms-unit">kcal</div><div class="ms-label">per 100g</div></div>
         <div class="ms-item"><div class="ms-val">15.23</div><div class="ms-unit">g</div><div class="ms-label">Carbs</div></div>
@@ -333,7 +381,7 @@
     <div class="serving-toggle"><button class="serving-btn active" onclick="setServing(100,this)">Per 100g</button><button class="serving-btn" onclick="setServing(28,this)">1 oz (28g) (28g)</button><button class="serving-btn" onclick="setServing(45,this)">1 piece 2"×2" (45g) (45g)</button><button class="serving-btn" onclick="setServing(80,this)">⭐ 1 cup shredded (80g) (80g)</button><button class="serving-btn" onclick="setServing(5,this)">1 tbsp shredded (5g) (5g)</button><button class="serving-btn" onclick="setServing(100,this)">100ml coconut water (100ml)</button></div>
     <div id="nutr-rows"></div>
     <p class="dv-note">* % Daily Value based on a 2,000 kcal diet.</p>
-    <br><button class="print-btn" onclick="window.print()">🖨 Print Nutrition Label</button>
+    <br><button class="print-btn" onclick="window.print()" aria-label="Print nutrition facts">🖨 Print Nutrition Label</button>
   </div>
   <div class="ai-summary"><strong>Quick summary:</strong> Coconut meat contains <strong>354 calories per 100g</strong> — the highest of any common fruit. However, 80% of those calories come from MCTs (medium-chain triglycerides) that are metabolised differently from other fats, preferentially burned for energy or converted to ketones. With 9g of fiber and only 6.2g of net carbs per 100g, coconut is keto-friendly and provides 65% of daily manganese plus significant potassium and magnesium.</div>
   <div class="section" id="vitamins">
@@ -394,8 +442,24 @@
       <a href="/protein-calculator.html" class="calc-card"><div class="calc-name">Protein Calculator</div><div class="calc-desc">Daily protein target</div></a>
       <a href="/bmi-calculator.html" class="calc-card"><div class="calc-name">BMI Calculator</div><div class="calc-desc">Body mass index</div></a>
       <a href="/bmr-calculator.html" class="calc-card"><div class="calc-name">BMR Calculator</div><div class="calc-desc">Calories burned at rest</div></a>
+      <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">Weight Loss</div><div class="calc-desc">How fast you'll lose weight</div></a>
+      <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">Body Fat %</div><div class="calc-desc">Estimate body fat</div></a>
+      <a href="/ideal-weight-calculator.html" class="calc-card"><div class="calc-name">Ideal Weight</div><div class="calc-desc">Your target weight</div></a>
     </div>
   </div>
+  <div class="section" id="use-with-calculators">
+  <h2>Use This With Our Free Calculators</h2>
+  <div class="calc-grid">
+    <a href="/keto-calculator.html" class="calc-card"><div class="calc-name">🥑 Keto Calculator</div><div class="calc-desc">Your keto macros</div></a>
+    <a href="/" class="calc-card"><div class="calc-name">🧮 TDEE Calculator</div><div class="calc-desc">Daily calorie needs</div></a>
+    <a href="/macro-calculator.html" class="calc-card"><div class="calc-name">📊 Macro Calculator</div><div class="calc-desc">Fat, protein & carb targets</div></a>
+    <a href="/calorie-deficit-calculator.html" class="calc-card"><div class="calc-name">📉 Calorie Deficit Calculator</div><div class="calc-desc">Create a calorie deficit</div></a>
+  </div>
+  <div style="margin-top:12px;padding:12px 16px;background:#e8f5ee;border:1px solid #2d6a4f;border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <span style="font-size:14px;font-weight:600;color:#1b4332">🥗 Reach your goal with a personalised plan</span>
+    <a href="/goals/healthy-eating.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Healthy Eating Guide →</a>
+  </div>
+</div>
   <div class="section" id="faq">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">How many calories in coconut?</div><div class="faq-a">Raw coconut meat contains <strong>354 calories per 100g</strong>. A cup of shredded fresh coconut (80g) has 283 calories. A 2"×2" piece of fresh coconut (45g) has about 159 calories. Coconut water (the liquid inside) is much lower at 19 kcal per 100ml. Use the slider above to calculate for any weight.</div></div><div class="faq-item"><div class="faq-q">Is coconut good for weight loss?</div><div class="faq-a">In small portions, yes. Despite being calorie-dense at 354 kcal/100g, coconut's MCTs are metabolised differently from other fats — they increase energy expenditure and satiety hormones. Studies show MCT consumption leads to greater fat loss than equivalent calories from long-chain fats. The key is portion control: 1–2 tablespoons of shredded coconut (18–36 calories) can provide flavour and satiety without excessive calories.</div></div><div class="faq-item"><div class="faq-q">Is coconut keto?</div><div class="faq-a">Yes — coconut is one of the best keto foods. With only 6.2g of net carbs per 100g and 33g of fat (primarily MCTs that increase ketone production), coconut is both carb-friendly and actively supports ketosis. Coconut oil, coconut cream, and shredded unsweetened coconut are staples in ketogenic diets.</div></div><div class="faq-item"><div class="faq-q">What is the difference between coconut meat, coconut water, and coconut milk?</div><div class="faq-a">Coconut meat is the white solid flesh inside the coconut — 354 kcal/100g, high fat. Coconut water is the clear liquid inside young coconuts — only 19 kcal/100ml, low fat, good electrolyte source. Coconut milk is made by blending coconut meat with water — approximately 200 kcal/100ml, very high fat. Coconut cream is similar to coconut milk but thicker with more fat.</div></div><div class="faq-item"><div class="faq-q">Is coconut oil healthy?</div><div class="faq-a">The evidence is mixed. Coconut oil is 90% saturated fat and raises LDL cholesterol. However, it also raises HDL cholesterol and the LDL raised is predominantly large-particle type A (less harmful than small-particle type B). Most health organisations recommend limiting coconut oil to occasional use rather than daily cooking fat. The therapeutic MCT oil (derived from coconut) is different — it contains only the beneficial medium-chain fats without the longer-chain saturated fats.</div></div><div class="faq-item"><div class="faq-q">Does coconut have a lot of sugar?</div><div class="faq-a">No — raw coconut meat contains only 6.2g of natural sugar per 100g, which is lower than most fruits. Its total carbs are 15g but 9g is fiber, leaving only 6.2g of net carbs. Sweetened or dried coconut products are very different — always check labels, as commercially desiccated coconut often contains significant added sugar.</div></div>
@@ -404,6 +468,18 @@
     <h2>Related Foods</h2>
     <div class="foods-grid"><a href="/foods/avocado.html" class="food-card"><div class="fc-emoji">🥑</div><div class="fc-name">Avocado</div><div class="fc-cal">160 kcal/100g</div></a><a href="/foods/banana.html" class="food-card"><div class="fc-emoji">🍌</div><div class="fc-name">Banana</div><div class="fc-cal">89 kcal/100g</div></a><a href="/foods/mango.html" class="food-card"><div class="fc-emoji">🥭</div><div class="fc-name">Mango</div><div class="fc-cal">60 kcal/100g</div></a><a href="/foods/pineapple.html" class="food-card"><div class="fc-emoji">🍍</div><div class="fc-name">Pineapple</div><div class="fc-cal">50 kcal/100g</div></a><a href="/foods/grapes.html" class="food-card"><div class="fc-emoji">🍇</div><div class="fc-name">Grapes</div><div class="fc-cal">69 kcal/100g</div></a><a href="/foods/apple.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Apple</div><div class="fc-cal">52 kcal/100g</div></a><a href="/foods/orange.html" class="food-card"><div class="fc-emoji">🍊</div><div class="fc-name">Orange</div><div class="fc-cal">47 kcal/100g</div></a><a href="/foods/strawberry.html" class="food-card"><div class="fc-emoji">🍓</div><div class="fc-name">Strawberry</div><div class="fc-cal">32 kcal/100g</div></a></div>
   </div>
+  <div class="section" id="more-from-category">
+  <h2>More Fruits</h2>
+  <div class="foods-grid">
+<a href="/foods/watermelon.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Watermelon</div><div class="fc-cal">30 kcal/100g</div></a>
+<a href="/foods/kiwi.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Kiwi</div><div class="fc-cal">61 kcal/100g</div></a>
+<a href="/foods/peach.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">a Peach</div><div class="fc-cal">39 kcal/100g</div></a>
+<a href="/foods/pear.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">a Pear</div><div class="fc-cal">57 kcal/100g</div></a>
+<a href="/foods/lemon.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Lemon</div><div class="fc-cal">29 kcal/100g</div></a>
+<a href="/foods/lime.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Lime</div><div class="fc-cal">30 kcal/100g</div></a>
+  </div>
+  <a href="/foods/" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--green);font-weight:600;text-decoration:none">View all 135 foods →</a>
+</div>
   <div class="section">
     <h2>Sources</h2>
     <ul class="sources-list">
@@ -416,16 +492,32 @@
 </main>
   <aside class="ad-sidebar-right" aria-label="Advertisement"><div class="ad-slot ad-slot--skyscraper ad-slot--placeholder"></div><div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px"></div></aside>
 </div>
-<footer><div class="footer-inner">
-  <div class="footer-links">
-    <a href="/">TDEE Calculator</a><a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
-    <a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-    <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-    <a href="/foods/">Foods Database</a><a href="/about.html">About</a>
-    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 CaloriesCalc.org · Free tool · No sign-up · No data stored</div>
-</div></footer>
+</footer>
 <script>
 const N={calories:354,carbs:15.23,sugar:6.23,fiber:9.0,protein:3.33,fat:33.49,sodium:20,potassium:356,vitB6:0.054,vitC:3.3,magnesium:32};
 const DV={calories:2000,carbs:275,sugar:50,fiber:28,protein:50,fat:78,sodium:2300,potassium:4700,vitB6:1.7,vitC:90,magnesium:420};
