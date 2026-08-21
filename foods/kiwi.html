@@ -205,7 +205,30 @@
     /* Prevent horizontal overflow на мобиле */
     body{overflow-x:hidden}
     main{overflow-x:hidden}
-  </style>
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -265,23 +288,48 @@
   <!-- Preconnect (нет внешних шрифтов, всё системное — уже оптимально) -->
   <meta name="theme-color" content="#2d6a4f" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="light">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Kiwi — Nutrition Facts","item":"https://caloriescalc.org/foods/kiwi.html"}]}</script>
 </head>
 <body>
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
-    <div class="nav-links">
-      <a href="/">TDEE</a><a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-      <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-      <a href="/calorie-deficit-calculator.html">Deficit</a>
-      <a href="/foods/" class="active">Foods</a><a href="/about.html">About</a>
+    <div class="nav-groups">
+      <div class="nav-group">
+        <span class="nav-group-label">Calculators ▾</span>
+        <div class="nav-dropdown">
+          <a href="/">TDEE Calculator</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/macro-calculator.html">Macro Calculator</a>
+          <a href="/protein-calculator.html">Protein Calculator</a>
+          <a href="/bmi-calculator.html">BMI Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/body-fat-calculator.html">Body Fat</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Foods ▾</span>
+        <div class="nav-dropdown">
+          <a href="/foods/" class="active">All Foods</a>
+          <a href="/foods/?cat=fruits">Fruits</a>
+          <a href="/foods/?cat=vegetables">Vegetables</a>
+          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
+          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/?cat=grains">Grains</a>
+          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
+          <a href="/foods/?cat=drinks">Drinks</a>
+        </div>
+      </div>
+      <a href="/about.html" class="nav-link-plain">About</a>
     </div>
   </div>
 </nav>
 <div class="page-wrapper">
   <aside class="ad-sidebar-left"><div class="ad-slot ad-slot--skyscraper ad-slot--placeholder"></div></aside>
 <main>
-  <nav class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/foods/">Foods</a><span>›</span>Kiwi</nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/foods/">Foods</a><span>›</span>Kiwi</nav>
   <div class="toc"><div class="toc-title">Contents</div><div class="toc-links">
     <a href="#calories">Calories</a><a href="#calculator">Calculator</a><a href="#nutrition">Nutrition Facts</a>
     <a href="#vitamins">Vitamins</a><a href="#by-weight">By Weight</a><a href="#macros">Macros</a>
@@ -291,7 +339,7 @@
   <div class="hero-wrap" id="calories">
     <div class="hero-left">
       <h1>Calories in Kiwi</h1>
-      <p class="hero-updated">Updated July 2026 · Reviewed by CaloriesCalc Team · Source: USDA FoodData Central</p>
+      <p class="hero-updated">Source: USDA FoodData Central · Data verified by CaloriesCalc</p>
       <div class="macro-strip">
         <div class="ms-item primary"><div class="ms-val">61</div><div class="ms-unit">kcal</div><div class="ms-label">per 100g</div></div>
         <div class="ms-item"><div class="ms-val">14.66</div><div class="ms-unit">g</div><div class="ms-label">Carbs</div></div>
@@ -324,7 +372,7 @@
     <div class="serving-toggle"><button class="serving-btn active" onclick="setServing(100,this)">Per 100g</button><button class="serving-btn" onclick="setServing(69,this)">1 small kiwi (69g)</button><button class="serving-btn" onclick="setServing(76,this)">⭐ 1 medium kiwi (76g)</button><button class="serving-btn" onclick="setServing(91,this)">1 large kiwi (91g)</button><button class="serving-btn" onclick="setServing(180,this)">1 cup sliced (180g)</button><button class="serving-btn" onclick="setServing(28,this)">1 oz (28g)</button></div>
     <div id="nutr-rows"></div>
     <p class="dv-note">* % Daily Value based on a 2,000 kcal diet.</p>
-    <br><button class="print-btn" onclick="window.print()">🖨 Print Nutrition Label</button>
+    <br><button class="print-btn" onclick="window.print()" aria-label="Print nutrition facts">🖨 Print Nutrition Label</button>
   </div>
   <div class="ai-summary"><strong>Quick summary:</strong> Kiwi contains <strong>61 calories per 100g</strong> and 46 calories per medium fruit. It has the highest vitamin C content of any common fruit (92.7mg/100g — 103% of daily value) and significant vitamin K (34% DV). Clinical trials show eating two kiwis before bed improves sleep onset by 35% and duration by 13%. With a low GI of ~52 and 3g fiber per 100g, kiwi is suitable for most dietary patterns.</div>
   <div class="section" id="vitamins">
@@ -383,10 +431,38 @@
       <a href="/protein-calculator.html" class="calc-card"><div class="calc-name">Protein Calculator</div><div class="calc-desc">Daily protein target</div></a>
       <a href="/bmi-calculator.html" class="calc-card"><div class="calc-name">BMI Calculator</div><div class="calc-desc">Body mass index</div></a>
       <a href="/bmr-calculator.html" class="calc-card"><div class="calc-name">BMR Calculator</div><div class="calc-desc">Calories burned at rest</div></a>
+      <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">Weight Loss</div><div class="calc-desc">How fast you'll lose weight</div></a>
+      <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">Body Fat %</div><div class="calc-desc">Estimate body fat</div></a>
+      <a href="/ideal-weight-calculator.html" class="calc-card"><div class="calc-name">Ideal Weight</div><div class="calc-desc">Your target weight</div></a>
     </div>
   </div>
+  <div class="section" id="use-with-calculators">
+  <h2>Use This With Our Free Calculators</h2>
+  <div class="calc-grid">
+    <a href="/weight-loss-calculator.html" class="calc-card"><div class="calc-name">🔥 Weight Loss Calculator</div><div class="calc-desc">Your timeline to goal weight</div></a>
+    <a href="/calorie-deficit-calculator.html" class="calc-card"><div class="calc-name">📉 Calorie Deficit Calculator</div><div class="calc-desc">How much to cut</div></a>
+    <a href="/" class="calc-card"><div class="calc-name">🧮 TDEE Calculator</div><div class="calc-desc">Your daily calorie needs</div></a>
+    <a href="/body-fat-calculator.html" class="calc-card"><div class="calc-name">📊 Body Fat Calculator</div><div class="calc-desc">Track your body fat %</div></a>
+  </div>
+  <div style="margin-top:12px;padding:12px 16px;background:#e8f5ee;border:1px solid #2d6a4f;border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+    <span style="font-size:14px;font-weight:600;color:#1b4332">🔥 Reach your goal with a personalised plan</span>
+    <a href="/goals/weight-loss.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Weight Loss Guide →</a>
+  </div>
+</div>
   <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in a kiwi?</div><div class="faq-a">Kiwi contains <strong>61 calories per 100g</strong>. A medium kiwi (76g) has 46 calories. A cup of sliced kiwi (180g) has 110 calories. Use the slider above to calculate for any weight.</div></div><div class="faq-item"><div class="faq-q">Can you eat kiwi skin?</div><div class="faq-a">Yes — kiwi skin is edible and nutritious. It contains additional fiber, vitamin C, and antioxidants. Eating the whole kiwi with skin increases fiber intake by approximately 50%. Always wash kiwis thoroughly before eating with skin.</div></div><div class="faq-item"><div class="faq-q">Is kiwi high in vitamin C?</div><div class="faq-a">Yes — kiwi has the highest vitamin C content of any common fruit per 100g (92.7mg). A single medium kiwi provides about 77% of the adult daily vitamin C requirement. Kiwi contains more vitamin C than oranges (53mg) or strawberries (58.8mg) per 100g.</div></div><div class="faq-item"><div class="faq-q">Is kiwi good for sleep?</div><div class="faq-a">Clinical evidence suggests yes. A 2011 study found that eating two kiwis one hour before bed for 4 weeks improved sleep onset (35% faster), duration (13% longer), and efficiency (5% better). The proposed mechanism involves kiwi's serotonin content and antioxidants.</div></div><div class="faq-item"><div class="faq-q">Is kiwi keto?</div><div class="faq-a">Not for strict keto. Kiwi has 11.7g of net carbs per 100g. A small half-kiwi (~38g) provides about 4.5g net carbs and might fit into a flexible low-carb diet.</div></div><div class="faq-item"><div class="faq-q">Are golden kiwis different from green kiwis?</div><div class="faq-a">Yes. Golden kiwis are sweeter, less tart, and have smoother skin. They contain slightly more vitamin C (~161mg/100g vs 92.7mg). Both varieties have comparable calories (~61 kcal/100g).</div></div></div>
-  <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/orange.html" class="food-card"><div class="fc-emoji">🍊</div><div class="fc-name">Orange</div><div class="fc-cal">47 kcal/100g</div></a><a href="/foods/strawberry.html" class="food-card"><div class="fc-emoji">🍓</div><div class="fc-name">Strawberry</div><div class="fc-cal">32 kcal/100g</div></a><a href="/foods/apple.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Apple</div><div class="fc-cal">52 kcal/100g</div></a><a href="/foods/banana.html" class="food-card"><div class="fc-emoji">🍌</div><div class="fc-name">Banana</div><div class="fc-cal">89 kcal/100g</div></a><a href="/foods/blueberries.html" class="food-card"><div class="fc-emoji">🫐</div><div class="fc-name">Blueberries</div><div class="fc-cal">57 kcal/100g</div></a><a href="/foods/pineapple.html" class="food-card"><div class="fc-emoji">🍍</div><div class="fc-name">Pineapple</div><div class="fc-cal">50 kcal/100g</div></a><a href="/foods/mango.html" class="food-card"><div class="fc-emoji">🥭</div><div class="fc-name">Mango</div><div class="fc-cal">60 kcal/100g</div></a><a href="/foods/grapes.html" class="food-card"><div class="fc-emoji">🍇</div><div class="fc-name">Grapes</div><div class="fc-cal">69 kcal/100g</div></a></div></div>
+  <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/orange.html" class="food-card"><div class="fc-emoji">🍊</div><div class="fc-name">Orange</div><div class="fc-cal">47 kcal/100g</div></a><a href="/foods/strawberry.html" class="food-card"><div class="fc-emoji">🍓</div><div class="fc-name">Strawberry</div><div class="fc-cal">32 kcal/100g</div></a><a href="/foods/apple.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Apple</div><div class="fc-cal">52 kcal/100g</div></a><a href="/foods/banana.html" class="food-card"><div class="fc-emoji">🍌</div><div class="fc-name">Banana</div><div class="fc-cal">89 kcal/100g</div></a><a href="/foods/blueberries.html" class="food-card"><div class="fc-emoji">🫐</div><div class="fc-name">Blueberries</div><div class="fc-cal">57 kcal/100g</div></a><a href="/foods/pineapple.html" class="food-card"><div class="fc-emoji">🍍</div><div class="fc-name">Pineapple</div><div class="fc-cal">50 kcal/100g</div></a><a href="/foods/mango.html" class="food-card"><div class="fc-emoji">🥭</div><div class="fc-name">Mango</div><div class="fc-cal">60 kcal/100g</div></a><a href="/foods/grapes.html" class="food-card"><div class="fc-emoji">🍇</div><div class="fc-name">Grapes</div><div class="fc-cal">69 kcal/100g</div></a><a href="/foods/lime.html" class="food-card"><div class="fc-emoji">🍋</div><div class="fc-name">Lime</div><div class="fc-cal">30 kcal/100g</div></a><a href="/foods/lemon.html" class="food-card"><div class="fc-emoji">🍋</div><div class="fc-name">Lemon</div><div class="fc-cal">29 kcal/100g</div></a></div></div>
+  <div class="section" id="more-from-category">
+  <h2>More Fruits</h2>
+  <div class="foods-grid">
+<a href="/foods/peach.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">a Peach</div><div class="fc-cal">39 kcal/100g</div></a>
+<a href="/foods/pear.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">a Pear</div><div class="fc-cal">57 kcal/100g</div></a>
+<a href="/foods/cherry.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Cherries</div><div class="fc-cal">50 kcal/100g</div></a>
+<a href="/foods/raspberry.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Raspberries</div><div class="fc-cal">52 kcal/100g</div></a>
+<a href="/foods/blackberry.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Blackberries</div><div class="fc-cal">43 kcal/100g</div></a>
+<a href="/foods/pomegranate.html" class="food-card"><div class="fc-emoji">🍎</div><div class="fc-name">Pomegranate</div><div class="fc-cal">83 kcal/100g</div></a>
+  </div>
+  <a href="/foods/" style="display:inline-block;margin-top:12px;font-size:13px;color:var(--green);font-weight:600;text-decoration:none">View all 135 foods →</a>
+</div>
   <div class="section">
     <h2>Sources</h2>
     <ul class="sources-list">
@@ -399,16 +475,32 @@
 </main>
   <aside class="ad-sidebar-right"><div class="ad-slot ad-slot--skyscraper ad-slot--placeholder"></div><div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px"></div></aside>
 </div>
-<footer><div class="footer-inner">
-  <div class="footer-links">
-    <a href="/">TDEE Calculator</a><a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
-    <a href="/bmr-calculator.html">BMR</a><a href="/macro-calculator.html">Macros</a>
-    <a href="/protein-calculator.html">Protein</a><a href="/bmi-calculator.html">BMI</a>
-    <a href="/foods/">Foods Database</a><a href="/about.html">About</a>
-    <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 CaloriesCalc.org · Free tool · No sign-up · No data stored</div>
-</div></footer>
+</footer>
 <script>
 const N={calories:61,carbs:14.66,sugar:8.99,fiber:3.0,protein:1.14,fat:0.52,sodium:3,potassium:312,vitB6:0.063,vitC:92.7,magnesium:17};
 const DV={calories:2000,carbs:275,sugar:50,fiber:28,protein:50,fat:78,sodium:2300,potassium:4700,vitB6:1.7,vitC:90,magnesium:420};
