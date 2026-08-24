@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free Calorie &amp; Nutrition Calculators — All Tools | CaloriesCalc</title>
+  <meta name="description" content="20+ free nutrition calculators: TDEE, calorie deficit, macros, protein, BMI, body fat, weight loss, keto and more. No sign-up, instant results.">
+  <link rel="canonical" href="https://caloriescalc.org/calculators/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2d6a4f">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/ad-layout.css">
+  <meta property="og:title" content="Free Calorie &amp; Nutrition Calculators | CaloriesCalc">
+  <meta property="og:description" content="20+ free nutrition calculators. TDEE, macros, protein, BMI, body fat, weight loss and more.">
+  <meta property="og:url" content="https://caloriescalc.org/calculators/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Free Calorie & Nutrition Calculators", "description": "Free TDEE, calorie deficit, macro, protein, BMI and 20+ nutrition calculators. No sign-up required.", "url": "https://caloriescalc.org/calculators/", "author": {"@type": "Organization", "name": "CaloriesCalc"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://caloriescalc.org/"}, {"@type": "ListItem", "position": 2, "name": "All Calculators", "item": "https://caloriescalc.org/calculators/"}]}</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2d6a4f; --green-light: #e8f5ee; --green-dark: #1b4332;
+      --text: #1a1a1a; --text-muted: #555; --text-faint: #888;
+      --border: #e0e0e0; --bg: #fff; --bg-soft: #f8f9fa;
+      --radius: 10px; --radius-sm: 6px;
+      --shadow: 0 2px 8px rgba(0,0,0,.07);
+      --max: 780px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .skip-link { position: absolute; left: -9999px; top: 4px; background: var(--green); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px; z-index: 9999; }
+    .skip-link:focus { left: 4px; }
+    nav { background: var(--green); padding: 0 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 4px; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 17px; margin-right: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo:hover { opacity: .85; text-decoration: none; }
+    .nav-links { display: flex; gap: 2px; flex-wrap: wrap; }
+    .nav-links a { color: rgba(255,255,255,.85); padding: 6px 10px; border-radius: var(--radius-sm); font-size: 14px; transition: background .15s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,.18); color: #fff; text-decoration: none; }
+    main { padding: 0 20px 60px; }
+    .hero { text-align: center; padding: 36px 0 24px; }
+    .hero h1 { font-size: clamp(22px, 5vw, 32px); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero p { color: var(--text-muted); font-size: 16px; max-width: 520px; margin: 0 auto 18px; }
+    .hero-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .hero-links a { font-size: 13px; color: var(--green); border: 1px solid var(--green); border-radius: 20px; padding: 4px 14px; transition: all .15s; }
+    .hero-links a:hover { background: var(--green); color: #fff; text-decoration: none; }
+    .unit-toggle { display: flex; background: var(--bg-soft); border-radius: 8px; border: 1px solid var(--border); overflow: hidden; width: fit-content; }
+    .unit-toggle button { padding: 7px 20px; font-size: 14px; border: none; background: transparent; cursor: pointer; color: var(--text-muted); transition: all .15s; }
+    .unit-toggle button.active { background: var(--green); color: #fff; font-weight: 500; }
+    .calc-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); margin-bottom: 24px; }
+    .calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .calc-header h2 { font-size: 17px; font-weight: 600; }
+    .sample-banner { display: flex; align-items: center; gap: 8px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 13px; color: #1e40af; margin-bottom: 18px; flex-wrap: wrap; }
+    .sample-banner svg { flex-shrink: 0; }
+    .sample-banner button.reset-link { background: none; border: none; color: #1d4ed8; text-decoration: underline; font-size: 13px; cursor: pointer; margin-left: auto; padding: 0; flex-shrink: 0; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    @media(max-width:520px){ .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .form-group input, .form-group select { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 15px; color: var(--text); background: var(--bg); transition: border-color .15s, color .15s; width: 100%; }
+    .form-group input.is-sample { color: #9ca3af; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--green); }
+    .form-group .hint { font-size: 12px; color: var(--text-faint); }
+    .height-row { display: flex; gap: 8px; }
+    .height-row input { flex: 1; }
+    .sex-row { display: flex; gap: 8px; }
+    .sex-btn { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); cursor: pointer; font-size: 14px; color: var(--text-muted); transition: all .15s; text-align: center; }
+    .sex-btn.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
+    .calc-btn { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s; }
+    .calc-btn:hover { background: var(--green-dark); }
+    .results { margin-top: 24px; }
+    .results-top { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .result-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .result-card.primary { background: var(--green-light); border-color: var(--green); }
+    .result-val { font-size: 26px; font-weight: 700; color: var(--green); line-height: 1; }
+    .result-card.primary .result-val { font-size: 30px; }
+    .result-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .result-sub { font-size: 11px; color: var(--text-faint); }
+    .copy-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: transparent; border: 1px solid var(--green); color: var(--green); border-radius: 20px; font-size: 13px; cursor: pointer; transition: all .15s; margin-bottom: 16px; }
+    .copy-btn:hover { background: var(--green); color: #fff; }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .content-section { margin-bottom: 36px; }
+    .content-section h2 { font-size: 21px; font-weight: 700; margin-bottom: 12px; }
+    .content-section h3 { font-size: 16px; font-weight: 600; margin: 18px 0 6px; }
+    .content-section p { color: var(--text-muted); font-size: 15px; margin-bottom: 10px; line-height: 1.7; }
+    .content-section ul { color: var(--text-muted); font-size: 15px; padding-left: 20px; margin-bottom: 10px; }
+    .content-section li { margin-bottom: 4px; line-height: 1.6; }
+    .formula { background: var(--bg-soft); border-left: 3px solid var(--green); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 16px; font-family: monospace; font-size: 13px; color: var(--text); margin: 8px 0 14px; line-height: 1.8; }
+    .example-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .example-box h4 { font-size: 14px; font-weight: 600; color: #0369a1; margin-bottom: 12px; }
+    .example-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; border-bottom: 1px solid #e0f2fe; padding: 6px 0; }
+    .example-row:last-child { border-bottom: none; }
+    .example-row .er-label { color: #0369a1; }
+    .example-row .er-val { font-weight: 600; color: #0c4a6e; }
+    .mistakes-box { background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+    .mistakes-box h4 { font-size: 14px; font-weight: 600; color: #9a3412; margin-bottom: 10px; }
+    .mistake-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+    .mistake-item .mi-icon { color: #ea580c; flex-shrink: 0; font-weight: 700; }
+    .mistake-item .mi-text { color: #7c2d12; line-height: 1.5; }
+    .mistake-item .mi-text strong { color: #9a3412; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
+    .compare-table th { background: var(--bg-soft); padding: 9px 12px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+    .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .recommended { background: var(--green-light); }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
+    .badge-green { background: var(--green); color: #fff; }
+    .badge-blue { background: #3b82f6; color: #fff; }
+    .tdee-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0 16px; }
+    .tdee-table th { background: var(--bg-soft); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .tdee-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .tdee-table tr.active-row { background: var(--green-light); font-weight: 500; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+    .related-card { display: block; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; text-decoration: none; transition: border-color .15s; }
+    .related-card:hover { border-color: var(--green); text-decoration: none; }
+    .related-card.current { border-color: var(--green); background: var(--green-light); }
+    .related-card .rc-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .related-card .rc-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .related-card.current .rc-name { color: var(--green); }
+    .promo-link { display: flex; align-items: center; justify-content: space-between; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 16px; text-decoration: none; transition: border-color .15s; }
+    .promo-link:hover { border-color: var(--green); text-decoration: none; }
+    .promo-link .pl-title { font-weight: 600; font-size: 14px; color: var(--text); }
+    .promo-link .pl-sub { font-size: 12px; color: var(--text-muted); }
+    .promo-link .pl-arrow { font-size: 18px; color: var(--green); }
+    footer { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 28px 20px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); }
+    .footer-copy { font-size: 12px; color: var(--text-faint); }
+    @keyframes pulse-green { 0%,100%{ box-shadow:0 0 0 0 rgba(45,106,79,.3); } 50%{ box-shadow:0 0 0 6px rgba(45,106,79,0); } }
+    .result-pulse { animation: pulse-green .6s ease-out; }
+  
+    /* ── MOBILE & TABLET FIXES ── */
+    /* Nav: hamburger-less compact на мобиле */
+    @media(max-width:600px){
+      .nav-inner{gap:2px;height:auto;padding:6px 0;flex-wrap:wrap}
+      .nav-logo{font-size:15px;margin-right:6px}
+      .nav-links a{font-size:12px;padding:4px 7px}
+    }
+    /* Планшет 601-900px */
+    @media(min-width:601px) and (max-width:900px){
+      .nav-links a{font-size:13px;padding:5px 8px}
+      .hero-wrap{grid-template-columns:1fr 1fr;gap:16px}
+      .nutrition-highlights{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+      .micro-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+      .compare-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+      .diet-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+    }
+    /* Touch targets: кнопки минимум 44px высота */
+    @media(max-width:900px){
+      .serving-btn{padding:10px 14px;font-size:13px;min-height:44px}
+      .toc-links a{padding:6px 14px;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+      .print-btn{min-height:44px;padding:10px 20px}
+      .promo-box a{min-height:44px;display:inline-flex;align-items:center}
+      .nav-links a{min-height:36px;display:inline-flex;align-items:center}
+    }
+    /* Мобиль <=480px: грид карточек в 2 или 1 колонку */
+    @media(max-width:480px){
+      .hero-wrap{grid-template-columns:1fr}
+      .nutrition-highlights{grid-template-columns:1fr 1fr}
+      .micro-grid{grid-template-columns:1fr 1fr}
+      .compare-grid{grid-template-columns:repeat(2,1fr)}
+      .diet-grid{grid-template-columns:1fr 1fr}
+      .foods-grid{grid-template-columns:repeat(2,1fr)}
+      .calc-grid{grid-template-columns:1fr 1fr}
+      .slider-result{grid-template-columns:repeat(3,1fr)}
+      .macro-strip{grid-template-columns:repeat(3,1fr)}
+      .size-cards{flex-wrap:wrap}
+      .sc{min-width:calc(50% - 6px);flex:1 1 calc(50% - 6px)}
+      .ms-val{font-size:18px}
+      .ms-item.primary .ms-val{font-size:22px}
+      h2.section-h2{font-size:18px}
+    }
+    /* Очень узкие экраны 320px */
+    @media(max-width:360px){
+      .nutrition-highlights{grid-template-columns:1fr}
+      .micro-grid{grid-template-columns:1fr}
+      .compare-grid{grid-template-columns:1fr 1fr}
+      .diet-grid{grid-template-columns:1fr}
+      .serving-toggle{gap:4px}
+      .serving-btn{font-size:12px;padding:8px 10px}
+    }
+    /* Таблицы на мобиле — горизонтальный скролл */
+    .weight-table,.portions-table,.vit-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    /* Hero image — не переполняется на мобиле */
+    @media(max-width:480px){
+      .hero-img{max-height:220px}
+      .hero-img img{max-height:220px}
+    }
+    /* Foods index grid на мобиле */
+    @media(max-width:480px){
+      .food-grid-inner{grid-template-columns:repeat(2,1fr)!important}
+    }
+    /* Promo box вертикально на мобиле */
+    @media(max-width:480px){
+      .promo-box{flex-direction:column;align-items:flex-start}
+    }
+  
+    /* ── PERFORMANCE: содержимое видно без layout shift ── */
+    /* Предотвращаем FOUT (Flash of Unstyled Text) */
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    /* Резервируем место под hero-img чтобы не было layout shift */
+    .hero-img{max-height:300px}
+    @media(max-width:480px){.hero-img{max-height:220px}}
+    /* Smooth scroll для anchor-ссылок TOC */
+    html{scroll-behavior:smooth;scroll-padding-top:60px}
+    /* Улучшаем tap-highlight */
+    a,button{-webkit-tap-highlight-color:transparent}
+    /* Prevent horizontal overflow на мобиле */
+    body{overflow-x:hidden}
+    main{overflow-x:hidden}
+  
+/* ── NEW NAV ── */
+.nav-groups{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-group{position:relative}
+.nav-group-label{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;cursor:pointer;display:block;user-select:none}
+.nav-group:hover .nav-group-label{background:rgba(255,255,255,.18);color:#fff}
+.nav-dropdown{display:none;position:absolute;top:100%;left:0;background:#1b4332;border-radius:8px;padding:8px 0;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{display:block;color:rgba(255,255,255,.85);padding:8px 16px;font-size:14px;text-decoration:none}
+.nav-dropdown a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav-link-plain{color:rgba(255,255,255,.85);padding:6px 10px;border-radius:6px;font-size:14px;text-decoration:none}
+.nav-link-plain:hover{background:rgba(255,255,255,.18);color:#fff;text-decoration:none}
+/* ── NEW FOOTER ── */
+.footer-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:24px}
+.footer-col{display:flex;flex-direction:column;gap:6px}
+.footer-col-title{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.footer-col a{font-size:13px;color:#666;text-decoration:none}
+.footer-col a:hover{color:#2d6a4f}
+.footer-bottom{border-top:1px solid #e0e0e0;padding-top:16px;display:flex;flex-direction:column;gap:4px}
+.footer-copy{font-size:12px;color:#888}
+.footer-tagline{font-size:11px;color:#aaa}
+@media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+.share-bar{display:flex;align-items:center;gap:10px;margin-top:16px;padding:12px 16px;background:#fff;border:1px solid #b7e3c7;border-radius:8px;flex-wrap:wrap}
+.share-btn{padding:7px 18px;background:#2d6a4f;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.share-btn:hover{background:#1b4332}
+.share-btn.copied{background:#52b788}
+
+/* ── Share Result Block ── */
+.share-result-block{margin-top:16px;background:#fff;border:1.5px solid #52b788;border-radius:10px;padding:14px 16px}
+.share-result-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.share-result-label{font-size:13px;font-weight:700;color:#1b4332;white-space:nowrap}
+.share-result-url{flex:1;min-width:180px;padding:7px 10px;border:1px solid #d0d5dd;border-radius:6px;font-size:12px;font-family:monospace;color:#444;background:#f8f9fa;cursor:text}
+.share-result-btn{padding:8px 18px;background:#2d6a4f;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.share-result-btn:hover{background:#1b4332}
+.share-result-btn.copied{background:#52b788}
+</style>
+  <style>
+.calcs-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:48px 24px 40px;text-align:center}
+.calcs-hero h1{font-size:clamp(26px,5vw,38px);font-weight:800;margin-bottom:10px}
+.calcs-hero p{font-size:16px;opacity:.88;max-width:600px;margin:0 auto}
+.calcs-section{max-width:960px;margin:0 auto 40px;padding:0 20px}
+.calcs-section h2{font-size:20px;font-weight:800;color:#1a1a1a;margin:0 0 6px;padding-bottom:8px;border-bottom:2px solid #e0e0e0}
+.calcs-section .sub{font-size:13px;color:#888;margin:4px 0 16px}
+.calc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.calc-card-hub{display:block;background:#fff;border:1.5px solid #e0e0e0;border-radius:12px;padding:18px 16px;text-decoration:none;transition:all .18s;position:relative}
+.calc-card-hub:hover{border-color:#2d6a4f;background:#e8f5ee;transform:translateY(-2px);box-shadow:0 4px 16px rgba(45,106,79,.12);text-decoration:none}
+.cch-emoji{font-size:24px;margin-bottom:8px}
+.cch-name{font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.cch-desc{font-size:12px;color:#666;line-height:1.4}
+.cch-badge{position:absolute;top:10px;right:10px;background:#e8f5ee;color:#2d6a4f;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.calcs-divider{border:none;border-top:1px solid #e0e0e0;margin:4px 0 32px}
+.search-bar{background:#f8f9fa;border:1.5px solid #e0e0e0;border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:24px;max-width:960px;margin:0 auto 24px;padding:12px 20px}
+.search-bar input{flex:1;border:none;background:none;font-size:15px;color:#1a1a1a;outline:none}
+.search-bar input::placeholder{color:#aaa}
+</style>
+</head>
+<body>
+<nav class="main-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">CaloriesCalc</a>
+    <div class="nav-groups">
+      <div class="nav-group">
+        <span class="nav-group-label">Calculators ▾</span>
+        <div class="nav-dropdown">
+          <a href="/">TDEE Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/weight-gain-calculator.html">Weight Gain</a>
+          <a href="/body-fat-calculator.html">Body Fat %</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+          <a href="/macro-calculator.html">Macro Calculator</a>
+          <a href="/protein-calculator.html">Protein Calculator</a>
+          <a href="/bmi-calculator.html">BMI Calculator</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/keto-calculator.html">Keto Calculator</a>
+          <a href="/water-intake-calculator.html">Water Intake</a>
+          <a href="/intermittent-fasting-calculator.html">Intermittent Fasting</a>
+          <a href="/calorie-burn-calculator.html">Calories Burned</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Foods ▾</span>
+        <div class="nav-dropdown">
+          <a href="/foods/">All Foods</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
+        </div>
+      </div>
+      <a href="/goals/weight-loss.html" class="nav-link-plain">Goals</a>
+      <a href="/about.html" class="nav-link-plain">About</a>
+    </div>
+  </div>
+</nav>
+<div class="page-wrapper"><aside class="ad-sidebar-left" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 LEFT — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+<main>
+
+  <div class="calcs-hero">
+    <div style="font-size:13px;opacity:.7;margin-bottom:8px">FREE TOOLS</div>
+    <h1>🧮 All Nutrition Calculators</h1>
+    <p>20+ free calculators for calories, macros, protein, body fat and more. No sign-up. No data stored. Instant results.</p>
+  </div>
+
+  <div style="max-width:960px;margin:32px auto 0;padding:0 20px">
+    <div class="search-bar">
+      <span style="font-size:18px">🔍</span>
+      <input type="text" id="calc-search" placeholder="Search calculators... e.g. TDEE, protein, keto" oninput="filterCalcs(this.value)">
+    </div>
+  </div>
+
+  <!-- CALORIE CALCULATORS -->
+  <div class="calcs-section" id="cat-calories">
+    <h2>Calorie Calculators</h2>
+    <p class="sub">Find your daily calorie needs and create the right deficit or surplus for your goal.</p>
+    <div class="calc-cards" id="group-calories">
+      <a href="/" class="calc-card-hub" data-tags="tdee total daily energy calorie needs maintenance">
+        <div class="cch-badge">Most popular</div>
+        <div class="cch-emoji">🧮</div>
+        <div class="cch-name">TDEE Calculator</div>
+        <div class="cch-desc">Total Daily Energy Expenditure — how many calories you burn every day</div>
+      </a>
+      <a href="/calorie-deficit-calculator.html" class="calc-card-hub" data-tags="calorie deficit cut lose weight eating target">
+        <div class="cch-emoji">📉</div>
+        <div class="cch-name">Calorie Deficit Calculator</div>
+        <div class="cch-desc">How many calories to eat to lose weight safely</div>
+      </a>
+      <a href="/bmr-calculator.html" class="calc-card-hub" data-tags="bmr basal metabolic rate rest resting calories">
+        <div class="cch-emoji">🔥</div>
+        <div class="cch-name">BMR Calculator</div>
+        <div class="cch-desc">Calories your body burns at complete rest</div>
+      </a>
+      <a href="/calorie-burn-calculator.html" class="calc-card-hub" data-tags="exercise activity calories burned workout sport">
+        <div class="cch-emoji">🏃</div>
+        <div class="cch-name">Calories Burned Calculator</div>
+        <div class="cch-desc">Calories burned for 30+ exercises and daily activities</div>
+      </a>
+      <a href="/running-calorie-calculator.html" class="calc-card-hub" data-tags="running jogging calories burned km miles pace">
+        <div class="cch-emoji">🏃‍♂️</div>
+        <div class="cch-name">Running Calorie Calculator</div>
+        <div class="cch-desc">Exact calories burned running by weight, speed and distance</div>
+      </a>
+      <a href="/walking-calorie-calculator.html" class="calc-card-hub" data-tags="walking steps calories burned distance">
+        <div class="cch-emoji">🚶</div>
+        <div class="cch-name">Walking Calorie Calculator</div>
+        <div class="cch-desc">Calories burned walking — includes steps to calories conversion</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="calcs-divider">
+
+  <!-- WEIGHT CALCULATORS -->
+  <div class="calcs-section" id="cat-weight">
+    <h2>Weight Calculators</h2>
+    <p class="sub">Calculate your weight loss or gain timeline, body fat and ideal weight.</p>
+    <div class="calc-cards" id="group-weight">
+      <a href="/weight-loss-calculator.html" class="calc-card-hub" data-tags="weight loss timeline goal weeks months fat">
+        <div class="cch-badge">Popular</div>
+        <div class="cch-emoji">⏱️</div>
+        <div class="cch-name">Weight Loss Calculator</div>
+        <div class="cch-desc">How long to reach your goal weight at any calorie deficit</div>
+      </a>
+      <a href="/weight-gain-calculator.html" class="calc-card-hub" data-tags="weight gain muscle bulk surplus timeline">
+        <div class="cch-emoji">📈</div>
+        <div class="cch-name">Weight Gain Calculator</div>
+        <div class="cch-desc">Calorie surplus and timeline to reach your goal weight</div>
+      </a>
+      <a href="/ideal-weight-calculator.html" class="calc-card-hub" data-tags="ideal weight healthy target range bmi formula">
+        <div class="cch-emoji">⚖️</div>
+        <div class="cch-name">Ideal Weight Calculator</div>
+        <div class="cch-desc">Your healthy weight range using 4 medical formulas</div>
+      </a>
+      <a href="/bmi-calculator.html" class="calc-card-hub" data-tags="bmi body mass index overweight obese underweight">
+        <div class="cch-emoji">📏</div>
+        <div class="cch-name">BMI Calculator</div>
+        <div class="cch-desc">Body Mass Index with category classification</div>
+      </a>
+      <a href="/body-fat-calculator.html" class="calc-card-hub" data-tags="body fat percentage navy method measurements estimate">
+        <div class="cch-emoji">📐</div>
+        <div class="cch-name">Body Fat Calculator</div>
+        <div class="cch-desc">Estimate body fat % using the US Navy circumference method</div>
+      </a>
+      <a href="/lean-body-mass-calculator.html" class="calc-card-hub" data-tags="lean body mass muscle fat-free LBM composition">
+        <div class="cch-emoji">💪</div>
+        <div class="cch-name">Lean Body Mass Calculator</div>
+        <div class="cch-desc">Your fat-free mass using Boer, James and Hume formulas</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="calcs-divider">
+
+  <!-- NUTRITION CALCULATORS -->
+  <div class="calcs-section" id="cat-nutrition">
+    <h2>Nutrition &amp; Macro Calculators</h2>
+    <p class="sub">Set your protein, carb and fat targets for any goal.</p>
+    <div class="calc-cards" id="group-nutrition">
+      <a href="/macro-calculator.html" class="calc-card-hub" data-tags="macros protein carbs fat targets nutrition breakdown">
+        <div class="cch-emoji">📊</div>
+        <div class="cch-name">Macro Calculator</div>
+        <div class="cch-desc">Protein, carbs and fat targets based on your TDEE and goal</div>
+      </a>
+      <a href="/macro-calculator-weight-loss.html" class="calc-card-hub" data-tags="macros weight loss protein high protein diet fat">
+        <div class="cch-emoji">🥗</div>
+        <div class="cch-name">Macro Calculator for Weight Loss</div>
+        <div class="cch-desc">High-protein macro split optimised for fat loss</div>
+      </a>
+      <a href="/protein-calculator.html" class="calc-card-hub" data-tags="protein daily target grams kg muscle building">
+        <div class="cch-emoji">🥩</div>
+        <div class="cch-name">Protein Calculator</div>
+        <div class="cch-desc">How much protein you need daily based on weight and activity</div>
+      </a>
+      <a href="/keto-calculator.html" class="calc-card-hub" data-tags="keto ketogenic diet net carbs fat protein macros">
+        <div class="cch-emoji">🥑</div>
+        <div class="cch-name">Keto Calculator</div>
+        <div class="cch-desc">Net carbs, protein and fat targets for a ketogenic diet</div>
+      </a>
+      <a href="/water-intake-calculator.html" class="calc-card-hub" data-tags="water intake hydration daily litres glasses drink">
+        <div class="cch-emoji">💧</div>
+        <div class="cch-name">Water Intake Calculator</div>
+        <div class="cch-desc">Daily hydration target based on weight, activity and climate</div>
+      </a>
+      <a href="/intermittent-fasting-calculator.html" class="calc-card-hub" data-tags="intermittent fasting 16:8 18:6 eating window schedule">
+        <div class="cch-emoji">⏰</div>
+        <div class="cch-name">Intermittent Fasting Calculator</div>
+        <div class="cch-desc">Fasting and eating windows for 16:8, 18:6, 20:4 and 5:2</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="calcs-divider">
+
+  <!-- FITNESS CALCULATORS -->
+  <div class="calcs-section" id="cat-fitness">
+    <h2>Fitness Calculators</h2>
+    <p class="sub">Tools for training, performance and specific health situations.</p>
+    <div class="calc-cards" id="group-fitness">
+      <a href="/one-rep-max-calculator.html" class="calc-card-hub" data-tags="1rm one rep max strength bench squat deadlift training">
+        <div class="cch-emoji">🏋️</div>
+        <div class="cch-name">One Rep Max Calculator</div>
+        <div class="cch-desc">Calculate 1RM and training weights for any exercise</div>
+      </a>
+      <a href="/pregnancy-weight-gain-calculator.html" class="calc-card-hub" data-tags="pregnancy weight gain IOM BMI trimester twins">
+        <div class="cch-emoji">🤰</div>
+        <div class="cch-name">Pregnancy Weight Gain</div>
+        <div class="cch-desc">Recommended weight gain by pre-pregnancy BMI (IOM 2009)</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+<aside class="ad-sidebar-right" aria-label="Advertisement">
+    <div class="ad-slot ad-slot--skyscraper ad-slot--placeholder">
+      <!-- AdSense 160x600 RIGHT TOP — вставить код сюда после одобрения -->
+    </div>
+    <div class="ad-slot ad-slot--placeholder" style="min-height:250px;margin-top:16px">
+      <!-- AdSense 160x250 RIGHT BOTTOM — вставить код сюда после одобрения -->
+    </div>
+  </aside>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-cols">
+            <div class="footer-col">
+        <div class="footer-col-title">Calculators</div>
+        <a href="/">TDEE Calculator</a>
+        <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+        <a href="/macro-calculator.html">Macro Calculator</a>
+        <a href="/protein-calculator.html">Protein Calculator</a>
+        <a href="/bmi-calculator.html">BMI Calculator</a>
+        <a href="/bmr-calculator.html">BMR Calculator</a>
+        <a href="/weight-loss-calculator.html">Weight Loss</a>
+        <a href="/body-fat-calculator.html">Body Fat %</a>
+        <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+        <a href="/weight-gain-calculator.html">Weight Gain</a>
+        <a href="/keto-calculator.html">Keto Calculator</a>
+        <a href="/water-intake-calculator.html">Water Intake</a>
+        <a href="/running-calorie-calculator.html">Running Calories</a>
+        <a href="/calorie-burn-calculator.html">Calories Burned</a>
+      </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 CaloriesCalc.org · Free calorie calculator · No sign-up · No data stored</div>
+      <div class="footer-tagline">Nutrition data from USDA FoodData Central</div>
+    </div>
+  </div>
+</footer>
+<script>
+function filterCalcs(query) {
+  var q = query.toLowerCase().trim();
+  var cards = document.querySelectorAll('.calc-card-hub');
+  cards.forEach(function(card) {
+    var text = (card.querySelector('.cch-name').textContent + ' ' +
+                card.querySelector('.cch-desc').textContent + ' ' +
+                (card.dataset.tags || '')).toLowerCase();
+    card.style.display = q === '' || text.includes(q) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

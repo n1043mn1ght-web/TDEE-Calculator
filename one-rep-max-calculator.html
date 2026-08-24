@@ -246,6 +246,189 @@
 .share-btn{padding:7px 18px;background:#2d6a4f;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
 .share-btn:hover{background:#1b4332}
 .share-btn.copied{background:#52b788}
+
+/* ── Share Result Block ── */
+.share-result-block{margin-top:16px;background:#fff;border:1.5px solid #52b788;border-radius:10px;padding:14px 16px}
+.share-result-inner{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.share-result-label{font-size:13px;font-weight:700;color:#1b4332;white-space:nowrap}
+.share-result-url{flex:1;min-width:180px;padding:7px 10px;border:1px solid #d0d5dd;border-radius:6px;font-size:12px;font-family:monospace;color:#444;background:#f8f9fa;cursor:text}
+.share-result-btn{padding:8px 18px;background:#2d6a4f;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.share-result-btn:hover{background:#1b4332}
+.share-result-btn.copied{background:#52b788}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style><style>
 .calc-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:32px 20px 28px;text-align:center;border-radius:0 0 16px 16px;margin-bottom:24px}
 .calc-hero h1{font-size:clamp(22px,4vw,32px);font-weight:800;margin-bottom:8px;line-height:1.2}
@@ -331,13 +514,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/goals/weight-loss.html" class="nav-link-plain">Goals</a>
@@ -382,11 +565,6 @@
   <button class="btn-calc" onclick="calcORM()">Calculate 1RM</button>
   <div class="result-box" id="orm-result">
     <div class="result-main" id="orm-1rm">—
-    <div class="share-bar" id="share-bar" style="display:none">
-      <span style="font-size:13px;font-weight:600;color:#1b4332;flex-shrink:0">🔗 Share:</span>
-      <span class="share-url" id="share-url-text" style="flex:1;font-size:12px;color:#555;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0"></span>
-      <button class="share-btn" id="share-copy-btn" onclick="copyShareURL()">Copy link</button>
-    </div>
   </div>
     <div class="result-unit" id="orm-unit-label">kg one rep max</div>
     <div class="result-label" id="orm-formula-avg"></div>
@@ -398,6 +576,15 @@
     </div>
     <h3 style="margin:16px 0 8px;font-size:15px;font-weight:700;text-align:left">Training percentages</h3>
     <div id="orm-pcts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;text-align:left"></div>
+  </div>
+  <div class="share-result-block" id="share-bar" style="display:none">
+    <div class="share-result-inner">
+      <span class="share-result-label">🔗 Share your result:</span>
+      <input type="text" class="share-result-url" id="share-url-text" readonly>
+      <button class="share-result-btn" id="share-copy-btn" onclick="copyShareURL()">
+        📋 Copy link
+      </button>
+    </div>
   </div>
 </div>
 <div class="next-step">
@@ -480,6 +667,43 @@
   </div>
 </footer>
 <script>
+
+function updateShareURL(params) {
+  var url = new URL(window.location.href);
+  url.search = '';
+  Object.keys(params).forEach(function(k) {
+    if (params[k] !== undefined && params[k] !== null && params[k] !== '') {
+      url.searchParams.set(k, params[k]);
+    }
+  });
+  try { history.replaceState(null, '', url.toString()); } catch(e){}
+  var bar = document.getElementById('share-bar');
+  var urlInput = document.getElementById('share-url-text');
+  if (bar && urlInput) {
+    urlInput.value = url.toString();
+    bar.style.display = 'block';
+  }
+}
+function copyShareURL() {
+  var urlInput = document.getElementById('share-url-text');
+  var btn = document.getElementById('share-copy-btn');
+  if (!urlInput) return;
+  urlInput.select();
+  urlInput.setSelectionRange(0, 99999);
+  try {
+    navigator.clipboard.writeText(urlInput.value).then(function() {
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = '📋 Copy link'; btn.classList.remove('copied'); }, 2500);
+    });
+  } catch(e) {
+    document.execCommand('copy');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = '📋 Copy link'; btn.classList.remove('copied'); }, 2500);
+  }
+}
+
 var ormUnit='metric';
 function ormSetUnit(u,btn){
   ormUnit=u;document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
@@ -512,17 +736,9 @@ function calcORM(){
   });
   document.getElementById('orm-pcts').innerHTML=html;
   document.getElementById('orm-result').classList.add('show');
+  updateShareURL({'w':document.getElementById('orm-weight').value,'r':document.getElementById('orm-reps').value,'unit':ormUnit});
   updateShareURL({'w': document.getElementById('orm-weight').value, 'r': document.getElementById('orm-reps').value, 'unit': ormUnit});
-}
-// ── Shareable Result URL ──────────────────────────────────
-function updateShareURL(params) {
-  var url = new URL(window.location.href);
-  url.search = '';
-  Object.keys(params).forEach(function(k) {
-    if (params[k] !== null && params[k] !== undefined && params[k] !== '') {
-      url.searchParams.set(k, params[k]);
-    }
-  });
+}  });
   history.replaceState(null, '', url.toString());
   var bar = document.getElementById('share-bar');
   if (bar) {
@@ -530,25 +746,50 @@ function updateShareURL(params) {
     bar.style.display = 'flex';
   }
 }
-function copyShareURL() {
-  var url = window.location.href;
-  navigator.clipboard.writeText(url).then(function() {
-    var btn = document.getElementById('share-copy-btn');
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
-    setTimeout(function() {
-      btn.textContent = 'Copy link';
-      btn.classList.remove('copied');
-    }, 2000);
-  }).catch(function() {
-    var ta = document.createElement('textarea');
-    ta.value = url;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-  });
-}
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
 
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body></html>
