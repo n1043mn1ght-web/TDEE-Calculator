@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://caloriescalc.org/foods/yogurt.png">
   <meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Calories in Yogurt", "url": "https://caloriescalc.org/foods/yogurt.html", "dateModified": "2026-07-29", "author": {"@type": "Organization", "name": "CaloriesCalc"}, "mainEntity": {"@type": "NutritionInformation", "name": "Yogurt, plain, whole milk, 8 grams protein per 8 ounce", "servingSize": "100g", "calories": "61 kcal", "proteinContent": "3.5g", "fatContent": "3.3g", "carbohydrateContent": "4.7g", "fiberContent": "0g"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in yogurt?","acceptedAnswer":{"@type":"Answer","text":"Plain whole milk yogurt has 61 calories per 100g. A cup (245g): 149 kcal. Non-fat yogurt: 38 kcal/100g. Flavoured yogurts: 90-120 kcal/100g."}},{"@type":"Question","name":"Is yogurt good for you?","acceptedAnswer":{"@type":"Answer","text":"Yes — live probiotics, calcium, B12, and protein. Research links regular yogurt consumption to 14% lower type 2 diabetes risk, improved gut health, and better bone density."}},{"@type":"Question","name":"Is yogurt good for weight loss?","acceptedAnswer":{"@type":"Answer","text":"Yes — research shows regular yogurt consumption is associated with less weight gain over time. High protein content increases satiety. Choose plain varieties to avoid added sugar."}},{"@type":"Question","name":"What is the healthiest yogurt?","acceptedAnswer":{"@type":"Answer","text":"Plain, unsweetened Greek yogurt has the best nutritional profile — highest protein, lowest sugar, live cultures. Full-fat plain yogurt is also excellent. Avoid flavoured varieties with added sugar."}},{"@type":"Question","name":"Can yogurt replace probiotics supplements?","acceptedAnswer":{"@type":"Answer","text":"Regular plain yogurt with live cultures provides meaningful probiotic intake. While supplements provide specific strains in controlled doses, yogurt provides a broader bacterial community with additional nutrients. Both have documented benefits."}},{"@type":"Question","name":"Greek yogurt vs regular yogurt?","acceptedAnswer":{"@type":"Answer","text":"Greek: ~9g protein, ~4g carbs, more concentrated. Regular: ~3.5g protein, ~5g carbs, more fluid. Greek is strained to remove whey. Both have similar calcium and probiotics."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in yogurt?","acceptedAnswer":{"@type":"Answer","text":"Plain whole milk yogurt has 61 calories per 100g. A cup (245g): 149 kcal. Non-fat yogurt: 38 kcal/100g. Flavoured yogurts: 90-120 kcal/100g."}},{"@type":"Question","name":"Is yogurt good for you?","acceptedAnswer":{"@type":"Answer","text":"Yes — live probiotics, calcium, B12, and protein. Research links regular yogurt consumption to 14% lower type 2 diabetes risk, improved gut health, and better bone density."}},{"@type":"Question","name":"Is yogurt good for weight loss?","acceptedAnswer":{"@type":"Answer","text":"Yes — Research suggests regular yogurt consumption is associated with less weight gain over time. High protein content increases satiety. Choose plain varieties to avoid added sugar."}},{"@type":"Question","name":"What is a nutritious yogurt?","acceptedAnswer":{"@type":"Answer","text":"Plain, unsweetened Greek yogurt has the best nutritional profile — highest protein, lowest sugar, live cultures. Full-fat plain yogurt is also excellent. Avoid flavoured varieties with added sugar."}},{"@type":"Question","name":"Can yogurt replace probiotics supplements?","acceptedAnswer":{"@type":"Answer","text":"Regular plain yogurt with live cultures provides meaningful probiotic intake. While supplements provide specific strains in controlled doses, yogurt provides a broader bacterial community with additional nutrients. Both have documented benefits."}},{"@type":"Question","name":"Greek yogurt vs regular yogurt?","acceptedAnswer":{"@type":"Answer","text":"Greek: ~9g protein, ~4g carbs, more concentrated. Regular: ~3.5g protein, ~5g carbs, more fluid. Greek is strained to remove whey. Both have similar calcium and probiotics."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#2d6a4f;--green-light:#e8f5ee;--green-dark:#1b4332;--text:#1a1a1a;--text-muted:#555;--text-faint:#888;--border:#e0e0e0;--bg:#fff;--bg-soft:#f8f9fa;--radius:10px;--radius-sm:6px;--max:980px}
@@ -138,6 +138,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Yogurt — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/yogurt.html"}]}</script>
 </head>
@@ -164,13 +338,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -204,7 +378,7 @@
       </div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/yogurt.png" alt="Yogurt nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Yogurt illustration">🫙</div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">🦠</span><span class="nh-text">Live probiotics — billions of CFU</span></div><div class="nh-card"><span class="nh-icon">🦴</span><span class="nh-text">Calcium — 121mg per 100g</span></div><div class="nh-card"><span class="nh-icon">💊</span><span class="nh-text">Vitamin B12 — 18% Daily Value</span></div><div class="nh-card"><span class="nh-icon">💪</span><span class="nh-text">3.5g protein per 100g</span></div><div class="nh-card"><span class="nh-icon">😌</span><span class="nh-text">Lower lactose than milk</span></div><div class="nh-card"><span class="nh-icon">❤️</span><span class="nh-text">Associated with reduced type 2 diabetes risk</span></div></div>
@@ -250,7 +424,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Whole milk yogurt: 61 kcal/100g. Low-fat: 56 kcal. Non-fat: 38 kcal. Flavoured yogurts: 90-120 kcal/100g (added sugar). Greek yogurt is strained yogurt — more protein, fewer carbs.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">🦠</div><div class="micro-name">Probiotics</div><div class="micro-val">Billions CFU</div><div class="micro-dv">Live cultures</div><div class="micro-desc">Lactobacillus bulgaricus + Streptococcus thermophilus</div></div><div class="micro-card"><div class="micro-icon">🦴</div><div class="micro-name">Calcium</div><div class="micro-val">121mg</div><div class="micro-dv">12% DV</div><div class="micro-desc">Bone health — highly bioavailable</div></div><div class="micro-card"><div class="micro-icon">💊</div><div class="micro-name">Vitamin B12</div><div class="micro-val">0.37µg</div><div class="micro-dv">15% DV</div><div class="micro-desc">Neurological function</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Potassium</div><div class="micro-val">155mg</div><div class="micro-dv">3% DV</div><div class="micro-desc">Blood pressure support</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Phosphorus</div><div class="micro-val">94mg</div><div class="micro-dv">8% DV</div><div class="micro-desc">Bone health and ATP</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Riboflavin</div><div class="micro-val">0.14mg</div><div class="micro-dv">11% DV</div><div class="micro-desc">Energy metabolism</div></div></div></div>
-  <div class="section" id="health"><h2>Yogurt Health Benefits</h2><h3>Type 2 Diabetes Prevention</h3><p>A meta-analysis of 14 prospective cohort studies (covering 459,000 participants) found that yogurt consumption was associated with a 14% lower risk of type 2 diabetes. This is one of the strongest dietary associations for diabetes prevention. Proposed mechanisms include probiotic effects on insulin sensitivity, calcium and vitamin D roles in glucose metabolism, and unique dairy fatty acids (trans-palmitoleic acid) that improve insulin sensitivity.</p><h3>Probiotic Benefits — Broad Clinical Evidence</h3><p>Regular yogurt consumption provides billions of live bacteria per serving. Clinical evidence shows yogurt probiotics reduce the duration and severity of diarrhoea (including antibiotic-associated diarrhoea), reduce H. pylori infection, reduce IBS symptoms, and reduce upper respiratory infections. A meta-analysis of 25 trials found probiotic yogurt reduced cold and flu duration by 1.9 days.</p><h3>Bone Health — Calcium and Phosphorus</h3><p>A cup of yogurt provides 13% of the daily calcium requirement in a highly bioavailable form. Casein phosphopeptides in dairy protein enhance calcium absorption. Unlike calcium supplements, yogurt also provides phosphorus, magnesium, and vitamin K — all necessary for incorporating calcium into bone matrix. The combination is more effective than calcium alone.</p><h3>Satiety and Appetite Regulation</h3><p>Yogurt's combination of protein, fat, and live cultures makes it uniquely satisfying. Research shows yogurt as a snack reduces subsequent meal size by 100-150 calories compared to equal-calorie solid snacks. The fermentation process creates bioactive peptides that directly influence gut hormone production (GLP-1, PYY) — the same hormones that signal fullness to the brain.</p></div>
+  <div class="section" id="health"><h2>Yogurt Health Benefits</h2><h3>Type 2 Diabetes Prevention</h3><p>A meta-analysis of 14 prospective cohort studies (covering 459,000 participants) found that yogurt consumption was associated with a 14% lower risk of type 2 diabetes. This is one of the strongest dietary associations for diabetes prevention. Proposed mechanisms include probiotic effects on insulin sensitivity, calcium and vitamin D roles in glucose metabolism, and unique dairy fatty acids (trans-palmitoleic acid) that improve insulin sensitivity.</p><h3>Probiotic Benefits — Broad Clinical Evidence</h3><p>Regular yogurt consumption provides billions of live bacteria per serving. Clinical evidence shows yogurt probiotics reduce the duration and severity of diarrhoea (including antibiotic-associated diarrhoea), reduce H. pylori infection, reduce IBS symptoms, and reduce upper respiratory infections. A meta-analysis of 25 trials found probiotic yogurt reduced cold and flu duration by 1.9 days.</p><h3>Bone Health — Calcium and Phosphorus</h3><p>A cup of yogurt provides 13% of the daily calcium requirement in a highly bioavailable form. Casein phosphopeptides in dairy protein enhance calcium absorption. Unlike calcium supplements, yogurt also provides phosphorus, magnesium, and vitamin K — all necessary for incorporating calcium into bone matrix. The combination is more effective than calcium alone.</p><h3>Satiety and Appetite Regulation</h3><p>Yogurt's combination of protein, fat, and live cultures makes it uniquely satisfying. Research suggests yogurt as a snack reduces subsequent meal size by 100-150 calories compared to equal-calorie solid snacks. The fermentation process creates bioactive peptides that directly influence gut hormone production (GLP-1, PYY) — the same hormones that signal fullness to the brain.</p></div>
   <div class="section">
     <h2>Yogurt vs Other Dairy &amp; Proteins — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/greek-yogurt.html" class="compare-card"><div class="cc-emoji">🥛</div><div class="cc-name">Greek Yogurt</div><div class="cc-cal">97 kcal/100g</div><div class="cc-diff more">+36 kcal</div></a><a href="/foods/milk.html" class="compare-card"><div class="cc-emoji">🥛</div><div class="cc-name">Milk</div><div class="cc-cal">42 kcal/100g</div><div class="cc-diff less">−19 kcal</div></a><a href="/foods/cottage-cheese.html" class="compare-card"><div class="cc-emoji">🧀</div><div class="cc-name">Cottage Cheese</div><div class="cc-cal">98 kcal/100g</div><div class="cc-diff more">+37 kcal</div></a><a href="/foods/egg.html" class="compare-card"><div class="cc-emoji">🥚</div><div class="cc-name">Egg</div><div class="cc-cal">155 kcal/100g</div><div class="cc-diff more">+94 kcal</div></a><a href="/foods/cheddar-cheese.html" class="compare-card"><div class="cc-emoji">🧀</div><div class="cc-name">Cheddar Cheese</div><div class="cc-cal">403 kcal/100g</div><div class="cc-diff more">+342 kcal</div></a><a href="/foods/mozzarella.html" class="compare-card"><div class="cc-emoji">🧀</div><div class="cc-name">Mozzarella</div><div class="cc-cal">280 kcal/100g</div><div class="cc-diff more">+219 kcal</div></a><a href="/foods/chicken-breast.html" class="compare-card"><div class="cc-emoji">🍗</div><div class="cc-name">Chicken Breast</div><div class="cc-cal">165 kcal/100g</div><div class="cc-diff more">+104 kcal</div></a><a href="/foods/broccoli.html" class="compare-card"><div class="cc-emoji">🥦</div><div class="cc-name">Broccoli</div><div class="cc-cal">34 kcal/100g</div><div class="cc-diff less">−27 kcal</div></a></div>
@@ -286,7 +460,7 @@
     <a href="/goals/healthy-eating.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Healthy Eating Guide →</a>
   </div>
 </div>
-  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in yogurt?</div><div class="faq-a">Plain whole milk yogurt has <strong>61 calories per 100g</strong>. A cup (245g): 149 kcal. Non-fat yogurt: 38 kcal/100g. Flavoured yogurts: 90-120 kcal/100g.</div></div><div class="faq-item"><div class="faq-q">Is yogurt good for you?</div><div class="faq-a">Yes — live probiotics, calcium, B12, and protein. Research links regular yogurt consumption to 14% lower type 2 diabetes risk, improved gut health, and better bone density.</div></div><div class="faq-item"><div class="faq-q">Is yogurt good for weight loss?</div><div class="faq-a">Yes — research shows regular yogurt consumption is associated with less weight gain over time. High protein content increases satiety. Choose plain varieties to avoid added sugar.</div></div><div class="faq-item"><div class="faq-q">What is the healthiest yogurt?</div><div class="faq-a">Plain, unsweetened Greek yogurt has the best nutritional profile — highest protein, lowest sugar, live cultures. Full-fat plain yogurt is also excellent. Avoid flavoured varieties with added sugar.</div></div><div class="faq-item"><div class="faq-q">Can yogurt replace probiotics supplements?</div><div class="faq-a">Regular plain yogurt with live cultures provides meaningful probiotic intake. While supplements provide specific strains in controlled doses, yogurt provides a broader bacterial community with additional nutrients. Both have documented benefits.</div></div><div class="faq-item"><div class="faq-q">Greek yogurt vs regular yogurt?</div><div class="faq-a">Greek: ~9g protein, ~4g carbs, more concentrated. Regular: ~3.5g protein, ~5g carbs, more fluid. Greek is strained to remove whey. Both have similar calcium and probiotics.</div></div></div>
+  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in yogurt?</div><div class="faq-a">Plain whole milk yogurt has <strong>61 calories per 100g</strong>. A cup (245g): 149 kcal. Non-fat yogurt: 38 kcal/100g. Flavoured yogurts: 90-120 kcal/100g.</div></div><div class="faq-item"><div class="faq-q">Is yogurt good for you?</div><div class="faq-a">Yes — live probiotics, calcium, B12, and protein. Research links regular yogurt consumption to 14% lower type 2 diabetes risk, improved gut health, and better bone density.</div></div><div class="faq-item"><div class="faq-q">Is yogurt good for weight loss?</div><div class="faq-a">Yes — Research suggests regular yogurt consumption is associated with less weight gain over time. High protein content increases satiety. Choose plain varieties to avoid added sugar.</div></div><div class="faq-item"><div class="faq-q">What is a nutritious yogurt?</div><div class="faq-a">Plain, unsweetened Greek yogurt has the best nutritional profile — highest protein, lowest sugar, live cultures. Full-fat plain yogurt is also excellent. Avoid flavoured varieties with added sugar.</div></div><div class="faq-item"><div class="faq-q">Can yogurt replace probiotics supplements?</div><div class="faq-a">Regular plain yogurt with live cultures provides meaningful probiotic intake. While supplements provide specific strains in controlled doses, yogurt provides a broader bacterial community with additional nutrients. Both have documented benefits.</div></div><div class="faq-item"><div class="faq-q">Greek yogurt vs regular yogurt?</div><div class="faq-a">Greek: ~9g protein, ~4g carbs, more concentrated. Regular: ~3.5g protein, ~5g carbs, more fluid. Greek is strained to remove whey. Both have similar calcium and probiotics.</div></div></div>
   <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/greek-yogurt.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Greek Yogurt</div><div class="fc-cal">97 kcal/100g</div></a><a href="/foods/cottage-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cottage Cheese</div><div class="fc-cal">98 kcal/100g</div></a><a href="/foods/milk.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Milk</div><div class="fc-cal">42 kcal/100g</div></a><a href="/foods/egg.html" class="food-card"><div class="fc-emoji">🥚</div><div class="fc-name">Egg</div><div class="fc-cal">155 kcal/100g</div></a><a href="/foods/cheddar-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cheddar Cheese</div><div class="fc-cal">403 kcal/100g</div></a><a href="/foods/mozzarella.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Mozzarella</div><div class="fc-cal">280 kcal/100g</div></a><a href="/foods/chicken-breast.html" class="food-card"><div class="fc-emoji">🍗</div><div class="fc-name">Chicken Breast</div><div class="fc-cal">165 kcal/100g</div></a><a href="/foods/broccoli.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Broccoli</div><div class="fc-cal">34 kcal/100g</div></a></div></div>
   <div class="section" id="more-from-category">
   <h2>More Dairy & Eggs</h2>
@@ -345,6 +519,51 @@ function updateCalc(g){g=parseInt(g);document.getElementById('slider-grams').tex
 const WW=[10,14,28,50,100,150,200,250,300,400,500];
 document.getElementById('weight-tbody').innerHTML=WW.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

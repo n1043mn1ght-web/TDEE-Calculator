@@ -231,6 +231,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
   <script type="application/ld+json">
   {
@@ -282,7 +456,7 @@
       "name": "Is watermelon good for hydration?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Extremely. At 92% water content, watermelon is the most hydrating common fruit. It also contains potassium and magnesium that help maintain electrolyte balance. Research shows fruits with high water content improve overall hydration status more effectively than drinking the equivalent amount of plain water."
+        "text": "Extremely. At 92% water content, watermelon is the most hydrating common fruit. It also contains potassium and magnesium that help maintain electrolyte balance. Research suggests fruits with high water content improve overall hydration status more effectively than drinking the equivalent amount of plain water."
       }
     }
     ]
@@ -316,13 +490,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -363,7 +537,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-img">
-        <img src="/foods/watermelon.png" alt="Watermelon nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+        <div class="hero-img-emoji" role="img" aria-label="Watermelon illustration">🍉</div>
       </div>
     </div>
   </div>
@@ -463,7 +637,7 @@
   <div class="section" id="health">
     <h2>Watermelon Health Benefits &amp; Nutrition</h2>
     <h3>Lycopene — the Red Antioxidant</h3><p>Watermelon contains 7.6mg of lycopene per 100g — the highest concentration of any commonly consumed fruit, higher even than tomatoes (2.5mg/100g raw). Lycopene is a carotenoid antioxidant associated with reduced risk of prostate cancer, cardiovascular disease, and UV-induced skin damage. Unlike tomatoes, watermelon lycopene is more bioavailable in its raw form without cooking.</p>
-<h3>Citrulline and Athletic Performance</h3><p>Watermelon is uniquely rich in L-citrulline — a non-essential amino acid found in the flesh and particularly the rind. Citrulline is converted to arginine in the body, which increases nitric oxide production and dilates blood vessels. Studies show watermelon juice before exercise reduces muscle soreness by 40% compared to placebo, and may improve time to exhaustion by 7–10% in endurance athletes.</p>
+<h3>Citrulline and Athletic Performance</h3><p>Watermelon is uniquely rich in L-citrulline — a non-essential amino acid found in the flesh and particularly the rind. Citrulline is converted to arginine in the body, which increases nitric oxide production and dilates blood vessels. Evidence suggests watermelon juice before exercise reduces muscle soreness by 40% compared to placebo, and may improve time to exhaustion by 7–10% in endurance athletes.</p>
 <h3>Hydration and Heat Management</h3><p>At 92% water content, watermelon is effectively a solid beverage. A 2-cup serving provides approximately 285ml of water alongside electrolytes (potassium, magnesium), making it more effective for hydration than plain water because the natural sugars and electrolytes facilitate cellular water uptake. This makes watermelon particularly valuable in hot weather and post-exercise recovery.</p>
 <h3>Glycemic Index vs Glycemic Load — an Important Distinction</h3><p>Watermelon has a high glycemic index of approximately 76, which concerns some people with blood sugar conditions. However, its glycemic load per serving is actually very low (GL≈5 per cup) because it has so few carbohydrates per serving. A person with diabetes can typically eat 1–2 cups of watermelon without significant blood sugar impact — the GL matters more than the GI for real-world blood sugar management.</p>
 
@@ -530,7 +704,7 @@
 <div class="faq-item"><div class="faq-q">Is watermelon high in sugar?</div><div class="faq-a">Moderately. Watermelon contains 6.2g of natural sugar per 100g — less than grapes (15.5g) or bananas (12.2g). A 2-cup serving contains about 19g of sugar. While the GI is high (~76), the glycemic load per cup is only about 5, making it less impactful on blood sugar than its GI suggests.</div></div>
 <div class="faq-item"><div class="faq-q">Is watermelon keto?</div><div class="faq-a">No. Watermelon has 7.1g of net carbs per 100g and a high glycemic index. It's not suitable for strict keto. A very small portion (50g, ~15 calories) might technically fit, but it's not practical or satisfying.</div></div>
 <div class="faq-item"><div class="faq-q">What is lycopene in watermelon?</div><div class="faq-a">Lycopene is a red carotenoid antioxidant that gives watermelon its characteristic colour. Watermelon contains 7.6mg per 100g — more than any other common fruit. Lycopene is associated with reduced prostate cancer risk, lower cardiovascular risk, and protection against UV skin damage. Unlike tomatoes, watermelon lycopene is fully bioavailable without cooking.</div></div>
-<div class="faq-item"><div class="faq-q">Is watermelon good for hydration?</div><div class="faq-a">Extremely. At 92% water content, watermelon is the most hydrating common fruit. It also contains potassium and magnesium that help maintain electrolyte balance. Research shows fruits with high water content improve overall hydration status more effectively than drinking the equivalent amount of plain water.</div></div>
+<div class="faq-item"><div class="faq-q">Is watermelon good for hydration?</div><div class="faq-a">Extremely. At 92% water content, watermelon is the most hydrating common fruit. It also contains potassium and magnesium that help maintain electrolyte balance. Research suggests fruits with high water content improve overall hydration status more effectively than drinking the equivalent amount of plain water.</div></div>
 
   </div>
 
@@ -640,6 +814,51 @@ document.getElementById('weight-tbody').innerHTML=WEIGHTS.map(g=>
   `<tr><td>${g}g</td><td>${Math.round(N.calories*g/100)} kcal</td><td>${(N.carbs*g/100).toFixed(1)}g</td><td>${(N.protein*g/100).toFixed(1)}g</td><td>${(N.fat*g/100).toFixed(1)}g</td></tr>`
 ).join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

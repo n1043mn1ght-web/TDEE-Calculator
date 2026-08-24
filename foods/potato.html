@@ -18,7 +18,7 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Calories in Potato","url":"https://caloriescalc.org/foods/potato.html","dateModified":"2026-07-28","author":{"@type":"Organization","name":"CaloriesCalc"},"mainEntity":{"@type":"NutritionInformation","name":"Potatoes, raw, skin","servingSize":"100g","calories":"77 kcal","carbohydrateContent":"17.49g","sugarContent":"0.82g","fiberContent":"2.1g","proteinContent":"2.05g","fatContent":"0.09g"}}
   </script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in a potato?","acceptedAnswer":{"@type":"Answer","text":"Potatoes contain 77 calories per 100g raw. A medium potato (213g) has 164 calories. Boiled potato has ~87 kcal/100g, baked with skin ~93 kcal/100g, and french fries ~312 kcal/100g. Use the slider above for any weight."}},{"@type":"Question","name":"Are potatoes fattening?","acceptedAnswer":{"@type":"Answer","text":"Potatoes themselves are not fattening — 77 kcal per 100g is moderate for a filling food. Research shows plain potatoes are among the most satiating foods studied. What makes potatoes high-calorie is cooking method: frying and adding butter, sour cream, or cheese dramatically increases calories."}},{"@type":"Question","name":"Are potatoes good for you?","acceptedAnswer":{"@type":"Answer","text":"Yes. Potatoes are rich in potassium (more than bananas), vitamin C, vitamin B6, and resistant starch. They are naturally fat-free and filling. Baked or boiled potatoes with skin are a nutritious whole food — it is the processing (frying, chips) that makes them unhealthy."}},{"@type":"Question","name":"Is potato keto?","acceptedAnswer":{"@type":"Answer","text":"No. Potatoes have 15.4g of net carbs per 100g — a medium potato has 34g of net carbs, far exceeding daily keto limits (20-50g total). Even a small portion would use most of a day's carb allowance on keto."}},{"@type":"Question","name":"What is the healthiest way to eat potatoes?","acceptedAnswer":{"@type":"Answer","text":"Boiling or baking with skin preserves the most nutrients. Cooling after cooking converts starch to beneficial resistant starch. Avoid frying and minimise high-calorie toppings. Eating potatoes with the skin significantly increases fiber, potassium, and antioxidant content."}},{"@type":"Question","name":"Do potatoes have more potassium than bananas?","acceptedAnswer":{"@type":"Answer","text":"Yes — potatoes contain 425mg of potassium per 100g, compared to 358mg in bananas. A medium baked potato provides nearly 900mg of potassium, making it one of the best dietary sources of this essential mineral."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in a potato?","acceptedAnswer":{"@type":"Answer","text":"Potatoes contain 77 calories per 100g raw. A medium potato (213g) has 164 calories. Boiled potato has ~87 kcal/100g, baked with skin ~93 kcal/100g, and french fries ~312 kcal/100g. Use the slider above for any weight."}},{"@type":"Question","name":"Are potatoes fattening?","acceptedAnswer":{"@type":"Answer","text":"Potatoes themselves are not fattening — 77 kcal per 100g is moderate for a filling food. Research suggests plain potatoes are among the most satiating foods studied. What makes potatoes high-calorie is cooking method: frying and adding butter, sour cream, or cheese dramatically increases calories."}},{"@type":"Question","name":"Are potatoes good for you?","acceptedAnswer":{"@type":"Answer","text":"Yes. Potatoes are rich in potassium (more than bananas), vitamin C, vitamin B6, and resistant starch. They are naturally fat-free and filling. Baked or boiled potatoes with skin are a nutritious whole food — it is the processing (frying, chips) that makes them unhealthy."}},{"@type":"Question","name":"Is potato keto?","acceptedAnswer":{"@type":"Answer","text":"No. Potatoes have 15.4g of net carbs per 100g — a medium potato has 34g of net carbs, far exceeding daily keto limits (20-50g total). Even a small portion would use most of a day's carb allowance on keto."}},{"@type":"Question","name":"What is a nutritious way to eat potatoes?","acceptedAnswer":{"@type":"Answer","text":"Boiling or baking with skin preserves the most nutrients. Cooling after cooking converts starch to beneficial resistant starch. Avoid frying and minimise high-calorie toppings. Eating potatoes with the skin significantly increases fiber, potassium, and antioxidant content."}},{"@type":"Question","name":"Do potatoes have more potassium than bananas?","acceptedAnswer":{"@type":"Answer","text":"Yes — potatoes contain 425mg of potassium per 100g, compared to 358mg in bananas. A medium baked potato provides nearly 900mg of potassium, making it one of the best dietary sources of this essential mineral."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#2d6a4f;--green-light:#e8f5ee;--green-dark:#1b4332;--text:#1a1a1a;--text-muted:#555;--text-faint:#888;--border:#e0e0e0;--bg:#fff;--bg-soft:#f8f9fa;--radius:10px;--radius-sm:6px;--max:980px}
@@ -152,6 +152,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Potato — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/potato.html"}]}</script>
 </head>
@@ -178,13 +352,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -220,7 +394,7 @@
       <div class="quick-facts"><span class="qf-tag">✔ High in potassium</span><span class="qf-tag">✔ Good source of vitamin C</span><span class="qf-tag">✔ Naturally fat free</span><span class="qf-tag">✔ Gluten free</span><span class="qf-tag">✔ Vegan</span><span class="qf-tag">✔ Filling and satisfying</span></div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/potato.png" alt="Potato nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Potato illustration">🥔</div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">⚡</span><span class="nh-text">High potassium — 425mg per 100g</span></div><div class="nh-card"><span class="nh-icon">🛡</span><span class="nh-text">Good vitamin C — 19.7mg per 100g</span></div><div class="nh-card"><span class="nh-icon">🌿</span><span class="nh-text">2.1g fiber per 100g</span></div><div class="nh-card"><span class="nh-icon">💪</span><span class="nh-text">2.05g protein per 100g</span></div><div class="nh-card"><span class="nh-icon">🔥</span><span class="nh-text">Only 77 kcal per 100g — raw</span></div><div class="nh-card"><span class="nh-icon">🧠</span><span class="nh-text">Vitamin B6 — 23% Daily Value</span></div></div>
@@ -275,7 +449,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Raw potato is 79% water. Carbs are primarily starch (resistant starch when cooled). Net carbs are 15.4g per 100g. Cooking method dramatically affects calories — boiled potato stays ~87 kcal/100g, but frying can push to 300+ kcal/100g.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Potassium</div><div class="micro-val">425 mg</div><div class="micro-dv">9% Daily Value</div><div class="micro-desc">Blood pressure regulation — more than a banana</div></div><div class="micro-card"><div class="micro-icon">🛡</div><div class="micro-name">Vitamin C</div><div class="micro-val">19.7 mg</div><div class="micro-dv">22% Daily Value</div><div class="micro-desc">Immune support, collagen synthesis</div></div><div class="micro-card"><div class="micro-icon">🧠</div><div class="micro-name">Vitamin B6</div><div class="micro-val">0.30 mg</div><div class="micro-dv">18% Daily Value</div><div class="micro-desc">Brain health, protein metabolism</div></div><div class="micro-card"><div class="micro-icon">🌿</div><div class="micro-name">Fiber</div><div class="micro-val">2.1 g</div><div class="micro-dv">8% Daily Value</div><div class="micro-desc">Digestive health and satiety</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Manganese</div><div class="micro-val">0.15 mg</div><div class="micro-dv">7% Daily Value</div><div class="micro-desc">Antioxidant enzymes and bone health</div></div><div class="micro-card"><div class="micro-icon">💊</div><div class="micro-name">Folate (B9)</div><div class="micro-val">15 µg</div><div class="micro-dv">4% Daily Value</div><div class="micro-desc">Cell division and DNA synthesis</div></div></div></div>
-  <div class="section" id="health"><h2>Potato Health Benefits &amp; Nutrition</h2><h3>Potassium — More Than a Banana</h3><p>Potatoes are one of the richest dietary sources of potassium, providing 425mg per 100g compared to 358mg in bananas. A medium baked potato (with skin) provides nearly 900mg of potassium — 26% of the daily requirement. Potassium is essential for blood pressure regulation, muscle function, and heart health. Research consistently shows high-potassium diets reduce cardiovascular disease risk. The potassium in potatoes is highly bioavailable — particularly in baked or boiled preparations.</p><h3>Resistant Starch — The Gut Health Secret</h3><p>When cooked potatoes are cooled, some of their starch converts to resistant starch — a type of fiber that feeds beneficial gut bacteria. Cooled potato salad has significantly more resistant starch than freshly cooked potato. Resistant starch improves insulin sensitivity, increases satiety hormones, and selectively feeds Bifidobacterium and other beneficial gut bacteria. Reheating once-cooled potatoes only partially reverses this conversion.</p><h3>Satiety — Most Filling Food Studied</h3><p>A 1995 satiety index study found potatoes to be the most satiating food tested — 323% as filling as white bread by calorie. This makes them excellent for weight management despite their carb content. The combination of water content, fiber, protein, and resistant starch creates strong satiety signals. Studies show people eat fewer calories in subsequent meals after consuming potatoes.</p><h3>Vitamin C and Antioxidants</h3><p>A medium potato provides 28mg of vitamin C — 31% of the daily requirement. Potatoes also contain chlorogenic acid (the main antioxidant in coffee), quercetin, and patatin — a protein with antioxidant activity unique to potatoes. Purple and blue potatoes contain anthocyanins with additional antioxidant effects. The antioxidant content is concentrated near the skin — eating potatoes with skin preserves significantly more nutrients.</p></div>
+  <div class="section" id="health"><h2>Potato Health Benefits &amp; Nutrition</h2><h3>Potassium — More Than a Banana</h3><p>Potatoes are one of the richest dietary sources of potassium, providing 425mg per 100g compared to 358mg in bananas. A medium baked potato (with skin) provides nearly 900mg of potassium — 26% of the daily requirement. Potassium is essential for blood pressure regulation, muscle function, and heart health. Research consistently shows high-potassium diets reduce cardiovascular disease risk. The potassium in potatoes is highly bioavailable — particularly in baked or boiled preparations.</p><h3>Resistant Starch — The Gut Health Secret</h3><p>When cooked potatoes are cooled, some of their starch converts to resistant starch — a type of fiber that feeds beneficial gut bacteria. Cooled potato salad has significantly more resistant starch than freshly cooked potato. Resistant starch improves insulin sensitivity, increases satiety hormones, and selectively feeds Bifidobacterium and other beneficial gut bacteria. Reheating once-cooled potatoes only partially reverses this conversion.</p><h3>Satiety — Most Filling Food Studied</h3><p>A 1995 satiety index study found potatoes to be the most satiating food tested — 323% as filling as white bread by calorie. This makes them excellent for weight management despite their carb content. The combination of water content, fiber, protein, and resistant starch creates strong satiety signals. Evidence suggests people eat fewer calories in subsequent meals after consuming potatoes.</p><h3>Vitamin C and Antioxidants</h3><p>A medium potato provides 28mg of vitamin C — 31% of the daily requirement. Potatoes also contain chlorogenic acid (the main antioxidant in coffee), quercetin, and patatin — a protein with antioxidant activity unique to potatoes. Purple and blue potatoes contain anthocyanins with additional antioxidant effects. The antioxidant content is concentrated near the skin — eating potatoes with skin preserves significantly more nutrients.</p></div>
   <div class="section">
     <h2>Potato vs Other Vegetables — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/sweet-potato.html" class="compare-card"><div class="cc-emoji">🍠</div><div class="cc-name">Sweet Potato</div><div class="cc-cal">86 kcal/100g</div><div class="cc-diff more">+9 kcal</div></a><a href="/foods/corn.html" class="compare-card"><div class="cc-emoji">🌽</div><div class="cc-name">Corn</div><div class="cc-cal">86 kcal/100g</div><div class="cc-diff more">+9 kcal</div></a><a href="/foods/onion.html" class="compare-card"><div class="cc-emoji">🧅</div><div class="cc-name">Onion</div><div class="cc-cal">40 kcal/100g</div><div class="cc-diff less">−37 kcal</div></a><a href="/foods/carrot.html" class="compare-card"><div class="cc-emoji">🥕</div><div class="cc-name">Carrot</div><div class="cc-cal">41 kcal/100g</div><div class="cc-diff less">−36 kcal</div></a><a href="/foods/broccoli.html" class="compare-card"><div class="cc-emoji">🥦</div><div class="cc-name">Broccoli</div><div class="cc-cal">34 kcal/100g</div><div class="cc-diff less">−43 kcal</div></a><a href="/foods/tomato.html" class="compare-card"><div class="cc-emoji">🍅</div><div class="cc-name">Tomato</div><div class="cc-cal">18 kcal/100g</div><div class="cc-diff less">−59 kcal</div></a><a href="/foods/cucumber.html" class="compare-card"><div class="cc-emoji">🥒</div><div class="cc-name">Cucumber</div><div class="cc-cal">15 kcal/100g</div><div class="cc-diff less">−62 kcal</div></a><a href="/foods/peas.html" class="compare-card"><div class="cc-emoji">🫛</div><div class="cc-name">Peas</div><div class="cc-cal">81 kcal/100g</div><div class="cc-diff more">+4 kcal</div></a></div>
@@ -311,7 +485,7 @@
     <a href="/goals/weight-loss.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Weight Loss Guide →</a>
   </div>
 </div>
-  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in a potato?</div><div class="faq-a">Potatoes contain <strong>77 calories per 100g</strong> raw. A medium potato (213g) has 164 calories. Boiled potato has ~87 kcal/100g, baked with skin ~93 kcal/100g, and french fries ~312 kcal/100g. Use the slider above for any weight.</div></div><div class="faq-item"><div class="faq-q">Are potatoes fattening?</div><div class="faq-a">Potatoes themselves are not fattening — 77 kcal per 100g is moderate for a filling food. Research shows plain potatoes are among the most satiating foods studied. What makes potatoes high-calorie is cooking method: frying and adding butter, sour cream, or cheese dramatically increases calories.</div></div><div class="faq-item"><div class="faq-q">Are potatoes good for you?</div><div class="faq-a">Yes. Potatoes are rich in potassium (more than bananas), vitamin C, vitamin B6, and resistant starch. They are naturally fat-free and filling. Baked or boiled potatoes with skin are a nutritious whole food — it is the processing (frying, chips) that makes them unhealthy.</div></div><div class="faq-item"><div class="faq-q">Is potato keto?</div><div class="faq-a">No. Potatoes have 15.4g of net carbs per 100g — a medium potato has 34g of net carbs, far exceeding daily keto limits (20-50g total). Even a small portion would use most of a day's carb allowance on keto.</div></div><div class="faq-item"><div class="faq-q">What is the healthiest way to eat potatoes?</div><div class="faq-a">Boiling or baking with skin preserves the most nutrients. Cooling after cooking converts starch to beneficial resistant starch. Avoid frying and minimise high-calorie toppings. Eating potatoes with the skin significantly increases fiber, potassium, and antioxidant content.</div></div><div class="faq-item"><div class="faq-q">Do potatoes have more potassium than bananas?</div><div class="faq-a">Yes — potatoes contain 425mg of potassium per 100g, compared to 358mg in bananas. A medium baked potato provides nearly 900mg of potassium, making it one of the best dietary sources of this essential mineral.</div></div></div>
+  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in a potato?</div><div class="faq-a">Potatoes contain <strong>77 calories per 100g</strong> raw. A medium potato (213g) has 164 calories. Boiled potato has ~87 kcal/100g, baked with skin ~93 kcal/100g, and french fries ~312 kcal/100g. Use the slider above for any weight.</div></div><div class="faq-item"><div class="faq-q">Are potatoes fattening?</div><div class="faq-a">Potatoes themselves are not fattening — 77 kcal per 100g is moderate for a filling food. Research suggests plain potatoes are among the most satiating foods studied. What makes potatoes high-calorie is cooking method: frying and adding butter, sour cream, or cheese dramatically increases calories.</div></div><div class="faq-item"><div class="faq-q">Are potatoes good for you?</div><div class="faq-a">Yes. Potatoes are rich in potassium (more than bananas), vitamin C, vitamin B6, and resistant starch. They are naturally fat-free and filling. Baked or boiled potatoes with skin are a nutritious whole food — it is the processing (frying, chips) that makes them unhealthy.</div></div><div class="faq-item"><div class="faq-q">Is potato keto?</div><div class="faq-a">No. Potatoes have 15.4g of net carbs per 100g — a medium potato has 34g of net carbs, far exceeding daily keto limits (20-50g total). Even a small portion would use most of a day's carb allowance on keto.</div></div><div class="faq-item"><div class="faq-q">What is a nutritious way to eat potatoes?</div><div class="faq-a">Boiling or baking with skin preserves the most nutrients. Cooling after cooking converts starch to beneficial resistant starch. Avoid frying and minimise high-calorie toppings. Eating potatoes with the skin significantly increases fiber, potassium, and antioxidant content.</div></div><div class="faq-item"><div class="faq-q">Do potatoes have more potassium than bananas?</div><div class="faq-a">Yes — potatoes contain 425mg of potassium per 100g, compared to 358mg in bananas. A medium baked potato provides nearly 900mg of potassium, making it one of the best dietary sources of this essential mineral.</div></div></div>
   <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/sweet-potato.html" class="food-card"><div class="fc-emoji">🍠</div><div class="fc-name">Sweet Potato</div><div class="fc-cal">86 kcal/100g</div></a><a href="/foods/corn.html" class="food-card"><div class="fc-emoji">🌽</div><div class="fc-name">Corn</div><div class="fc-cal">86 kcal/100g</div></a><a href="/foods/peas.html" class="food-card"><div class="fc-emoji">🫛</div><div class="fc-name">Peas</div><div class="fc-cal">81 kcal/100g</div></a><a href="/foods/carrot.html" class="food-card"><div class="fc-emoji">🥕</div><div class="fc-name">Carrot</div><div class="fc-cal">41 kcal/100g</div></a><a href="/foods/onion.html" class="food-card"><div class="fc-emoji">🧅</div><div class="fc-name">Onion</div><div class="fc-cal">40 kcal/100g</div></a><a href="/foods/broccoli.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Broccoli</div><div class="fc-cal">34 kcal/100g</div></a><a href="/foods/tomato.html" class="food-card"><div class="fc-emoji">🍅</div><div class="fc-name">Tomato</div><div class="fc-cal">18 kcal/100g</div></a><a href="/foods/cucumber.html" class="food-card"><div class="fc-emoji">🥒</div><div class="fc-name">Cucumber</div><div class="fc-cal">15 kcal/100g</div></a><a href="/foods/beetroot.html" class="food-card"><div class="fc-emoji">🫚</div><div class="fc-name">Beetroot</div><div class="fc-cal">43 kcal/100g</div></a></div></div>
   <div class="section" id="more-from-category">
   <h2>More Vegetables</h2>
@@ -396,6 +570,51 @@ function updateCalc(g){
 const WEIGHTS=[20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200];
 document.getElementById('weight-tbody').innerHTML=WEIGHTS.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

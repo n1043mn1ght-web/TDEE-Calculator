@@ -17,7 +17,7 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Calories in Oatmeal","url":"https://caloriescalc.org/foods/oatmeal.html","dateModified":"2026-07-30","author":{"@type":"Organization","name":"CaloriesCalc"},"mainEntity":{"@type":"NutritionInformation","name":"Oats, regular and quick, dry","servingSize":"100g","calories":"71 kcal","proteinContent":"2.5g","fatContent":"1.5g","carbohydrateContent":"12.0g","fiberContent":"1.7g"}}
   </script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in oatmeal?","acceptedAnswer":{"@type":"Answer","text":"Cooked oatmeal has 71 calories per 100g. A cup (234g) has 166 calories. Made from ½ cup dry oats + water."}},{"@type":"Question","name":"Is oatmeal good for cholesterol?","acceptedAnswer":{"@type":"Answer","text":"Yes — beta-glucan has an FDA-approved health claim. Multiple trials show 3g beta-glucan daily (~1.5 cups cooked) reduces LDL cholesterol 5-10%."}},{"@type":"Question","name":"Is oatmeal good for weight loss?","acceptedAnswer":{"@type":"Answer","text":"Yes — low GI (55), high fiber, very filling. Research shows oatmeal breakfast reduces lunch calorie intake by 31% vs equal-calorie cornflakes."}},{"@type":"Question","name":"Steel-cut vs rolled oats?","acceptedAnswer":{"@type":"Answer","text":"Steel-cut: GI ~42, more resistant to digestion, slower blood sugar rise. Takes 20-30 min vs 5 min for rolled. Nutritionally similar."}},{"@type":"Question","name":"Is oatmeal gluten-free?","acceptedAnswer":{"@type":"Answer","text":"Oats are naturally gluten-free but often contaminated with wheat. Celiac disease requires certified gluten-free oats."}},{"@type":"Question","name":"Is oatmeal good for diabetics?","acceptedAnswer":{"@type":"Answer","text":"Yes — GI 42-55, beta-glucan improves insulin sensitivity. Meta-analysis of 18 RCTs found oat consumption significantly reduces fasting blood glucose and HbA1c."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in oatmeal?","acceptedAnswer":{"@type":"Answer","text":"Cooked oatmeal has 71 calories per 100g. A cup (234g) has 166 calories. Made from ½ cup dry oats + water."}},{"@type":"Question","name":"Is oatmeal good for cholesterol?","acceptedAnswer":{"@type":"Answer","text":"Yes — beta-glucan has an FDA-approved health claim. Multiple trials show 3g beta-glucan daily (~1.5 cups cooked) reduces LDL cholesterol 5-10%."}},{"@type":"Question","name":"Is oatmeal good for weight loss?","acceptedAnswer":{"@type":"Answer","text":"Yes — low GI (55), high fiber, very filling. Research suggests oatmeal breakfast reduces lunch calorie intake by 31% vs equal-calorie cornflakes."}},{"@type":"Question","name":"Steel-cut vs rolled oats?","acceptedAnswer":{"@type":"Answer","text":"Steel-cut: GI ~42, more resistant to digestion, slower blood sugar rise. Takes 20-30 min vs 5 min for rolled. Nutritionally similar."}},{"@type":"Question","name":"Is oatmeal gluten-free?","acceptedAnswer":{"@type":"Answer","text":"Oats are naturally gluten-free but often contaminated with wheat. Celiac disease requires certified gluten-free oats."}},{"@type":"Question","name":"Is oatmeal good for diabetics?","acceptedAnswer":{"@type":"Answer","text":"Yes — GI 42-55, beta-glucan improves insulin sensitivity. Meta-analysis of 18 RCTs found oat consumption significantly reduces fasting blood glucose and HbA1c."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#2d6a4f;--green-light:#e8f5ee;--green-dark:#1b4332;--text:#1a1a1a;--text-muted:#555;--text-faint:#888;--border:#e0e0e0;--bg:#fff;--bg-soft:#f8f9fa;--radius:10px;--radius-sm:6px;--max:980px}
@@ -137,6 +137,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Oatmeal — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/oatmeal.html"}]}</script>
 </head>
@@ -163,13 +337,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -203,7 +377,7 @@
       </div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/oatmeal.png" alt="Oatmeal nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Oatmeal illustration">🌾</div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">❤️</span><span class="nh-text">Beta-glucan — FDA-approved cholesterol claim</span></div><div class="nh-card"><span class="nh-icon">🌿</span><span class="nh-text">Highest fiber of common cooked grains — 1.7g/100g</span></div><div class="nh-card"><span class="nh-icon">💪</span><span class="nh-text">6g protein per cup — high for a grain</span></div><div class="nh-card"><span class="nh-icon">🔬</span><span class="nh-text">Avenanthramides — unique anti-inflammatory</span></div><div class="nh-card"><span class="nh-icon">😌</span><span class="nh-text">Low GI 55 rolled, 42 steel-cut</span></div><div class="nh-card"><span class="nh-icon">⚡</span><span class="nh-text">Manganese — 30% Daily Value per 100g</span></div></div>
@@ -250,7 +424,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Cooked oatmeal is 84% water. Dry rolled oats: 389 kcal/100g, 17g protein. Steel-cut oats GI ~42 vs ~55 for rolled. Instant flavoured oats can have 50-100 extra calories per packet from sugar.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">❤️</div><div class="micro-name">Beta-glucan</div><div class="micro-val">~1.5g/cup</div><div class="micro-dv">Soluble fiber</div><div class="micro-desc">FDA-approved — lowers LDL cholesterol 5-10%</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Manganese</div><div class="micro-val">0.68mg</div><div class="micro-dv">30% DV</div><div class="micro-desc">Antioxidant enzymes — richest mineral in oats</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Phosphorus</div><div class="micro-val">77mg</div><div class="micro-dv">6% DV</div><div class="micro-desc">Bone health and ATP</div></div><div class="micro-card"><div class="micro-icon">💪</div><div class="micro-name">Protein</div><div class="micro-val">2.5g</div><div class="micro-dv">5% DV</div><div class="micro-desc">Higher than most grains</div></div><div class="micro-card"><div class="micro-icon">🧠</div><div class="micro-name">Thiamine (B1)</div><div class="micro-val">0.10mg</div><div class="micro-dv">8% DV</div><div class="micro-desc">Carbohydrate metabolism</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Magnesium</div><div class="micro-val">17mg</div><div class="micro-dv">4% DV</div><div class="micro-desc">Muscle and nerve function</div></div></div></div>
-  <div class="section" id="health"><h2>Oatmeal Health Benefits</h2><h3>Beta-Glucan — FDA-Approved Heart Health</h3><p>Oats contain beta-glucan with the only FDA-approved dietary fiber health claim for cardiovascular disease risk reduction. Meta-analyses confirm 3g beta-glucan daily reduces LDL by 5-10% by forming a viscous gel that traps cholesterol-containing bile acids, forcing the liver to draw cholesterol from blood.</p><h3>Satiety — Most Filling Breakfast</h3><p>A 2013 study found oatmeal provided significantly more satiety than ready-to-eat cereal at equal calories. Beta-glucan stimulates GLP-1 and PYY release — satiety hormones that reduce calorie intake at subsequent meals by 81-235 calories.</p><h3>Avenanthramides — Unique Anti-Inflammatory</h3><p>Oats contain avenanthramides found only in oats. Research shows they inhibit inflammatory cytokines, reduce LDL oxidation, and have anti-itch properties. A 2010 clinical trial found oatmeal significantly reduced blood pressure in hypertensive patients.</p><h3>Blood Sugar Stabilisation</h3><p>GI 42-55, beta-glucan viscosity slows gastric emptying and glucose absorption. A 2015 meta-analysis of 18 RCTs found oat consumption significantly reduced fasting blood glucose and HbA1c in diabetic patients.</p></div>
+  <div class="section" id="health"><h2>Oatmeal Health Benefits</h2><h3>Beta-Glucan — FDA-Approved Heart Health</h3><p>Oats contain beta-glucan with the only FDA-approved dietary fiber health claim for cardiovascular disease risk reduction. Meta-analyses confirm 3g beta-glucan daily reduces LDL by 5-10% by forming a viscous gel that traps cholesterol-containing bile acids, forcing the liver to draw cholesterol from blood.</p><h3>Satiety — Most Filling Breakfast</h3><p>A 2013 study found oatmeal provided significantly more satiety than ready-to-eat cereal at equal calories. Beta-glucan stimulates GLP-1 and PYY release — satiety hormones that reduce calorie intake at subsequent meals by 81-235 calories.</p><h3>Avenanthramides — Unique Anti-Inflammatory</h3><p>Oats contain avenanthramides found only in oats. Research suggests they inhibit inflammatory cytokines, reduce LDL oxidation, and have anti-itch properties. A 2010 clinical trial found oatmeal significantly reduced blood pressure in hypertensive patients.</p><h3>Blood Sugar Stabilisation</h3><p>GI 42-55, beta-glucan viscosity slows gastric emptying and glucose absorption. A 2015 meta-analysis of 18 RCTs found oat consumption significantly reduced fasting blood glucose and HbA1c in diabetic patients.</p></div>
   <div class="section">
     <h2>Oatmeal vs Other Grains — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/white-rice.html" class="compare-card"><div class="cc-emoji">🌾</div><div class="cc-name">White Rice</div><div class="cc-cal">130 kcal/100g</div><div class="cc-diff more">+59 kcal</div></a><a href="/foods/brown-rice.html" class="compare-card"><div class="cc-emoji">🌾</div><div class="cc-name">Brown Rice</div><div class="cc-cal">111 kcal/100g</div><div class="cc-diff more">+40 kcal</div></a><a href="/foods/quinoa.html" class="compare-card"><div class="cc-emoji">🌾</div><div class="cc-name">Quinoa</div><div class="cc-cal">120 kcal/100g</div><div class="cc-diff more">+49 kcal</div></a><a href="/foods/pasta.html" class="compare-card"><div class="cc-emoji">🍝</div><div class="cc-name">Pasta</div><div class="cc-cal">131 kcal/100g</div><div class="cc-diff more">+60 kcal</div></a><a href="/foods/white-bread.html" class="compare-card"><div class="cc-emoji">🍞</div><div class="cc-name">White Bread</div><div class="cc-cal">267 kcal/100g</div><div class="cc-diff more">+196 kcal</div></a><a href="/foods/corn.html" class="compare-card"><div class="cc-emoji">🌽</div><div class="cc-name">Corn</div><div class="cc-cal">86 kcal/100g</div><div class="cc-diff more">+15 kcal</div></a><a href="/foods/potato.html" class="compare-card"><div class="cc-emoji">🥔</div><div class="cc-name">Potato</div><div class="cc-cal">77 kcal/100g</div><div class="cc-diff more">+6 kcal</div></a><a href="/foods/barley.html" class="compare-card"><div class="cc-emoji">🌾</div><div class="cc-name">Barley</div><div class="cc-cal">123 kcal/100g</div><div class="cc-diff more">+52 kcal</div></a></div>
@@ -286,7 +460,7 @@
     <a href="/goals/weight-loss.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Weight Loss Guide →</a>
   </div>
 </div>
-  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in oatmeal?</div><div class="faq-a">Cooked oatmeal has <strong>71 calories per 100g</strong>. A cup (234g) has 166 calories. Made from ½ cup dry oats + water.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal good for cholesterol?</div><div class="faq-a">Yes — beta-glucan has an FDA-approved health claim. Multiple trials show 3g beta-glucan daily (~1.5 cups cooked) reduces LDL cholesterol 5-10%.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal good for weight loss?</div><div class="faq-a">Yes — low GI (55), high fiber, very filling. Research shows oatmeal breakfast reduces lunch calorie intake by 31% vs equal-calorie cornflakes.</div></div><div class="faq-item"><div class="faq-q">Steel-cut vs rolled oats?</div><div class="faq-a">Steel-cut: GI ~42, more resistant to digestion, slower blood sugar rise. Takes 20-30 min vs 5 min for rolled. Nutritionally similar.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal gluten-free?</div><div class="faq-a">Oats are naturally gluten-free but often contaminated with wheat. Celiac disease requires certified gluten-free oats.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal good for diabetics?</div><div class="faq-a">Yes — GI 42-55, beta-glucan improves insulin sensitivity. Meta-analysis of 18 RCTs found oat consumption significantly reduces fasting blood glucose and HbA1c.</div></div></div>
+  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in oatmeal?</div><div class="faq-a">Cooked oatmeal has <strong>71 calories per 100g</strong>. A cup (234g) has 166 calories. Made from ½ cup dry oats + water.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal good for cholesterol?</div><div class="faq-a">Yes — beta-glucan has an FDA-approved health claim. Multiple trials show 3g beta-glucan daily (~1.5 cups cooked) reduces LDL cholesterol 5-10%.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal good for weight loss?</div><div class="faq-a">Yes — low GI (55), high fiber, very filling. Research suggests oatmeal breakfast reduces lunch calorie intake by 31% vs equal-calorie cornflakes.</div></div><div class="faq-item"><div class="faq-q">Steel-cut vs rolled oats?</div><div class="faq-a">Steel-cut: GI ~42, more resistant to digestion, slower blood sugar rise. Takes 20-30 min vs 5 min for rolled. Nutritionally similar.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal gluten-free?</div><div class="faq-a">Oats are naturally gluten-free but often contaminated with wheat. Celiac disease requires certified gluten-free oats.</div></div><div class="faq-item"><div class="faq-q">Is oatmeal good for diabetics?</div><div class="faq-a">Yes — GI 42-55, beta-glucan improves insulin sensitivity. Meta-analysis of 18 RCTs found oat consumption significantly reduces fasting blood glucose and HbA1c.</div></div></div>
   <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/white-rice.html" class="food-card"><div class="fc-emoji">🌾</div><div class="fc-name">White Rice</div><div class="fc-cal">130 kcal/100g</div></a><a href="/foods/brown-rice.html" class="food-card"><div class="fc-emoji">🌾</div><div class="fc-name">Brown Rice</div><div class="fc-cal">111 kcal/100g</div></a><a href="/foods/quinoa.html" class="food-card"><div class="fc-emoji">🌾</div><div class="fc-name">Quinoa</div><div class="fc-cal">120 kcal/100g</div></a><a href="/foods/pasta.html" class="food-card"><div class="fc-emoji">🍝</div><div class="fc-name">Pasta</div><div class="fc-cal">131 kcal/100g</div></a><a href="/foods/white-bread.html" class="food-card"><div class="fc-emoji">🍞</div><div class="fc-name">White Bread</div><div class="fc-cal">267 kcal/100g</div></a><a href="/foods/potato.html" class="food-card"><div class="fc-emoji">🥔</div><div class="fc-name">Potato</div><div class="fc-cal">77 kcal/100g</div></a><a href="/foods/sweet-potato.html" class="food-card"><div class="fc-emoji">🍠</div><div class="fc-name">Sweet Potato</div><div class="fc-cal">86 kcal/100g</div></a><a href="/foods/barley.html" class="food-card"><div class="fc-emoji">🌾</div><div class="fc-name">Barley</div><div class="fc-cal">123 kcal/100g</div></a><a href="/foods/honey.html" class="food-card"><div class="fc-emoji">🍯</div><div class="fc-name">Honey</div><div class="fc-cal">304 kcal/100g</div></a></div></div>
   <div class="section" id="more-from-category">
   <h2>More Grains & Breads</h2>
@@ -346,6 +520,51 @@ function updateCalc(g){g=parseInt(g);document.getElementById('slider-grams').tex
 const WW=[50,75,100,140,157,180,200,250,300,400,500];
 document.getElementById('weight-tbody').innerHTML=WW.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fiber*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

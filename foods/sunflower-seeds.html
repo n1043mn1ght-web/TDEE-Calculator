@@ -39,6 +39,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Sunflower Seeds — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/sunflower-seeds.html"}]}</script>
 </head>
@@ -65,13 +239,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -99,7 +273,7 @@
         <div class="sc"><div class="sc-val">52</div><div class="sc-label">kcal per tablespoon (9g)</div></div>
       </div>
     </div>
-    <div class="hero-right"><div class="hero-img"><img src="/foods/sunflower-seeds.png" alt="Sunflower Seeds nutrition facts per 100g" width="700" height="700" loading="eager" decoding="async"></div></div>
+    <div class="hero-right"><div class="hero-img"><div class="hero-img-emoji" role="img" aria-label="Sunflower Seeds illustration">🌻</div></div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">☀️</span><span class="nh-text">Vitamin E — 234% DV — richest common food source</span></div><div class="nh-card"><span class="nh-icon">🔬</span><span class="nh-text">Selenium — 96% Daily Value</span></div><div class="nh-card"><span class="nh-icon">⚡</span><span class="nh-text">Magnesium — 77% Daily Value</span></div><div class="nh-card"><span class="nh-icon">🧠</span><span class="nh-text">Vitamin B6 — 79% Daily Value</span></div><div class="nh-card"><span class="nh-icon">🌿</span><span class="nh-text">8.6g fiber per 100g</span></div><div class="nh-card"><span class="nh-icon">❤️</span><span class="nh-text">Phytosterols reduce LDL cholesterol</span></div></div>
   <div class="calc-box" id="calculator">
@@ -132,7 +306,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Net carbs: 11.4g/100g. Richest common vitamin E food (234% DV). High selenium (96% DV) and magnesium (77% DV). 90% of fat is unsaturated. Rich in phytosterols (~534mg/100g).</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">☀️</div><div class="micro-name">Vitamin E</div><div class="micro-val">35.2mg</div><div class="micro-dv">234% DV</div><div class="micro-desc">Richest common food — antioxidant protection</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Selenium</div><div class="micro-val">53.0µg</div><div class="micro-dv">96% DV</div><div class="micro-desc">Antioxidant and thyroid function</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Magnesium</div><div class="micro-val">325mg</div><div class="micro-dv">77% DV</div><div class="micro-desc">Higher than almonds — ATP, muscle, nerve</div></div><div class="micro-card"><div class="micro-icon">🧠</div><div class="micro-name">Vitamin B6</div><div class="micro-val">1.35mg</div><div class="micro-dv">79% DV</div><div class="micro-desc">Neurotransmitter synthesis</div></div><div class="micro-card"><div class="micro-icon">🧠</div><div class="micro-name">Copper</div><div class="micro-val">1.83mg</div><div class="micro-dv">203% DV</div><div class="micro-desc">Iron metabolism, nerve myelin</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Phosphorus</div><div class="micro-val">660mg</div><div class="micro-dv">53% DV</div><div class="micro-desc">Bone and energy</div></div></div></div>
-  <div class="section" id="health"><h2>Sunflower Seed Benefits</h2><h3>Vitamin E — Richest Common Food</h3><p>35.2mg vitamin E per 100g (234% DV) — the highest of any commonly consumed food. One oz covers 66% of daily requirement. Vitamin E is the primary fat-soluble antioxidant protecting polyunsaturated fatty acids in cell membranes. Most people consume less than 60% of recommended vitamin E.</p><h3>Selenium — Thyroid and Antioxidant</h3><p>53µg selenium per 100g (96% DV) — one of the highest plant concentrations. Essential for glutathione peroxidase (primary antioxidant enzyme), thyroid hormone metabolism (T4 to T3 conversion), and DNA repair. One oz provides 27% of daily selenium.</p><h3>Magnesium — Higher Than Almonds</h3><p>325mg magnesium per 100g (77% DV) — more than almonds (270mg). One oz provides 91mg (22% DV). One of the most effective dietary strategies for improving magnesium status.</p><h3>Phytosterols — Cholesterol Reduction</h3><p>~534mg phytosterols per 100g — among the richest plant foods. Research shows 2-3g phytosterols daily reduces LDL by 8-10%. Regular sunflower seed consumption contributes meaningfully to phytosterol intake for cholesterol management.</p></div>
+  <div class="section" id="health"><h2>Sunflower Seed Benefits</h2><h3>Vitamin E — Richest Common Food</h3><p>35.2mg vitamin E per 100g (234% DV) — the highest of any commonly consumed food. One oz covers 66% of daily requirement. Vitamin E is the primary fat-soluble antioxidant protecting polyunsaturated fatty acids in cell membranes. Most people consume less than 60% of recommended vitamin E.</p><h3>Selenium — Thyroid and Antioxidant</h3><p>53µg selenium per 100g (96% DV) — one of the highest plant concentrations. Essential for glutathione peroxidase (primary antioxidant enzyme), thyroid hormone metabolism (T4 to T3 conversion), and DNA repair. One oz provides 27% of daily selenium.</p><h3>Magnesium — Higher Than Almonds</h3><p>325mg magnesium per 100g (77% DV) — more than almonds (270mg). One oz provides 91mg (22% DV). One of the most effective dietary strategies for improving magnesium status.</p><h3>Phytosterols — Cholesterol Reduction</h3><p>~534mg phytosterols per 100g — among the richest plant foods. Research suggests 2-3g phytosterols daily reduces LDL by 8-10%. Regular sunflower seed consumption contributes meaningfully to phytosterol intake for cholesterol management.</p></div>
   <div class="section"><h2>Sunflower Seeds vs Other Nuts — Comparison</h2><div class="compare-grid"><a href="/foods/almonds.html" class="compare-card"><div class="cc-emoji">🥜</div><div class="cc-name">Almonds</div><div class="cc-cal">579 kcal/100g</div><div class="cc-diff less">−5 kcal</div></a><a href="/foods/peanuts.html" class="compare-card"><div class="cc-emoji">🥜</div><div class="cc-name">Peanuts</div><div class="cc-cal">567 kcal/100g</div><div class="cc-diff less">−17 kcal</div></a><a href="/foods/walnuts.html" class="compare-card"><div class="cc-emoji">🥜</div><div class="cc-name">Walnuts</div><div class="cc-cal">654 kcal/100g</div><div class="cc-diff more">+70 kcal</div></a><a href="/foods/cashews.html" class="compare-card"><div class="cc-emoji">🥜</div><div class="cc-name">Cashews</div><div class="cc-cal">553 kcal/100g</div><div class="cc-diff less">−31 kcal</div></a><a href="/foods/pistachios.html" class="compare-card"><div class="cc-emoji">🥜</div><div class="cc-name">Pistachios</div><div class="cc-cal">562 kcal/100g</div><div class="cc-diff less">−22 kcal</div></a><a href="/foods/pumpkin-seeds.html" class="compare-card"><div class="cc-emoji">🎃</div><div class="cc-name">Pumpkin Seeds</div><div class="cc-cal">559 kcal/100g</div><div class="cc-diff less">−25 kcal</div></a><a href="/foods/chia-seeds.html" class="compare-card"><div class="cc-emoji">🫚</div><div class="cc-name">Chia Seeds</div><div class="cc-cal">486 kcal/100g</div><div class="cc-diff less">−98 kcal</div></a><a href="/foods/peanut-butter.html" class="compare-card"><div class="cc-emoji">🥜</div><div class="cc-name">Peanut Butter</div><div class="cc-cal">588 kcal/100g</div><div class="cc-diff more">+4 kcal</div></a></div></div>
   <div class="section" id="diet"><h2>Is Sunflower Seeds Suitable for Your Diet?</h2><div class="diet-grid"><div class="diet-item mod"><span class="di-icon">⚠️</span><div><div class="di-name">Weight loss</div><div class="di-status">In moderation — calorie dense</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Keto</div><div class="di-status">Yes — 11.4g net carbs/100g</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Paleo</div><div class="di-status">Yes</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Gluten-free</div><div class="di-status">Yes</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Diabetic</div><div class="di-status">Yes — low GI</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Vegan</div><div class="di-status">Yes</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Vegetarian</div><div class="di-status">Yes</div></div></div><div class="diet-item yes"><span class="di-icon">✅</span><div><div class="di-name">Heart health</div><div class="di-status">Phytosterols lower LDL</div></div></div></div></div>
   <div class="section"><h2>Related Calculators</h2><div class="calc-grid">
@@ -218,6 +392,51 @@ function updateCalc(g){g=parseInt(g);document.getElementById('slider-grams').tex
 const WW=[10,14,20,28,30,40,50,75,100,150,200];
 document.getElementById('weight-tbody').innerHTML=WW.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.fat*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+((N.carbs-N.fiber)*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(28);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>
