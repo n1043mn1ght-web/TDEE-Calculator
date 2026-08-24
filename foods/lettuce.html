@@ -152,6 +152,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Lettuce — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/lettuce.html"}]}</script>
 </head>
@@ -178,13 +352,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -220,7 +394,7 @@
       <div class="quick-facts"><span class="qf-tag">✔ Extremely low calorie</span><span class="qf-tag">✔ 96% water</span><span class="qf-tag">✔ Good vitamin K</span><span class="qf-tag">✔ Fat free</span><span class="qf-tag">✔ Gluten free</span><span class="qf-tag">✔ Vegan</span></div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/lettuce.png" alt="Lettuce nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Lettuce illustration">🥬</div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">🔥</span><span class="nh-text">Only 15 kcal per 100g — near zero calories</span></div><div class="nh-card"><span class="nh-icon">💧</span><span class="nh-text">96% water content</span></div><div class="nh-card"><span class="nh-icon">🦴</span><span class="nh-text">Good vitamin K — 102µg per 100g romaine</span></div><div class="nh-card"><span class="nh-icon">😌</span><span class="nh-text">Keto friendly — 1.6g net carbs</span></div><div class="nh-card"><span class="nh-icon">😴</span><span class="nh-text">Contains lactucin — mild sedative</span></div><div class="nh-card"><span class="nh-icon">🥗</span><span class="nh-text">Base of virtually every diet salad</span></div></div>
@@ -275,7 +449,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Romaine lettuce is 95% water. Net carbs are 1.6g per 100g — one of the lowest of any food. Different varieties vary significantly: romaine and red leaf lettuce are far more nutritious than iceberg lettuce.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">🦴</div><div class="micro-name">Vitamin K</div><div class="micro-val">102.5 µg</div><div class="micro-dv">85% Daily Value</div><div class="micro-desc">Blood clotting and bone health (romaine)</div></div><div class="micro-card"><div class="micro-icon">👁</div><div class="micro-name">Vitamin A (RAE)</div><div class="micro-val">436 µg</div><div class="micro-dv">48% Daily Value</div><div class="micro-desc">Vision and immune function (romaine)</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Potassium</div><div class="micro-val">194 mg</div><div class="micro-dv">4% Daily Value</div><div class="micro-desc">Blood pressure support</div></div><div class="micro-card"><div class="micro-icon">🛡</div><div class="micro-name">Vitamin C</div><div class="micro-val">9.2 mg</div><div class="micro-dv">10% Daily Value</div><div class="micro-desc">Immune support</div></div><div class="micro-card"><div class="micro-icon">🌿</div><div class="micro-name">Folate (B9)</div><div class="micro-val">136 µg</div><div class="micro-dv">34% Daily Value</div><div class="micro-desc">Cell division and DNA synthesis</div></div><div class="micro-card"><div class="micro-icon">😴</div><div class="micro-name">Lactucin</div><div class="micro-val">Trace</div><div class="micro-dv">Phytochemical</div><div class="micro-desc">Mild sedative and pain-relieving properties</div></div></div></div>
-  <div class="section" id="health"><h2>Lettuce Health Benefits &amp; Nutrition</h2><h3>Romaine vs Iceberg — A Significant Difference</h3><p>Not all lettuce is equal. Romaine lettuce is dramatically more nutritious than iceberg: it contains 8× more vitamin A, 4× more vitamin K, 3× more vitamin C, and 2× more folate and iron. Iceberg lettuce is 96% water with minimal nutrients — essentially crunchy water. For maximum nutritional benefit, choose romaine, red leaf, green leaf, or butterhead lettuce over iceberg. The darker the green, the more nutrients.</p><h3>Lactucin — The Sedative Compound</h3><p>Wild lettuce has been used as a sedative for centuries. Cultivated lettuce still contains small amounts of lactucin and lactucopicrin — bitter compounds with mild sedative and analgesic (pain-relieving) properties. A 2017 study found lettuce extract had significant sedative effects in mice, reducing movement by 30%. While the amounts in a salad are small, some people report that large amounts of lettuce (particularly romaine) cause drowsiness — this is attributed to lactucin.</p><h3>Vitamin K for Bone Health</h3><p>Romaine lettuce provides 103µg of vitamin K per 100g — 85% of the daily requirement. Vitamin K1 activates osteocalcin, which binds calcium into bone matrix, and also activates matrix Gla-protein (MGP), which prevents calcium from depositing in blood vessels (arterial calcification). Low vitamin K intake is independently associated with osteoporosis and cardiovascular disease. Dark leafy lettuces are among the best dietary sources of this underconsumed vitamin.</p><h3>Ultra-Low Calorie for Weight Management</h3><p>At 15 kcal per 100g, lettuce is one of the lowest-calorie foods available. A large salad bowl (200g of romaine) has only 30 calories. The high water and fiber content creates gastric volume and triggers satiety signals before significant calories are consumed. Studies on high-volume, low-calorie eating (volumetrics approach) consistently show that starting meals with large salads reduces overall calorie intake by 100-200 kcal.</p></div>
+  <div class="section" id="health"><h2>Lettuce Health Benefits &amp; Nutrition</h2><h3>Romaine vs Iceberg — A Significant Difference</h3><p>Not all lettuce is equal. Romaine lettuce is dramatically more nutritious than iceberg: it contains 8× more vitamin A, 4× more vitamin K, 3× more vitamin C, and 2× more folate and iron. Iceberg lettuce is 96% water with minimal nutrients — essentially crunchy water. For maximum nutritional benefit, choose romaine, red leaf, green leaf, or butterhead lettuce over iceberg. The darker the green, the more nutrients.</p><h3>Lactucin — The Sedative Compound</h3><p>Wild lettuce has been used as a sedative for centuries. Cultivated lettuce still contains small amounts of lactucin and lactucopicrin — bitter compounds with mild sedative and analgesic (pain-relieving) properties. A 2017 study found lettuce extract had significant sedative effects in mice, reducing movement by 30%. While the amounts in a salad are small, some people report that large amounts of lettuce (particularly romaine) cause drowsiness — this is attributed to lactucin.</p><h3>Vitamin K for Bone Health</h3><p>Romaine lettuce provides 103µg of vitamin K per 100g — 85% of the daily requirement. Vitamin K1 activates osteocalcin, which binds calcium into bone matrix, and also activates matrix Gla-protein (MGP), which may help reduce risk of calcium from depositing in blood vessels (arterial calcification). Low vitamin K intake is independently associated with osteoporosis and cardiovascular disease. Dark leafy lettuces are among the best dietary sources of this underconsumed vitamin.</p><h3>Ultra-Low Calorie for Weight Management</h3><p>At 15 kcal per 100g, lettuce is one of the lowest-calorie foods available. A large salad bowl (200g of romaine) has only 30 calories. The high water and fiber content creates gastric volume and triggers satiety signals before significant calories are consumed. Studies on high-volume, low-calorie eating (volumetrics approach) consistently show that starting meals with large salads reduces overall calorie intake by 100-200 kcal.</p></div>
   <div class="section">
     <h2>Lettuce vs Other Vegetables — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/cucumber.html" class="compare-card"><div class="cc-emoji">🥒</div><div class="cc-name">Cucumber</div><div class="cc-cal">15 kcal/100g</div><div class="cc-diff same">0 kcal</div></a><a href="/foods/tomato.html" class="compare-card"><div class="cc-emoji">🍅</div><div class="cc-name">Tomato</div><div class="cc-cal">18 kcal/100g</div><div class="cc-diff more">+3 kcal</div></a><a href="/foods/spinach.html" class="compare-card"><div class="cc-emoji">🥬</div><div class="cc-name">Spinach</div><div class="cc-cal">23 kcal/100g</div><div class="cc-diff more">+8 kcal</div></a><a href="/foods/cauliflower.html" class="compare-card"><div class="cc-emoji">🥦</div><div class="cc-name">Cauliflower</div><div class="cc-cal">25 kcal/100g</div><div class="cc-diff more">+10 kcal</div></a><a href="/foods/broccoli.html" class="compare-card"><div class="cc-emoji">🥦</div><div class="cc-name">Broccoli</div><div class="cc-cal">34 kcal/100g</div><div class="cc-diff more">+19 kcal</div></a><a href="/foods/onion.html" class="compare-card"><div class="cc-emoji">🧅</div><div class="cc-name">Onion</div><div class="cc-cal">40 kcal/100g</div><div class="cc-diff more">+25 kcal</div></a><a href="/foods/carrot.html" class="compare-card"><div class="cc-emoji">🥕</div><div class="cc-name">Carrot</div><div class="cc-cal">41 kcal/100g</div><div class="cc-diff more">+26 kcal</div></a><a href="/foods/potato.html" class="compare-card"><div class="cc-emoji">🥔</div><div class="cc-name">Potato</div><div class="cc-cal">77 kcal/100g</div><div class="cc-diff more">+62 kcal</div></a></div>
@@ -395,6 +569,51 @@ function updateCalc(g){
 const WEIGHTS=[20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200];
 document.getElementById('weight-tbody').innerHTML=WEIGHTS.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

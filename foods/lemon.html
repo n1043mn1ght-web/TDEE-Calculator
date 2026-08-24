@@ -225,6 +225,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
   <script type="application/ld+json">
   {
@@ -310,13 +484,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -352,10 +526,10 @@
       <div class="quick-facts"><span class="qf-tag">✔ Very low calorie</span><span class="qf-tag">✔ Excellent vitamin C</span><span class="qf-tag">✔ Rich in citric acid</span><span class="qf-tag">✔ Fat free</span><span class="qf-tag">✔ Gluten free</span><span class="qf-tag">✔ Vegan</span></div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/lemon.png" alt="Lemon nutrition facts" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Lemon illustration">🍋</div>
     </div></div>
   </div>
-  <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">🛡</span><span class="nh-text">Excellent vitamin C — 53mg per 100g</span></div><div class="nh-card"><span class="nh-icon">🍋</span><span class="nh-text">Rich in citric acid — prevents kidney stones</span></div><div class="nh-card"><span class="nh-icon">⚡</span><span class="nh-text">Hesperidin for cardiovascular health</span></div><div class="nh-card"><span class="nh-icon">🔥</span><span class="nh-text">Only 29 kcal per 100g</span></div><div class="nh-card"><span class="nh-icon">💧</span><span class="nh-text">Enhances iron absorption from plant foods</span></div><div class="nh-card"><span class="nh-icon">🧴</span><span class="nh-text">Supports collagen synthesis and skin health</span></div></div>
+  <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">🛡</span><span class="nh-text">Excellent vitamin C — 53mg per 100g</span></div><div class="nh-card"><span class="nh-icon">🍋</span><span class="nh-text">Rich in citric acid — may help reduce risk of kidney stones</span></div><div class="nh-card"><span class="nh-icon">⚡</span><span class="nh-text">Hesperidin for cardiovascular health</span></div><div class="nh-card"><span class="nh-icon">🔥</span><span class="nh-text">Only 29 kcal per 100g</span></div><div class="nh-card"><span class="nh-icon">💧</span><span class="nh-text">Enhances iron absorption from plant foods</span></div><div class="nh-card"><span class="nh-icon">🧴</span><span class="nh-text">Supports collagen synthesis and skin health</span></div></div>
   <div class="calc-box" id="calculator">
     <h2>🍋 Calculate Calories for Any Lemon Weight</h2>
     <div class="slider-label"><span>Weight</span><span class="slider-g" id="slider-grams">100g</span></div>
@@ -371,7 +545,7 @@
     <p class="dv-note">* % Daily Value based on a 2,000 kcal diet.</p>
     <br><button class="print-btn" onclick="window.print()" aria-label="Print nutrition facts">🖨 Print Nutrition Label</button>
   </div>
-  <div class="ai-summary"><strong>Quick summary:</strong> Lemons contain just <strong>29 calories per 100g</strong> — one of the lowest-calorie fruits. They provide 59% of daily vitamin C per 100g, with citric acid clinically proven to prevent kidney stones. Lemon juice increases plant-based iron absorption by 2–6× when consumed with plant foods. With only 6.5g of net carbs and 2.5g of natural sugar per 100g, lemon is suitable for keto and low-sugar diets.</div>
+  <div class="ai-summary"><strong>Quick summary:</strong> Lemons contain just <strong>29 calories per 100g</strong> — one of the lowest-calorie fruits. They provide 59% of daily vitamin C per 100g, with citric acid clinically associated with lower risk of kidney stones. Lemon juice increases plant-based iron absorption by 2–6× when consumed with plant foods. With only 6.5g of net carbs and 2.5g of natural sugar per 100g, lemon is suitable for keto and low-sugar diets.</div>
   <div class="section" id="vitamins">
     <h2>Vitamins &amp; Minerals — per 100g</h2>
     <div style="overflow-x:auto"><table class="vit-table">
@@ -407,7 +581,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Lemon is 89% water with only 2.5g of natural sugar per 100g. The tartness comes from high citric acid content (~5-8g/100g) rather than sugar. Net carbs are 6.5g per 100g — making lemon one of the lowest-sugar citrus fruits.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">🛡</div><div class="micro-name">Vitamin C</div><div class="micro-val">53.0 mg</div><div class="micro-dv">59% Daily Value</div><div class="micro-desc">Immune support, collagen synthesis, iron absorption</div></div><div class="micro-card"><div class="micro-icon">🍋</div><div class="micro-name">Citric Acid</div><div class="micro-val">~5-8g/100g</div><div class="micro-dv">Organic acid</div><div class="micro-desc">Kidney stone prevention, mineral absorption</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Potassium</div><div class="micro-val">138 mg</div><div class="micro-dv">3% Daily Value</div><div class="micro-desc">Blood pressure and heart function</div></div><div class="micro-card"><div class="micro-icon">🌿</div><div class="micro-name">Fiber</div><div class="micro-val">2.8 g</div><div class="micro-dv">10% Daily Value</div><div class="micro-desc">Digestive health</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Hesperidin</div><div class="micro-val">~50 mg</div><div class="micro-dv">Flavonoid</div><div class="micro-desc">Anti-inflammatory, cardiovascular protective</div></div><div class="micro-card"><div class="micro-icon">🦴</div><div class="micro-name">Vitamin B6</div><div class="micro-val">0.08 mg</div><div class="micro-dv">5% Daily Value</div><div class="micro-desc">Brain health and energy metabolism</div></div></div></div>
-  <div class="section" id="health"><h2>Lemon Health Benefits &amp; Nutrition</h2><h3>Vitamin C and Iron Absorption</h3><p>Lemons provide 53mg of vitamin C per 100g — 59% of the daily value. Beyond immune support and collagen synthesis, vitamin C from lemon has a specific practical benefit: it dramatically increases absorption of non-haem iron (iron from plant foods). Studies show that consuming lemon juice with plant-based iron sources (beans, lentils, spinach) can increase iron absorption by 2–6 times. This makes lemon juice an important dietary tool for vegetarians and vegans who rely on plant iron.</p><h3>Citric Acid and Kidney Stone Prevention</h3><p>Lemon juice is one of the most concentrated dietary sources of citric acid. Citric acid binds to calcium in urine, inhibiting crystal formation and preventing the most common type of kidney stone (calcium oxalate). Research consistently shows that people who drink lemon juice regularly have lower rates of kidney stone formation. A 2007 study found that lemon juice was as effective as prescription potassium citrate for increasing urinary citrate levels in kidney stone patients.</p><h3>Hesperidin and Cardiovascular Health</h3><p>Like all citrus fruits, lemons contain hesperidin — a flavonoid concentrated in the peel and white pith. Hesperidin improves blood vessel flexibility (endothelial function), reduces LDL oxidation, and has anti-inflammatory effects. While most of the hesperidin is in the peel rather than the juice, grated lemon zest added to food can significantly increase intake. Lemon zest contains up to 150mg of hesperidin per tablespoon.</p><h3>Alkalising Effect Despite Acidity</h3><p>Despite being acidic (pH ~2-3), lemon juice has an alkalising effect on urine once metabolised. The citrate and mineral content is metabolised to bicarbonate, which raises urine pH. The urinary alkalisation from lemon is real and beneficial for kidney stone prevention, even if broader claims about body pH are unfounded.</p></div>
+  <div class="section" id="health"><h2>Lemon Health Benefits &amp; Nutrition</h2><h3>Vitamin C and Iron Absorption</h3><p>Lemons provide 53mg of vitamin C per 100g — 59% of the daily value. Beyond immune support and collagen synthesis, vitamin C from lemon has a specific practical benefit: it dramatically increases absorption of non-haem iron (iron from plant foods). Research suggests that consuming lemon juice with plant-based iron sources (beans, lentils, spinach) can increase iron absorption by 2–6 times. This makes lemon juice an important dietary tool for vegetarians and vegans who rely on plant iron.</p><h3>Citric Acid and Kidney Stone Prevention</h3><p>Lemon juice is one of the most concentrated dietary sources of citric acid. Citric acid binds to calcium in urine, inhibiting crystal formation and preventing the most common type of kidney stone (calcium oxalate). Research consistently shows that people who drink lemon juice regularly have lower rates of kidney stone formation. A 2007 study found that lemon juice was as effective as prescription potassium citrate for increasing urinary citrate levels in kidney stone patients.</p><h3>Hesperidin and Cardiovascular Health</h3><p>Like all citrus fruits, lemons contain hesperidin — a flavonoid concentrated in the peel and white pith. Hesperidin improves blood vessel flexibility (endothelial function), reduces LDL oxidation, and has anti-inflammatory effects. While most of the hesperidin is in the peel rather than the juice, grated lemon zest added to food can significantly increase intake. Lemon zest contains up to 150mg of hesperidin per tablespoon.</p><h3>Alkalising Effect Despite Acidity</h3><p>Despite being acidic (pH ~2-3), lemon juice has an alkalising effect on urine once metabolised. The citrate and mineral content is metabolised to bicarbonate, which raises urine pH. The urinary alkalisation from lemon is real and beneficial for kidney stone prevention, even if broader claims about body pH are unfounded.</p></div>
   <div class="section">
     <h2>Lemon vs Other Foods — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/orange.html" class="compare-card"><div class="cc-emoji">🍊</div><div class="cc-name">Orange</div><div class="cc-cal">47 kcal/100g</div><div class="cc-diff more">+18 kcal</div></a><a href="/foods/lime.html" class="compare-card"><div class="cc-emoji">🍈</div><div class="cc-name">Lime</div><div class="cc-cal">30 kcal/100g</div><div class="cc-diff more">+1 kcal</div></a><a href="/foods/strawberry.html" class="compare-card"><div class="cc-emoji">🍓</div><div class="cc-name">Strawberry</div><div class="cc-cal">32 kcal/100g</div><div class="cc-diff more">+3 kcal</div></a><a href="/foods/apple.html" class="compare-card"><div class="cc-emoji">🍎</div><div class="cc-name">Apple</div><div class="cc-cal">52 kcal/100g</div><div class="cc-diff more">+23 kcal</div></a><a href="/foods/pineapple.html" class="compare-card"><div class="cc-emoji">🍍</div><div class="cc-name">Pineapple</div><div class="cc-cal">50 kcal/100g</div><div class="cc-diff more">+21 kcal</div></a><a href="/foods/watermelon.html" class="compare-card"><div class="cc-emoji">🍉</div><div class="cc-name">Watermelon</div><div class="cc-cal">30 kcal/100g</div><div class="cc-diff more">+1 kcal</div></a><a href="/foods/kiwi.html" class="compare-card"><div class="cc-emoji">🥝</div><div class="cc-name">Kiwi</div><div class="cc-cal">61 kcal/100g</div><div class="cc-diff more">+32 kcal</div></a><a href="/foods/avocado.html" class="compare-card"><div class="cc-emoji">🥑</div><div class="cc-name">Avocado</div><div class="cc-cal">160 kcal/100g</div><div class="cc-diff more">+131 kcal</div></a></div>
@@ -527,6 +701,51 @@ function updateCalc(g){
 const WEIGHTS=[20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200];
 document.getElementById('weight-tbody').innerHTML=WEIGHTS.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

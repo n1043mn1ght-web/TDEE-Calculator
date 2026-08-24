@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://caloriescalc.org/foods/cheddar-cheese.png">
   <meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Calories in Cheddar Cheese", "url": "https://caloriescalc.org/foods/cheddar-cheese.html", "dateModified": "2026-07-29", "author": {"@type": "Organization", "name": "CaloriesCalc"}, "mainEntity": {"@type": "NutritionInformation", "name": "Cheese, cheddar", "servingSize": "100g", "calories": "403 kcal", "proteinContent": "24.9g", "fatContent": "33.1g", "carbohydrateContent": "1.28g", "fiberContent": "0g"}}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in cheddar cheese?","acceptedAnswer":{"@type":"Answer","text":"Cheddar cheese has 403 calories per 100g. One slice (28g/1oz): 113 kcal. Two slices: 226 kcal."}},{"@type":"Question","name":"Is cheddar cheese high in calcium?","acceptedAnswer":{"@type":"Answer","text":"Yes — cheddar provides 721mg of calcium per 100g (72% DV) — the highest of any common food. Two slices provide more calcium than a cup of milk."}},{"@type":"Question","name":"Is cheese good for weight loss?","acceptedAnswer":{"@type":"Answer","text":"In moderate portions, cheese can fit into weight loss diets — high protein and fat create strong satiety. The issue is calorie density (403 kcal/100g). A 28g slice adds 113 kcal and 7g protein as a flavourful, satisfying addition to meals."}},{"@type":"Question","name":"Does cheese have lactose?","acceptedAnswer":{"@type":"Answer","text":"Very little — most lactose is removed in the cheese-making process when whey is drained. Aged cheddar has <0.1g of lactose per serving. Most lactose-intolerant people can eat cheddar without symptoms."}},{"@type":"Question","name":"Is cheddar cheese keto?","acceptedAnswer":{"@type":"Answer","text":"Yes — only 1.28g carbs per 100g. Cheese is one of the most popular keto foods due to high fat, good protein, and near-zero carbs."}},{"@type":"Question","name":"Is cheese bad for your heart?","acceptedAnswer":{"@type":"Answer","text":"Evidence is more nuanced than previously thought. Multiple large studies show no association between cheese consumption and cardiovascular disease — and some show protective effects. The calcium, vitamin K2, and specific fatty acids in cheese may offset concerns about saturated fat."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in cheddar cheese?","acceptedAnswer":{"@type":"Answer","text":"Cheddar cheese has 403 calories per 100g. One slice (28g/1oz): 113 kcal. Two slices: 226 kcal."}},{"@type":"Question","name":"Is cheddar cheese high in calcium?","acceptedAnswer":{"@type":"Answer","text":"Yes — cheddar provides 721mg of calcium per 100g (72% DV) — the highest of any common food. Two slices provide more calcium than a cup of milk."}},{"@type":"Question","name":"Is cheese good for weight loss?","acceptedAnswer":{"@type":"Answer","text":"In moderate portions, cheese can fit into weight loss diets — high protein and fat create strong satiety. The issue is calorie density (403 kcal/100g). A 28g slice adds 113 kcal and 7g protein as a flavourful, satisfying addition to meals."}},{"@type":"Question","name":"Does cheese have lactose?","acceptedAnswer":{"@type":"Answer","text":"Very little — most lactose is removed in the cheese-making process when whey is drained. Aged cheddar has <0.1g of lactose per serving. Most lactose-intolerant people can eat cheddar without symptoms."}},{"@type":"Question","name":"Is cheddar cheese keto?","acceptedAnswer":{"@type":"Answer","text":"Yes — only 1.28g carbs per 100g. Cheese is one of the most popular keto foods due to high fat, good protein, and near-zero carbs."}},{"@type":"Question","name":"Is cheese bad for your heart?","acceptedAnswer":{"@type":"Answer","text":"Evidence is more nuanced than previously thought. Multiple large Evidence suggests no association between cheese consumption and cardiovascular disease — and some show protective effects. The calcium, vitamin K2, and specific fatty acids in cheese may offset concerns about saturated fat."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#2d6a4f;--green-light:#e8f5ee;--green-dark:#1b4332;--text:#1a1a1a;--text-muted:#555;--text-faint:#888;--border:#e0e0e0;--bg:#fff;--bg-soft:#f8f9fa;--radius:10px;--radius-sm:6px;--max:980px}
@@ -138,6 +138,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Cheddar Cheese — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/cheddar-cheese.html"}]}</script>
 </head>
@@ -164,13 +338,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -204,7 +378,7 @@
       </div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/cheddar-cheese.png" alt="Cheddar Cheese nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Cheddar Cheese illustration">🧀</div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">🦴</span><span class="nh-text">Highest calcium — 721mg — 72% DV per 100g</span></div><div class="nh-card"><span class="nh-icon">💊</span><span class="nh-text">Vitamin K2 — directs calcium to bones</span></div><div class="nh-card"><span class="nh-icon">💪</span><span class="nh-text">24.9g protein per 100g</span></div><div class="nh-card"><span class="nh-icon">😌</span><span class="nh-text">Near zero lactose — tolerated by most</span></div><div class="nh-card"><span class="nh-icon">🐑</span><span class="nh-text">CLA — anti-cancer and body composition</span></div><div class="nh-card"><span class="nh-icon">⚠️</span><span class="nh-text">High calorie — 113 kcal per slice</span></div></div>
@@ -250,7 +424,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">High in calories due to concentrated fat (33.1g/100g). Very low carbs (1.28g/100g) — no lactose (removed during cheese-making). Rich in vitamin K2 (menaquinone). Aged cheeses have more flavour and less moisture — similar nutrition to fresh cheddar.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">🦴</div><div class="micro-name">Calcium</div><div class="micro-val">721mg</div><div class="micro-dv">72% DV</div><div class="micro-desc">Most calcium-dense common food</div></div><div class="micro-card"><div class="micro-icon">💊</div><div class="micro-name">Vitamin K2</div><div class="micro-val">~10µg</div><div class="micro-dv">Menaquinone</div><div class="micro-desc">Directs calcium to bones, not arteries</div></div><div class="micro-card"><div class="micro-icon">💪</div><div class="micro-name">Protein</div><div class="micro-val">24.9g</div><div class="micro-dv">50% DV</div><div class="micro-desc">Complete amino acid profile</div></div><div class="micro-card"><div class="micro-icon">🔬</div><div class="micro-name">Selenium</div><div class="micro-val">13.9µg</div><div class="micro-dv">25% DV</div><div class="micro-desc">Antioxidant and thyroid</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Phosphorus</div><div class="micro-val">512mg</div><div class="micro-dv">41% DV</div><div class="micro-desc">Bone and energy metabolism</div></div><div class="micro-card"><div class="micro-icon">💊</div><div class="micro-name">Vitamin B12</div><div class="micro-val">0.83µg</div><div class="micro-dv">35% DV</div><div class="micro-desc">Neurological function</div></div></div></div>
-  <div class="section" id="health"><h2>Cheddar Cheese Benefits</h2><h3>Highest Calcium of Any Common Food</h3><p>Cheddar provides 721mg of calcium per 100g — 72% of the daily value — more than any other commonly consumed food. Two slices (56g) provide 403mg of calcium — comparable to 3.5 cups of milk in absolute calcium, with near-zero lactose. The calcium in cheese is exceptionally bioavailable, accompanied by phosphorus and casein phosphopeptides that enhance calcium absorption and retention in bone.</p><h3>Vitamin K2 — The Missing Link in Bone Health</h3><p>Cheddar and other aged cheeses are good sources of vitamin K2 (menaquinone, primarily MK-4 and MK-7). Vitamin K2 activates osteocalcin — a protein that binds calcium into bone — and also activates matrix Gla-protein (MGP), which prevents calcium from depositing in arterial walls. Low vitamin K2 intake is independently associated with osteoporosis and arterial calcification, even at adequate calcium intake. Vitamin K2 is found almost exclusively in animal foods and fermented foods.</p><h3>CLA and Metabolic Benefits</h3><p>Dairy fat from grass-fed cows contains conjugated linoleic acid (CLA) — a naturally occurring fatty acid associated with anti-cancer properties, reduced body fat, and improved insulin sensitivity. Cheese from grass-fed animals has 2-3× more CLA than grain-fed. Research on CLA shows it reduces cancer cell growth, particularly in breast and colorectal cancer cell lines. The amounts in dietary cheese, while not pharmacological, contribute meaningfully to CLA intake with regular consumption.</p><h3>Protein and Satiety</h3><p>At 24.9g of protein per 100g, cheese is an excellent protein source — comparable to lean meat. The protein in cheddar is casein — slow-digesting and highly satiating. The fat-protein combination in cheese creates a very strong satiety response per calorie. Research shows cheese-containing meals reduce subsequent calorie intake and improve diet adherence.</p></div>
+  <div class="section" id="health"><h2>Cheddar Cheese Benefits</h2><h3>Highest Calcium of Any Common Food</h3><p>Cheddar provides 721mg of calcium per 100g — 72% of the daily value — more than any other commonly consumed food. Two slices (56g) provide 403mg of calcium — comparable to 3.5 cups of milk in absolute calcium, with near-zero lactose. The calcium in cheese is exceptionally bioavailable, accompanied by phosphorus and casein phosphopeptides that enhance calcium absorption and retention in bone.</p><h3>Vitamin K2 — The Missing Link in Bone Health</h3><p>Cheddar and other aged cheeses are good sources of vitamin K2 (menaquinone, primarily MK-4 and MK-7). Vitamin K2 activates osteocalcin — a protein that binds calcium into bone — and also activates matrix Gla-protein (MGP), which may help reduce risk of calcium from depositing in arterial walls. Low vitamin K2 intake is independently associated with osteoporosis and arterial calcification, even at adequate calcium intake. Vitamin K2 is found almost exclusively in animal foods and fermented foods.</p><h3>CLA and Metabolic Benefits</h3><p>Dairy fat from grass-fed cows contains conjugated linoleic acid (CLA) — a naturally occurring fatty acid associated with anti-cancer properties, reduced body fat, and improved insulin sensitivity. Cheese from grass-fed animals has 2-3× more CLA than grain-fed. Research on CLA shows it reduces cancer cell growth, particularly in breast and colorectal cancer cell lines. The amounts in dietary cheese, while not pharmacological, contribute meaningfully to CLA intake with regular consumption.</p><h3>Protein and Satiety</h3><p>At 24.9g of protein per 100g, cheese is an excellent protein source — comparable to lean meat. The protein in cheddar is casein — slow-digesting and highly satiating. The fat-protein combination in cheese creates a very strong satiety response per calorie. Research suggests cheese-containing meals reduce subsequent calorie intake and improve diet adherence.</p></div>
   <div class="section">
     <h2>Cheddar Cheese vs Other Dairy &amp; Proteins — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/mozzarella.html" class="compare-card"><div class="cc-emoji">🧀</div><div class="cc-name">Mozzarella</div><div class="cc-cal">280 kcal/100g</div><div class="cc-diff less">−123 kcal</div></a><a href="/foods/cottage-cheese.html" class="compare-card"><div class="cc-emoji">🧀</div><div class="cc-name">Cottage Cheese</div><div class="cc-cal">98 kcal/100g</div><div class="cc-diff less">−305 kcal</div></a><a href="/foods/greek-yogurt.html" class="compare-card"><div class="cc-emoji">🥛</div><div class="cc-name">Greek Yogurt</div><div class="cc-cal">97 kcal/100g</div><div class="cc-diff less">−306 kcal</div></a><a href="/foods/milk.html" class="compare-card"><div class="cc-emoji">🥛</div><div class="cc-name">Milk</div><div class="cc-cal">42 kcal/100g</div><div class="cc-diff less">−361 kcal</div></a><a href="/foods/egg.html" class="compare-card"><div class="cc-emoji">🥚</div><div class="cc-name">Egg</div><div class="cc-cal">155 kcal/100g</div><div class="cc-diff less">−248 kcal</div></a><a href="/foods/bacon.html" class="compare-card"><div class="cc-emoji">🥓</div><div class="cc-name">Bacon</div><div class="cc-cal">541 kcal/100g</div><div class="cc-diff more">+138 kcal</div></a><a href="/foods/chicken-breast.html" class="compare-card"><div class="cc-emoji">🍗</div><div class="cc-name">Chicken Breast</div><div class="cc-cal">165 kcal/100g</div><div class="cc-diff less">−238 kcal</div></a><a href="/foods/beef-steak.html" class="compare-card"><div class="cc-emoji">🥩</div><div class="cc-name">Beef Steak</div><div class="cc-cal">271 kcal/100g</div><div class="cc-diff less">−132 kcal</div></a></div>
@@ -286,7 +460,7 @@
     <a href="/goals/healthy-eating.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Healthy Eating Guide →</a>
   </div>
 </div>
-  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in cheddar cheese?</div><div class="faq-a">Cheddar cheese has <strong>403 calories per 100g</strong>. One slice (28g/1oz): 113 kcal. Two slices: 226 kcal.</div></div><div class="faq-item"><div class="faq-q">Is cheddar cheese high in calcium?</div><div class="faq-a">Yes — cheddar provides 721mg of calcium per 100g (72% DV) — the highest of any common food. Two slices provide more calcium than a cup of milk.</div></div><div class="faq-item"><div class="faq-q">Is cheese good for weight loss?</div><div class="faq-a">In moderate portions, cheese can fit into weight loss diets — high protein and fat create strong satiety. The issue is calorie density (403 kcal/100g). A 28g slice adds 113 kcal and 7g protein as a flavourful, satisfying addition to meals.</div></div><div class="faq-item"><div class="faq-q">Does cheese have lactose?</div><div class="faq-a">Very little — most lactose is removed in the cheese-making process when whey is drained. Aged cheddar has <0.1g of lactose per serving. Most lactose-intolerant people can eat cheddar without symptoms.</div></div><div class="faq-item"><div class="faq-q">Is cheddar cheese keto?</div><div class="faq-a">Yes — only 1.28g carbs per 100g. Cheese is one of the most popular keto foods due to high fat, good protein, and near-zero carbs.</div></div><div class="faq-item"><div class="faq-q">Is cheese bad for your heart?</div><div class="faq-a">Evidence is more nuanced than previously thought. Multiple large studies show no association between cheese consumption and cardiovascular disease — and some show protective effects. The calcium, vitamin K2, and specific fatty acids in cheese may offset concerns about saturated fat.</div></div></div>
+  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in cheddar cheese?</div><div class="faq-a">Cheddar cheese has <strong>403 calories per 100g</strong>. One slice (28g/1oz): 113 kcal. Two slices: 226 kcal.</div></div><div class="faq-item"><div class="faq-q">Is cheddar cheese high in calcium?</div><div class="faq-a">Yes — cheddar provides 721mg of calcium per 100g (72% DV) — the highest of any common food. Two slices provide more calcium than a cup of milk.</div></div><div class="faq-item"><div class="faq-q">Is cheese good for weight loss?</div><div class="faq-a">In moderate portions, cheese can fit into weight loss diets — high protein and fat create strong satiety. The issue is calorie density (403 kcal/100g). A 28g slice adds 113 kcal and 7g protein as a flavourful, satisfying addition to meals.</div></div><div class="faq-item"><div class="faq-q">Does cheese have lactose?</div><div class="faq-a">Very little — most lactose is removed in the cheese-making process when whey is drained. Aged cheddar has <0.1g of lactose per serving. Most lactose-intolerant people can eat cheddar without symptoms.</div></div><div class="faq-item"><div class="faq-q">Is cheddar cheese keto?</div><div class="faq-a">Yes — only 1.28g carbs per 100g. Cheese is one of the most popular keto foods due to high fat, good protein, and near-zero carbs.</div></div><div class="faq-item"><div class="faq-q">Is cheese bad for your heart?</div><div class="faq-a">Evidence is more nuanced than previously thought. Multiple large Evidence suggests no association between cheese consumption and cardiovascular disease — and some show protective effects. The calcium, vitamin K2, and specific fatty acids in cheese may offset concerns about saturated fat.</div></div></div>
   <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/mozzarella.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Mozzarella</div><div class="fc-cal">280 kcal/100g</div></a><a href="/foods/cottage-cheese.html" class="food-card"><div class="fc-emoji">🧀</div><div class="fc-name">Cottage Cheese</div><div class="fc-cal">98 kcal/100g</div></a><a href="/foods/greek-yogurt.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Greek Yogurt</div><div class="fc-cal">97 kcal/100g</div></a><a href="/foods/milk.html" class="food-card"><div class="fc-emoji">🥛</div><div class="fc-name">Milk</div><div class="fc-cal">42 kcal/100g</div></a><a href="/foods/egg.html" class="food-card"><div class="fc-emoji">🥚</div><div class="fc-name">Egg</div><div class="fc-cal">155 kcal/100g</div></a><a href="/foods/salmon.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Salmon</div><div class="fc-cal">208 kcal/100g</div></a><a href="/foods/chicken-breast.html" class="food-card"><div class="fc-emoji">🍗</div><div class="fc-name">Chicken Breast</div><div class="fc-cal">165 kcal/100g</div></a><a href="/foods/broccoli.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Broccoli</div><div class="fc-cal">34 kcal/100g</div></a></div></div>
   <div class="section" id="more-from-category">
   <h2>More Dairy & Eggs</h2>
@@ -346,6 +520,51 @@ function updateCalc(g){g=parseInt(g);document.getElementById('slider-grams').tex
 const WW=[10,14,28,50,100,150,200,250,300,400,500];
 document.getElementById('weight-tbody').innerHTML=WW.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

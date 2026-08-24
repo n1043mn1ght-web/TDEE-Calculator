@@ -18,7 +18,7 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"Calories in Bell Pepper","url":"https://caloriescalc.org/foods/bell-pepper.html","dateModified":"2026-07-28","author":{"@type":"Organization","name":"CaloriesCalc"},"mainEntity":{"@type":"NutritionInformation","name":"Peppers, sweet, red, raw","servingSize":"100g","calories":"31 kcal","carbohydrateContent":"6.03g","sugarContent":"4.2g","fiberContent":"2.1g","proteinContent":"1.0g","fatContent":"0.3g"}}
   </script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in a bell pepper?","acceptedAnswer":{"@type":"Answer","text":"Bell peppers contain 31 calories per 100g. A medium red bell pepper (119g) has 37 calories. A large pepper (164g) has 51 calories. Use the slider above for any weight."}},{"@type":"Question","name":"Which colour bell pepper is healthiest?","acceptedAnswer":{"@type":"Answer","text":"Red bell peppers are the most nutritious — they have 11× more beta-carotene and 1.5× more vitamin C than green peppers. Green peppers are simply unripe red peppers. Yellow and orange peppers fall in between. For maximum nutrition, choose red."}},{"@type":"Question","name":"Is bell pepper a fruit or vegetable?","acceptedAnswer":{"@type":"Answer","text":"Botanically a fruit (contains seeds, develops from a flower). Culinarily classified and used as a vegetable. Like tomatoes and cucumbers, it is a botanical fruit treated as a culinary vegetable."}},{"@type":"Question","name":"Do bell peppers have more vitamin C than oranges?","acceptedAnswer":{"@type":"Answer","text":"Yes — red bell peppers have 127mg of vitamin C per 100g, compared to 53mg in oranges. Even green bell peppers (80mg) exceed oranges. A single medium red pepper covers nearly twice the daily vitamin C requirement."}},{"@type":"Question","name":"Are bell peppers keto?","acceptedAnswer":{"@type":"Answer","text":"Yes — with only 3.9g of net carbs per 100g, bell peppers are keto-friendly. A medium pepper has about 4.7g net carbs, fitting comfortably in daily keto limits."}},{"@type":"Question","name":"Can you eat bell pepper seeds?","acceptedAnswer":{"@type":"Answer","text":"Yes — bell pepper seeds are edible and not toxic. They have a slightly bitter flavour. Most people remove them for texture and taste reasons, but they can be eaten without harm."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many calories in a bell pepper?","acceptedAnswer":{"@type":"Answer","text":"Bell peppers contain 31 calories per 100g. A medium red bell pepper (119g) has 37 calories. A large pepper (164g) has 51 calories. Use the slider above for any weight."}},{"@type":"Question","name":"Which colour bell pepper is most nutritious?","acceptedAnswer":{"@type":"Answer","text":"Red bell peppers are the most nutritious — they have 11× more beta-carotene and 1.5× more vitamin C than green peppers. Green peppers are simply unripe red peppers. Yellow and orange peppers fall in between. For maximum nutrition, choose red."}},{"@type":"Question","name":"Is bell pepper a fruit or vegetable?","acceptedAnswer":{"@type":"Answer","text":"Botanically a fruit (contains seeds, develops from a flower). Culinarily classified and used as a vegetable. Like tomatoes and cucumbers, it is a botanical fruit treated as a culinary vegetable."}},{"@type":"Question","name":"Do bell peppers have more vitamin C than oranges?","acceptedAnswer":{"@type":"Answer","text":"Yes — red bell peppers have 127mg of vitamin C per 100g, compared to 53mg in oranges. Even green bell peppers (80mg) exceed oranges. A single medium red pepper covers nearly twice the daily vitamin C requirement."}},{"@type":"Question","name":"Are bell peppers keto?","acceptedAnswer":{"@type":"Answer","text":"Yes — with only 3.9g of net carbs per 100g, bell peppers are keto-friendly. A medium pepper has about 4.7g net carbs, fitting comfortably in daily keto limits."}},{"@type":"Question","name":"Can you eat bell pepper seeds?","acceptedAnswer":{"@type":"Answer","text":"Yes — bell pepper seeds are edible and not toxic. They have a slightly bitter flavour. Most people remove them for texture and taste reasons, but they can be eaten without harm."}}]}</script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--green:#2d6a4f;--green-light:#e8f5ee;--green-dark:#1b4332;--text:#1a1a1a;--text-muted:#555;--text-faint:#888;--border:#e0e0e0;--bg:#fff;--bg-soft:#f8f9fa;--radius:10px;--radius-sm:6px;--max:980px}
@@ -146,6 +146,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Bell Pepper — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/bell-pepper.html"}]}</script>
 </head>
@@ -172,13 +346,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -214,7 +388,7 @@
       <div class="quick-facts"><span class="qf-tag">✔ Highest vitamin C of any vegetable</span><span class="qf-tag">✔ Rich in antioxidants</span><span class="qf-tag">✔ Very low calorie</span><span class="qf-tag">✔ Fat free</span><span class="qf-tag">✔ Gluten free</span><span class="qf-tag">✔ Vegan</span></div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <img src="/foods/bell-pepper.png" alt="Bell Pepper nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+      <div class="hero-img-emoji" role="img" aria-label="Bell Pepper illustration">🫑</div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">🛡</span><span class="nh-text">Highest vitamin C — 127mg per 100g (red)</span></div><div class="nh-card"><span class="nh-icon">🔴</span><span class="nh-text">Rich in capsanthin antioxidant</span></div><div class="nh-card"><span class="nh-icon">👁</span><span class="nh-text">Beta-carotene for eye health</span></div><div class="nh-card"><span class="nh-icon">🧠</span><span class="nh-text">Vitamin B6 — 17% Daily Value</span></div><div class="nh-card"><span class="nh-icon">🔥</span><span class="nh-text">Only 31 kcal per 100g</span></div><div class="nh-card"><span class="nh-icon">😌</span><span class="nh-text">Very low GI — 15</span></div></div>
@@ -269,7 +443,7 @@
     <p style="font-size:13px;color:var(--text-faint);margin-top:10px">Bell peppers are 92% water. Net carbs are 3.9g per 100g. Red bell peppers have significantly more vitamin C, beta-carotene, and antioxidants than green ones — green peppers are simply unripe red peppers.</p>
   </div>
   <div class="section" id="micronutrients"><h2>Micronutrient Highlights</h2><div class="micro-grid"><div class="micro-card"><div class="micro-icon">🛡</div><div class="micro-name">Vitamin C</div><div class="micro-val">127.7 mg</div><div class="micro-dv">142% Daily Value</div><div class="micro-desc">More than 3× the vitamin C of an orange</div></div><div class="micro-card"><div class="micro-icon">👁</div><div class="micro-name">Vitamin A (β-carotene)</div><div class="micro-val">157 µg</div><div class="micro-dv">17% Daily Value</div><div class="micro-desc">Vision and immune function</div></div><div class="micro-card"><div class="micro-icon">🧠</div><div class="micro-name">Vitamin B6</div><div class="micro-val">0.29 mg</div><div class="micro-dv">17% Daily Value</div><div class="micro-desc">Brain health and protein metabolism</div></div><div class="micro-card"><div class="micro-icon">⚡</div><div class="micro-name">Potassium</div><div class="micro-val">211 mg</div><div class="micro-dv">4% Daily Value</div><div class="micro-desc">Blood pressure support</div></div><div class="micro-card"><div class="micro-icon">🔴</div><div class="micro-name">Capsanthin</div><div class="micro-val">~16 mg</div><div class="micro-dv">Carotenoid</div><div class="micro-desc">Unique to red peppers — powerful antioxidant</div></div><div class="micro-card"><div class="micro-icon">🌿</div><div class="micro-name">Fiber</div><div class="micro-val">2.1 g</div><div class="micro-dv">8% Daily Value</div><div class="micro-desc">Digestive health</div></div></div></div>
-  <div class="section" id="health"><h2>Bell Pepper Health Benefits &amp; Nutrition</h2><h3>Highest Vitamin C of Any Common Vegetable</h3><p>Red bell peppers contain 127.7mg of vitamin C per 100g — 142% of the daily requirement, and more than 3× the amount in an orange (53mg). Even green bell peppers (80mg) exceed oranges. A single medium red pepper provides nearly twice the daily vitamin C requirement. Vitamin C supports immune function, collagen synthesis, iron absorption, and antioxidant defence. Bell peppers are one of the most calorie-efficient sources of vitamin C available.</p><h3>Red vs Green vs Yellow — The Colour Difference</h3><p>All bell peppers start green and ripen to yellow, orange, or red. The colour change is dramatic nutritionally: red peppers have 11× more beta-carotene, 1.5× more vitamin C, and significantly more capsanthin (a red carotenoid) than green peppers. They also taste sweeter as starches convert to sugars during ripening. Red peppers cost more because they require longer growing time, but deliver substantially more nutrition per calorie.</p><h3>Eye Health — Carotenoid Richness</h3><p>Bell peppers contain multiple carotenoids that protect eye health: beta-carotene (vitamin A precursor), zeaxanthin, and violaxanthin. Zeaxanthin accumulates in the macula of the retina and filters damaging blue light. Studies show high zeaxanthin intake is associated with significantly lower risk of age-related macular degeneration. Red and orange peppers are particularly rich in these eye-protective carotenoids.</p><h3>Anti-Inflammatory and Immune Support</h3><p>The combination of vitamin C, beta-carotene, quercetin, and luteolin in bell peppers creates comprehensive anti-inflammatory activity. Quercetin inhibits histamine release — relevant for allergy sufferers. Luteolin has shown anti-inflammatory effects comparable to some medications in research. Bell pepper consumption is associated with reduced markers of systemic inflammation in population studies.</p></div>
+  <div class="section" id="health"><h2>Bell Pepper Health Benefits &amp; Nutrition</h2><h3>Highest Vitamin C of Any Common Vegetable</h3><p>Red bell peppers contain 127.7mg of vitamin C per 100g — 142% of the daily requirement, and more than 3× the amount in an orange (53mg). Even green bell peppers (80mg) exceed oranges. A single medium red pepper provides nearly twice the daily vitamin C requirement. Vitamin C supports immune function, collagen synthesis, iron absorption, and antioxidant defence. Bell peppers are one of the most calorie-efficient sources of vitamin C available.</p><h3>Red vs Green vs Yellow — The Colour Difference</h3><p>All bell peppers start green and ripen to yellow, orange, or red. The colour change is dramatic nutritionally: red peppers have 11× more beta-carotene, 1.5× more vitamin C, and significantly more capsanthin (a red carotenoid) than green peppers. They also taste sweeter as starches convert to sugars during ripening. Red peppers cost more because they require longer growing time, but deliver substantially more nutrition per calorie.</p><h3>Eye Health — Carotenoid Richness</h3><p>Bell peppers contain multiple carotenoids that protect eye health: beta-carotene (vitamin A precursor), zeaxanthin, and violaxanthin. Zeaxanthin accumulates in the macula of the retina and filters damaging blue light. Evidence suggests high zeaxanthin intake is associated with significantly lower risk of age-related macular degeneration. Red and orange peppers are particularly rich in these eye-protective carotenoids.</p><h3>Anti-Inflammatory and Immune Support</h3><p>The combination of vitamin C, beta-carotene, quercetin, and luteolin in bell peppers creates comprehensive anti-inflammatory activity. Quercetin inhibits histamine release — relevant for allergy sufferers. Luteolin has shown anti-inflammatory effects comparable to some medications in research. Bell pepper consumption is associated with reduced markers of systemic inflammation in population studies.</p></div>
   <div class="section">
     <h2>Bell Pepper vs Other Vegetables — Calorie Comparison</h2>
     <div class="compare-grid"><a href="/foods/tomato.html" class="compare-card"><div class="cc-emoji">🍅</div><div class="cc-name">Tomato</div><div class="cc-cal">18 kcal/100g</div><div class="cc-diff less">−13 kcal</div></a><a href="/foods/cucumber.html" class="compare-card"><div class="cc-emoji">🥒</div><div class="cc-name">Cucumber</div><div class="cc-cal">15 kcal/100g</div><div class="cc-diff less">−16 kcal</div></a><a href="/foods/broccoli.html" class="compare-card"><div class="cc-emoji">🥦</div><div class="cc-name">Broccoli</div><div class="cc-cal">34 kcal/100g</div><div class="cc-diff more">+3 kcal</div></a><a href="/foods/onion.html" class="compare-card"><div class="cc-emoji">🧅</div><div class="cc-name">Onion</div><div class="cc-cal">40 kcal/100g</div><div class="cc-diff more">+9 kcal</div></a><a href="/foods/carrot.html" class="compare-card"><div class="cc-emoji">🥕</div><div class="cc-name">Carrot</div><div class="cc-cal">41 kcal/100g</div><div class="cc-diff more">+10 kcal</div></a><a href="/foods/potato.html" class="compare-card"><div class="cc-emoji">🥔</div><div class="cc-name">Potato</div><div class="cc-cal">77 kcal/100g</div><div class="cc-diff more">+46 kcal</div></a><a href="/foods/corn.html" class="compare-card"><div class="cc-emoji">🌽</div><div class="cc-name">Corn</div><div class="cc-cal">86 kcal/100g</div><div class="cc-diff more">+55 kcal</div></a><a href="/foods/sweet-potato.html" class="compare-card"><div class="cc-emoji">🍠</div><div class="cc-name">Sweet Potato</div><div class="cc-cal">86 kcal/100g</div><div class="cc-diff more">+55 kcal</div></a></div>
@@ -305,7 +479,7 @@
     <a href="/goals/weight-loss.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Weight Loss Guide →</a>
   </div>
 </div>
-  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in a bell pepper?</div><div class="faq-a">Bell peppers contain <strong>31 calories per 100g</strong>. A medium red bell pepper (119g) has 37 calories. A large pepper (164g) has 51 calories. Use the slider above for any weight.</div></div><div class="faq-item"><div class="faq-q">Which colour bell pepper is healthiest?</div><div class="faq-a">Red bell peppers are the most nutritious — they have 11× more beta-carotene and 1.5× more vitamin C than green peppers. Green peppers are simply unripe red peppers. Yellow and orange peppers fall in between. For maximum nutrition, choose red.</div></div><div class="faq-item"><div class="faq-q">Is bell pepper a fruit or vegetable?</div><div class="faq-a">Botanically a fruit (contains seeds, develops from a flower). Culinarily classified and used as a vegetable. Like tomatoes and cucumbers, it is a botanical fruit treated as a culinary vegetable.</div></div><div class="faq-item"><div class="faq-q">Do bell peppers have more vitamin C than oranges?</div><div class="faq-a">Yes — red bell peppers have 127mg of vitamin C per 100g, compared to 53mg in oranges. Even green bell peppers (80mg) exceed oranges. A single medium red pepper covers nearly twice the daily vitamin C requirement.</div></div><div class="faq-item"><div class="faq-q">Are bell peppers keto?</div><div class="faq-a">Yes — with only 3.9g of net carbs per 100g, bell peppers are keto-friendly. A medium pepper has about 4.7g net carbs, fitting comfortably in daily keto limits.</div></div><div class="faq-item"><div class="faq-q">Can you eat bell pepper seeds?</div><div class="faq-a">Yes — bell pepper seeds are edible and not toxic. They have a slightly bitter flavour. Most people remove them for texture and taste reasons, but they can be eaten without harm.</div></div></div>
+  <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in a bell pepper?</div><div class="faq-a">Bell peppers contain <strong>31 calories per 100g</strong>. A medium red bell pepper (119g) has 37 calories. A large pepper (164g) has 51 calories. Use the slider above for any weight.</div></div><div class="faq-item"><div class="faq-q">Which colour bell pepper is most nutritious?</div><div class="faq-a">Red bell peppers are the most nutritious — they have 11× more beta-carotene and 1.5× more vitamin C than green peppers. Green peppers are simply unripe red peppers. Yellow and orange peppers fall in between. For maximum nutrition, choose red.</div></div><div class="faq-item"><div class="faq-q">Is bell pepper a fruit or vegetable?</div><div class="faq-a">Botanically a fruit (contains seeds, develops from a flower). Culinarily classified and used as a vegetable. Like tomatoes and cucumbers, it is a botanical fruit treated as a culinary vegetable.</div></div><div class="faq-item"><div class="faq-q">Do bell peppers have more vitamin C than oranges?</div><div class="faq-a">Yes — red bell peppers have 127mg of vitamin C per 100g, compared to 53mg in oranges. Even green bell peppers (80mg) exceed oranges. A single medium red pepper covers nearly twice the daily vitamin C requirement.</div></div><div class="faq-item"><div class="faq-q">Are bell peppers keto?</div><div class="faq-a">Yes — with only 3.9g of net carbs per 100g, bell peppers are keto-friendly. A medium pepper has about 4.7g net carbs, fitting comfortably in daily keto limits.</div></div><div class="faq-item"><div class="faq-q">Can you eat bell pepper seeds?</div><div class="faq-a">Yes — bell pepper seeds are edible and not toxic. They have a slightly bitter flavour. Most people remove them for texture and taste reasons, but they can be eaten without harm.</div></div></div>
   <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/tomato.html" class="food-card"><div class="fc-emoji">🍅</div><div class="fc-name">Tomato</div><div class="fc-cal">18 kcal/100g</div></a><a href="/foods/cucumber.html" class="food-card"><div class="fc-emoji">🥒</div><div class="fc-name">Cucumber</div><div class="fc-cal">15 kcal/100g</div></a><a href="/foods/broccoli.html" class="food-card"><div class="fc-emoji">🥦</div><div class="fc-name">Broccoli</div><div class="fc-cal">34 kcal/100g</div></a><a href="/foods/onion.html" class="food-card"><div class="fc-emoji">🧅</div><div class="fc-name">Onion</div><div class="fc-cal">40 kcal/100g</div></a><a href="/foods/carrot.html" class="food-card"><div class="fc-emoji">🥕</div><div class="fc-name">Carrot</div><div class="fc-cal">41 kcal/100g</div></a><a href="/foods/spinach.html" class="food-card"><div class="fc-emoji">🥬</div><div class="fc-name">Spinach</div><div class="fc-cal">23 kcal/100g</div></a><a href="/foods/potato.html" class="food-card"><div class="fc-emoji">🥔</div><div class="fc-name">Potato</div><div class="fc-cal">77 kcal/100g</div></a><a href="/foods/sweet-potato.html" class="food-card"><div class="fc-emoji">🍠</div><div class="fc-name">Sweet Potato</div><div class="fc-cal">86 kcal/100g</div></a></div></div>
   <div class="section" id="more-from-category">
   <h2>More Vegetables</h2>
@@ -389,6 +563,51 @@ function updateCalc(g){
 const WEIGHTS=[20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200];
 document.getElementById('weight-tbody').innerHTML=WEIGHTS.map(g=>'<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td></tr>').join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>

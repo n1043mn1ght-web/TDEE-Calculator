@@ -232,6 +232,180 @@
 .footer-tagline{font-size:11px;color:#aaa}
 @media(max-width:768px){.footer-cols{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.footer-cols{grid-template-columns:1fr 1fr}.nav-dropdown{position:fixed;left:8px;right:8px;top:52px}}
+
+/* ══════════════════════════════════════════════
+   MOBILE-FIRST IMPROVEMENTS
+   Референс: tdee.is
+   ══════════════════════════════════════════════ */
+
+/* ── NAV: hamburger на мобильных ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,.9);
+  border-radius: 2px;
+  transition: all .25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE NAV OVERLAY ── */
+@media (max-width: 768px) {
+  .nav-inner { position: relative; }
+  .nav-hamburger { display: flex; }
+
+  .nav-groups {
+    display: none;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b4332;
+    flex-direction: column;
+    padding: 16px 0;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0;
+  }
+  .nav-groups.open { display: flex; }
+
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+  .nav-group-label::after { content: '▾'; font-size: 14px; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+
+  .nav-dropdown {
+    display: none;
+    position: static;
+    background: rgba(0,0,0,.2);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 4px 0;
+    min-width: unset;
+  }
+  .nav-group.expanded .nav-dropdown { display: block; }
+  .nav-dropdown a {
+    padding: 12px 32px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #fff;
+  }
+}
+
+/* ── КАЛЬКУЛЯТОРЫ: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .calc-hero { padding: 24px 16px 20px; border-radius: 0; }
+  .calc-hero h1 { font-size: 22px; }
+  .calc-hero p { font-size: 14px; }
+  .calc-box { padding: 16px; border-radius: 8px; }
+  .btn-calc { padding: 16px; font-size: 16px; min-height: 52px; }
+  .result-main { font-size: 42px; }
+  .result-grid { grid-template-columns: 1fr 1fr; }
+  .result-card { padding: 10px 6px; }
+  .rc-val { font-size: 18px; }
+  .rc-lbl { font-size: 11px; }
+  .unit-toggle { width: 100%; }
+  .unit-btn { flex: 1; padding: 10px 8px; }
+  .next-step-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ns-card { padding: 10px; font-size: 12px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .related-card { padding: 8px 6px; }
+  .rc-name { font-size: 11px; }
+  .share-result-inner { flex-direction: column; align-items: stretch; }
+  .share-result-url { min-width: unset; }
+  .share-result-btn { width: 100%; padding: 12px; text-align: center; }
+}
+
+/* ── FOODS: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
+  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  .ms-val { font-size: 52px !important; }
+  .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
+  .macro-val { font-size: 16px !important; }
+  .macro-lbl { font-size: 10px !important; }
+  .size-cards { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .size-val { font-size: 20px; }
+  .nutrition-highlights { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .nh-card { padding: 10px 8px; }
+  .nh-text { font-size: 11px; }
+  .calc-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .calc-card { padding: 10px 8px; }
+  .calc-name { font-size: 12px; }
+  .calc-desc { font-size: 11px; }
+  .foods-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+  .food-card { padding: 10px 6px; }
+}
+
+/* ── HOMEPAGE HUB: мобильные улучшения ── */
+@media (max-width: 600px) {
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-card { padding: 12px 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-name { font-size: 13px; }
+  .goal-desc { font-size: 11px; }
+  .hub-calc-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hub-calc-card { padding: 10px 12px; }
+  .hcc-name { font-size: 13px; }
+  .hcc-desc { font-size: 11px; }
+  .hub-food-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hub-food-card { padding: 8px 4px; }
+  .hfc-emoji { font-size: 22px; }
+  .hfc-name { font-size: 11px; }
+}
+
+/* ── FOOTER: мобильные ── */
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer { padding: 24px 16px; }
+  .footer-copy { font-size: 11px; }
+}
+
+/* ── ОБЩЕЕ: tap targets минимум 44px ── */
+@media (max-width: 768px) {
+  a, button, .calc-card, .food-card, .related-card { min-height: 44px; }
+  .toc-links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .serving-btn { min-height: 48px; padding: 12px 16px; }
+  .faq-q { font-size: 15px; padding: 4px 0; }
+  .section-content p, .section-content li { font-size: 15px; line-height: 1.7; }
+}
+
+/* ── TOUCH: убираем hover-эффекты которые не работают на touch ── */
+@media (hover: none) {
+  .nav-group:hover .nav-dropdown { display: none; }
+  .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
+}
+
 </style>
   <script type="application/ld+json">
   {
@@ -251,7 +425,7 @@
       "name": "Is coconut good for weight loss?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In small portions, yes. Despite being calorie-dense at 354 kcal/100g, coconut's MCTs are metabolised differently from other fats — they increase energy expenditure and satiety hormones. Studies show MCT consumption leads to greater fat loss than equivalent calories from long-chain fats. The key is portion control: 1–2 tablespoons of shredded coconut (18–36 calories) can provide flavour and satiety without excessive calories."
+        "text": "In small portions, yes. Despite being calorie-dense at 354 kcal/100g, coconut's MCTs are metabolised differently from other fats — they increase energy expenditure and satiety hormones. Evidence suggests MCT consumption leads to greater fat loss than equivalent calories from long-chain fats. The key is portion control: 1–2 tablespoons of shredded coconut (18–36 calories) can provide flavour and satiety without excessive calories."
       }
     },
     {
@@ -317,13 +491,13 @@
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
           <a href="/foods/" class="active">All Foods</a>
-          <a href="/foods/?cat=fruits">Fruits</a>
-          <a href="/foods/?cat=vegetables">Vegetables</a>
-          <a href="/foods/?cat=meat">Meat &amp; Fish</a>
-          <a href="/foods/?cat=dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/?cat=grains">Grains</a>
-          <a href="/foods/?cat=snacks">Snacks &amp; Sweets</a>
-          <a href="/foods/?cat=drinks">Drinks</a>
+          <a href="/foods/#cat-fruits">Fruits</a>
+          <a href="/foods/#cat-vegetables">Vegetables</a>
+          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
+          <a href="/foods/#cat-grains">Grains</a>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-drinks">Drinks</a>
         </div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
@@ -363,7 +537,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-img">
-        <img src="/foods/coconut.png" alt="Coconut nutrition facts and calories per 100g" width="700" height="700" loading="eager" decoding="async">
+        <div class="hero-img-emoji" role="img" aria-label="Coconut illustration">🥥</div>
       </div>
     </div>
   </div>
@@ -462,7 +636,7 @@
 </div>
   <div class="section" id="faq">
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-item"><div class="faq-q">How many calories in coconut?</div><div class="faq-a">Raw coconut meat contains <strong>354 calories per 100g</strong>. A cup of shredded fresh coconut (80g) has 283 calories. A 2"×2" piece of fresh coconut (45g) has about 159 calories. Coconut water (the liquid inside) is much lower at 19 kcal per 100ml. Use the slider above to calculate for any weight.</div></div><div class="faq-item"><div class="faq-q">Is coconut good for weight loss?</div><div class="faq-a">In small portions, yes. Despite being calorie-dense at 354 kcal/100g, coconut's MCTs are metabolised differently from other fats — they increase energy expenditure and satiety hormones. Studies show MCT consumption leads to greater fat loss than equivalent calories from long-chain fats. The key is portion control: 1–2 tablespoons of shredded coconut (18–36 calories) can provide flavour and satiety without excessive calories.</div></div><div class="faq-item"><div class="faq-q">Is coconut keto?</div><div class="faq-a">Yes — coconut is one of the best keto foods. With only 6.2g of net carbs per 100g and 33g of fat (primarily MCTs that increase ketone production), coconut is both carb-friendly and actively supports ketosis. Coconut oil, coconut cream, and shredded unsweetened coconut are staples in ketogenic diets.</div></div><div class="faq-item"><div class="faq-q">What is the difference between coconut meat, coconut water, and coconut milk?</div><div class="faq-a">Coconut meat is the white solid flesh inside the coconut — 354 kcal/100g, high fat. Coconut water is the clear liquid inside young coconuts — only 19 kcal/100ml, low fat, good electrolyte source. Coconut milk is made by blending coconut meat with water — approximately 200 kcal/100ml, very high fat. Coconut cream is similar to coconut milk but thicker with more fat.</div></div><div class="faq-item"><div class="faq-q">Is coconut oil healthy?</div><div class="faq-a">The evidence is mixed. Coconut oil is 90% saturated fat and raises LDL cholesterol. However, it also raises HDL cholesterol and the LDL raised is predominantly large-particle type A (less harmful than small-particle type B). Most health organisations recommend limiting coconut oil to occasional use rather than daily cooking fat. The therapeutic MCT oil (derived from coconut) is different — it contains only the beneficial medium-chain fats without the longer-chain saturated fats.</div></div><div class="faq-item"><div class="faq-q">Does coconut have a lot of sugar?</div><div class="faq-a">No — raw coconut meat contains only 6.2g of natural sugar per 100g, which is lower than most fruits. Its total carbs are 15g but 9g is fiber, leaving only 6.2g of net carbs. Sweetened or dried coconut products are very different — always check labels, as commercially desiccated coconut often contains significant added sugar.</div></div>
+    <div class="faq-item"><div class="faq-q">How many calories in coconut?</div><div class="faq-a">Raw coconut meat contains <strong>354 calories per 100g</strong>. A cup of shredded fresh coconut (80g) has 283 calories. A 2"×2" piece of fresh coconut (45g) has about 159 calories. Coconut water (the liquid inside) is much lower at 19 kcal per 100ml. Use the slider above to calculate for any weight.</div></div><div class="faq-item"><div class="faq-q">Is coconut good for weight loss?</div><div class="faq-a">In small portions, yes. Despite being calorie-dense at 354 kcal/100g, coconut's MCTs are metabolised differently from other fats — they increase energy expenditure and satiety hormones. Evidence suggests MCT consumption leads to greater fat loss than equivalent calories from long-chain fats. The key is portion control: 1–2 tablespoons of shredded coconut (18–36 calories) can provide flavour and satiety without excessive calories.</div></div><div class="faq-item"><div class="faq-q">Is coconut keto?</div><div class="faq-a">Yes — coconut is one of the best keto foods. With only 6.2g of net carbs per 100g and 33g of fat (primarily MCTs that increase ketone production), coconut is both carb-friendly and actively supports ketosis. Coconut oil, coconut cream, and shredded unsweetened coconut are staples in ketogenic diets.</div></div><div class="faq-item"><div class="faq-q">What is the difference between coconut meat, coconut water, and coconut milk?</div><div class="faq-a">Coconut meat is the white solid flesh inside the coconut — 354 kcal/100g, high fat. Coconut water is the clear liquid inside young coconuts — only 19 kcal/100ml, low fat, good electrolyte source. Coconut milk is made by blending coconut meat with water — approximately 200 kcal/100ml, very high fat. Coconut cream is similar to coconut milk but thicker with more fat.</div></div><div class="faq-item"><div class="faq-q">Is coconut oil healthy?</div><div class="faq-a">The evidence is mixed. Coconut oil is 90% saturated fat and raises LDL cholesterol. However, it also raises HDL cholesterol and the LDL raised is predominantly large-particle type A (less harmful than small-particle type B). Most health organisations recommend limiting coconut oil to occasional use rather than daily cooking fat. The therapeutic MCT oil (derived from coconut) is different — it contains only the beneficial medium-chain fats without the longer-chain saturated fats.</div></div><div class="faq-item"><div class="faq-q">Does coconut have a lot of sugar?</div><div class="faq-a">No — raw coconut meat contains only 6.2g of natural sugar per 100g, which is lower than most fruits. Its total carbs are 15g but 9g is fiber, leaving only 6.2g of net carbs. Sweetened or dried coconut products are very different — always check labels, as commercially desiccated coconut often contains significant added sugar.</div></div>
   </div>
   <div class="section" id="related-foods">
     <h2>Related Foods</h2>
@@ -561,6 +735,51 @@ document.getElementById('weight-tbody').innerHTML=WEIGHTS.map(g=>
   '<tr><td>'+g+'g</td><td>'+Math.round(N.calories*g/100)+' kcal</td><td>'+(N.carbs*g/100).toFixed(1)+'g</td><td>'+(N.protein*g/100).toFixed(1)+'g</td><td>'+(N.fat*g/100).toFixed(1)+'g</td></tr>'
 ).join('');
 renderNutr(100);updateCalc(100);
+</script>
+<script>
+// ── Mobile Nav ──────────────────────────────────────────
+(function(){
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+
+  if (!hamburger || !navGroups) return;
+
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    navGroups.classList.toggle('open');
+    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navGroupLabels.forEach(function(label) {
+    label.addEventListener('click', function() {
+      var group = label.parentElement;
+      var wasExpanded = group.classList.contains('expanded');
+      // Закрываем все группы
+      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
+      // Открываем текущую если не была открыта
+      if (!wasExpanded) group.classList.add('expanded');
+    });
+  });
+
+  // Закрываем меню при клике на ссылку
+  navGroups.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Закрываем при клике вне меню
+  document.addEventListener('click', function(e) {
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navGroups.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
 </script>
 </body>
 </html>
