@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW5VYRDRB9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VW5VYRDRB9');
+</script>
+
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Healthy Eating Guide — Nutrition Facts & Free Tools | CaloriesCalc</title>
   <meta name="description" content="Practical healthy eating guide. Understand nutrition facts, set balanced macro targets and discover the most nutritious foods. Free calculators, USDA data.">
@@ -254,6 +263,29 @@
 .share-result-btn{padding:8px 18px;background:#2d6a4f;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
 .share-result-btn:hover{background:#1b4332}
 .share-result-btn.copied{background:#52b788}
+
+/* ── Nav mobile (v2) ── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;margin-left:12px;flex-shrink:0}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.9);border-radius:2px;transition:all .25s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){
+  .nav-hamburger{display:flex}
+  .nav-groups{display:none !important;position:fixed;top:52px;left:0;right:0;bottom:0;background:#1b4332;flex-direction:column !important;padding:8px 0 32px;overflow-y:auto;z-index:500;gap:0 !important}
+  .nav-groups.open{display:flex !important}
+  .nav-group{width:100%}
+  .nav-group-label{display:flex !important;justify-content:space-between;align-items:center;padding:14px 20px;font-size:16px;font-weight:600;color:#fff;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+  .nav-group-label::after{content:'▾'}
+  .nav-group.expanded .nav-group-label::after{content:'▴'}
+  .nav-dropdown{display:none !important;position:static !important;background:rgba(0,0,0,.2) !important;border-radius:0 !important;box-shadow:none !important;padding:4px 0 !important;min-width:unset !important}
+  .nav-group.expanded .nav-dropdown{display:block !important}
+  .nav-dropdown a{padding:12px 32px !important;font-size:15px !important;border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-link-plain{display:block !important;padding:14px 20px !important;font-size:16px !important;font-weight:600;color:#fff !important;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-group:hover .nav-dropdown{display:none !important}
+  .nav-group.expanded:hover .nav-dropdown{display:block !important}
+}
+
 </style>
   <style>
 .hub-hero{background:linear-gradient(135deg,#2d6a4f 0%,#1b4332 100%);color:#fff;padding:48px 24px 40px;text-align:center}
@@ -303,6 +335,9 @@
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-groups">
       <div class="nav-group">
         <span class="nav-group-label">Calculators ▾</span>
@@ -515,5 +550,45 @@
     </div>
   </div>
 </footer>
+<script>
+// ── Mobile Nav (v2) ──────────────────────────────────────
+(function(){
+  var btn = document.getElementById('nav-hamburger');
+  var groups = document.querySelector('.nav-groups');
+  if(!btn || !groups) return;
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = groups.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.querySelectorAll('.nav-group-label').forEach(function(label){
+    label.addEventListener('click', function(e){
+      e.stopPropagation();
+      var grp = label.parentElement;
+      var wasOpen = grp.classList.contains('expanded');
+      document.querySelectorAll('.nav-group').forEach(function(g){ g.classList.remove('expanded'); });
+      if(!wasOpen) grp.classList.add('expanded');
+    });
+  });
+  groups.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      groups.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    });
+  });
+  document.addEventListener('click', function(e){
+    if(!btn.contains(e.target) && !groups.contains(e.target)){
+      groups.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+</script>
 </body>
 </html>
