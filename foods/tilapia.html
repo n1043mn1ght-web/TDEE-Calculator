@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW5VYRDRB9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VW5VYRDRB9');
+</script>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Calories in Tilapia — Nutrition Facts per 100g | CaloriesCalc</title>
   <meta name="description" content="Tilapia has 96 calories per 100g. A fillet (87g) has 84 calories and 17g protein. Affordable lean fish. USDA data.">
@@ -147,7 +155,7 @@
    Референс: tdee.is
    ══════════════════════════════════════════════ */
 
-/* ── NAV: hamburger на мобильных ── */
+
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -170,10 +178,7 @@
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── MOBILE NAV OVERLAY ── */
-@media (max-width: 768px) {
-  .nav-inner { position: relative; }
-  .nav-hamburger { display: flex; }
+
 
   .nav-groups {
     display: none;
@@ -258,7 +263,7 @@
 /* ── FOODS: мобильные улучшения ── */
 @media (max-width: 600px) {
   .hero-wrap { grid-template-columns: 1fr !important; gap: 12px; }
-  .hero-img-emoji { width: 120px; height: 120px; font-size: 72px; margin: 0 auto; }
+  
   .ms-val { font-size: 52px !important; }
   .macro-strip { grid-template-columns: repeat(4, 1fr) !important; gap: 4px; }
   .macro-val { font-size: 16px !important; }
@@ -315,6 +320,116 @@
   .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
 }
 
+
+/* ── NAV hamburger fix ── */
+.main-nav { position: sticky; top: 0; z-index: 200; }
+.nav-inner { display: flex; align-items: center; padding: 0 20px; height: 52px; background: var(--green-dark); }
+.nav-logo { color: #fff; font-weight: 800; font-size: 18px; text-decoration: none; margin-right: auto; flex-shrink: 0; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; margin-left: 12px; flex-shrink: 0; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.9); border-radius: 2px; transition: all .25s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 768px) {
+  .nav-hamburger { display: flex; }
+  .nav-groups {
+    display: none !important;
+    position: fixed;
+    top: 52px; left: 0; right: 0; bottom: 0;
+    background: #1b4332;
+    flex-direction: column !important;
+    padding: 8px 0 32px;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0 !important;
+  }
+  .nav-groups.open { display: flex !important; }
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    cursor: pointer;
+  }
+  .nav-group-label::after { content: '▾'; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+  .nav-dropdown {
+    display: none !important;
+    position: static !important;
+    background: rgba(0,0,0,.2) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 4px 0 !important;
+    min-width: unset !important;
+  }
+  .nav-group.expanded .nav-dropdown { display: block !important; }
+  .nav-dropdown a { padding: 12px 32px !important; font-size: 15px !important; border-bottom: 1px solid rgba(255,255,255,.05); }
+  .nav-link-plain {
+    display: block !important;
+    padding: 14px 20px !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  /* Desktop hover dropdown off on mobile */
+  .nav-group:hover .nav-dropdown { display: none !important; }
+  .nav-group.expanded:hover .nav-dropdown { display: block !important; }
+}
+/* EMOJI_DESKTOP */
+/* ── Foods emoji placeholder ── */
+.hero-img-emoji{
+  width:220px;height:220px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:130px;
+  background:linear-gradient(135deg,#f0faf4,#e8f5ee);
+  border-radius:12px;
+  margin:0 auto;
+  line-height:1;
+}
+@media(max-width:600px){
+  .hero-img-emoji{width:140px;height:140px;font-size:82px}
+}
+
+/* MOBILE_PADDING */
+/* ── Мобильные отступы (единые) ── */
+@media(max-width:768px){
+  .page-wrapper { padding: 0; }
+  .hub-section { padding: 0 16px; }
+  .compare-section { padding: 0 16px; }
+  .recipes-section { padding: 0 16px; }
+  .calcs-section { padding: 0 16px; }
+  .section-content { padding: 0 16px; }
+  .calc-box { margin: 0 0 16px; }
+  .calc-hero { padding: 24px 16px 20px; }
+  .next-step { margin: 16px 0; padding: 16px; }
+  .result-box { margin-top: 12px; }
+  .share-result-block { margin: 12px 0 0; }
+  main > div, main > section { padding-left: 0; padding-right: 0; }
+  .recipe-hero-info { padding: 14px 16px; }
+  .recipe-2col { padding: 0; }
+  .recipe-block { border-radius: 8px; }
+  .winner-box { margin: 12px 0; padding: 14px 16px; }
+  .compare-section { padding: 0 16px 20px; }
+  .filter-bar { padding: 0 16px; }
+  .search-bar, .search-wrap { padding: 0 16px; }
+}
+
+
+/* ── Semantic Calculator Links (Rule 10) ── */
+.sem-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:12px}
+.sem-link{display:block;background:#f8f9fa;border:1.5px solid #e0e0e0;border-radius:10px;padding:14px 16px;text-decoration:none;transition:all .15s}
+.sem-link:hover{border-color:#2d6a4f;background:#e8f5ee;text-decoration:none}
+.sem-q{display:block;font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.sem-a{display:block;font-size:12px;color:#2d6a4f;font-weight:500}
+@media(max-width:600px){.sem-links{grid-template-columns:1fr}}
+
+.food-short-answer{background:#e8f5ee;border-left:4px solid #2d6a4f;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0 14px}.food-short-answer p{font-size:15px;color:#1b4332;margin:0;line-height:1.6;font-weight:500}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Tilapia — Nutrition Facts per 100g","item":"https://caloriescalc.org/foods/tilapia.html"}]}</script>
 </head>
@@ -322,6 +437,9 @@
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-groups">
       <div class="nav-group">
         <span class="nav-group-label">Calculators ▾</span>
@@ -340,15 +458,18 @@
       <div class="nav-group">
         <span class="nav-group-label">Foods ▾</span>
         <div class="nav-dropdown">
-          <a href="/foods/" class="active">All Foods</a>
+          <a href="/foods/">All Foods</a>
           <a href="/foods/#cat-fruits">Fruits</a>
           <a href="/foods/#cat-vegetables">Vegetables</a>
-          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-meat">Meat &amp; Poultry</a>
+          <a href="/foods/#cat-fish">Fish &amp; Seafood</a>
           <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/#cat-grains">Grains</a>
-          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-grains">Grains &amp; Bread</a>
+          <a href="/foods/#cat-nuts">Nuts &amp; Seeds</a>
+          <a href="/foods/#cat-legumes">Legumes &amp; Beans</a>
           <a href="/foods/#cat-drinks">Drinks</a>
-        </div>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+</div>
       </div>
       <a href="/about.html" class="nav-link-plain">About</a>
     </div>
@@ -366,9 +487,9 @@
   <div class="hero-wrap" id="calories">
     <div class="hero-left">
       <h1>Calories in Tilapia</h1>
-      <p class="hero-updated">Source: USDA FoodData Central · Data verified by CaloriesCalc</p>
+      <p class="hero-updated">Source: USDA FoodData Central · Raw · Data verified by CaloriesCalc</p>
       <div class="macro-strip">
-        <div class="ms-item primary"><div class="ms-val">96</div><div class="ms-unit">kcal</div><div class="ms-label">per 100g</div></div>
+        <div class="ms-item primary"><div class="ms-val">96</div><div class="ms-unit">kcal</div><div class="ms-label">per 100g, raw</div></div>
         <div class="ms-item"><div class="ms-val">20.1</div><div class="ms-unit">g</div><div class="ms-label">Protein</div></div>
         <div class="ms-item"><div class="ms-val">2.04</div><div class="ms-unit">g</div><div class="ms-label">Fat</div></div>
         <div class="ms-item"><div class="ms-val">0.0</div><div class="ms-unit">g</div><div class="ms-label">Carbs</div></div>
@@ -381,7 +502,14 @@
       </div>
     </div>
     <div class="hero-right"><div class="hero-img">
-      <div class="hero-img-emoji" role="img" aria-label="Tilapia illustration">🐟</div>
+      <img src="/foods/tilapia.png"
+           alt="Calories in Tilapia"
+           width="400" height="400"
+           loading="eager"
+           decoding="async"
+           onerror="this.style.display='none';document.getElementById('emoji-fb-tilapia').style.display='flex'">
+      <div class="hero-img-emoji" id="emoji-fb-tilapia" style="display:none" role="img" aria-label="tilapia illustration">🐟</div>
+    </div>
     </div></div>
   </div>
   <div class="nutrition-highlights"><div class="nh-card"><span class="nh-icon">💪</span><span class="nh-text">20g protein per 100g — very lean</span></div><div class="nh-card"><span class="nh-icon">🔥</span><span class="nh-text">Only 96 kcal — affordable lean fish</span></div><div class="nh-card"><span class="nh-icon">💊</span><span class="nh-text">Vitamin B12 — 60% Daily Value</span></div><div class="nh-card"><span class="nh-icon">🔬</span><span class="nh-text">Selenium — 54% Daily Value</span></div><div class="nh-card"><span class="nh-icon">😌</span><span class="nh-text">Very low mercury — safe for all</span></div><div class="nh-card"><span class="nh-icon">💰</span><span class="nh-text">Most affordable white fish</span></div></div>
@@ -452,16 +580,7 @@
   </div>
   <div class="section" id="use-with-calculators">
   <h2>Use This With Our Free Calculators</h2>
-  <div class="calc-grid">
-    <a href="/protein-calculator.html" class="calc-card"><div class="calc-name">💪 Protein Calculator</div><div class="calc-desc">How much protein you need</div></a>
-    <a href="/" class="calc-card"><div class="calc-name">🧮 TDEE Calculator</div><div class="calc-desc">Daily calorie needs</div></a>
-    <a href="/macro-calculator.html" class="calc-card"><div class="calc-name">📊 Macro Calculator</div><div class="calc-desc">Protein, carbs & fat targets</div></a>
-    <a href="/ideal-weight-calculator.html" class="calc-card"><div class="calc-name">⚖️ Ideal Weight Calculator</div><div class="calc-desc">Your target body weight</div></a>
-  </div>
-  <div style="margin-top:12px;padding:12px 16px;background:#e8f5ee;border:1px solid #2d6a4f;border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-    <span style="font-size:14px;font-weight:600;color:#1b4332">💪 Reach your goal with a personalised plan</span>
-    <a href="/goals/muscle-gain.html" style="background:#2d6a4f;color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none">Muscle Gain Guide →</a>
-  </div>
+  <div class="sem-links"><a href="/protein-calculator.html" class="sem-link"><span class="sem-q">🥩 Tracking protein?</span><span class="sem-a">Calculate your daily protein target →</span></a><a href="/" class="sem-link"><span class="sem-q">🧮 Know your TDEE?</span><span class="sem-a">Calculate your daily calorie needs →</span></a><a href="/macro-calculator.html" class="sem-link"><span class="sem-q">📊 Balancing macros?</span><span class="sem-a">Set your protein, carb and fat targets →</span></a><a href="/calorie-deficit-calculator.html" class="sem-link"><span class="sem-q">🔥 Losing fat?</span><span class="sem-a">Calculate your calorie deficit →</span></a></div>
 </div>
   <div class="section" id="faq"><h2>Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q">How many calories in tilapia?</div><div class="faq-a">Tilapia has <strong>96 calories per 100g</strong>. A fillet (87g): 84 kcal and 17g protein.</div></div><div class="faq-item"><div class="faq-q">Is tilapia healthy?</div><div class="faq-a">Yes — excellent lean protein, good selenium and B12, very low mercury. The concern about tilapia's omega-6 to omega-3 ratio is overstated for people who eat varied diets with other omega-3 sources.</div></div><div class="faq-item"><div class="faq-q">Is tilapia low in mercury?</div><div class="faq-a">Yes — tilapia has very low mercury levels. FDA/EPA classify it as 'best choice' for frequent consumption, including 2-3 servings/week during pregnancy.</div></div><div class="faq-item"><div class="faq-q">Is tilapia better than salmon?</div><div class="faq-a">Salmon has more omega-3 and vitamin D. Tilapia is leaner and more affordable. Both are healthy choices. For omega-3, salmon wins. For lean protein on a budget, tilapia is excellent.</div></div><div class="faq-item"><div class="faq-q">Is tilapia keto?</div><div class="faq-a">Yes — zero carbs, good lean protein. Lower fat than salmon, so add healthy fats when using in keto meals.</div></div><div class="faq-item"><div class="faq-q">How should tilapia be cooked?</div><div class="faq-a">Baking, grilling, or pan-frying with minimal oil preserves nutritional value. Tilapia cooks in 4-5 minutes per side at medium heat. Reaches optimal flakiness at 63°C (145°F) internal temperature.</div></div></div>
   <div class="section" id="related-foods"><h2>Related Foods</h2><div class="foods-grid"><a href="/foods/salmon.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Salmon</div><div class="fc-cal">208 kcal/100g</div></a><a href="/foods/tuna.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Tuna</div><div class="fc-cal">144 kcal/100g</div></a><a href="/foods/cod.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Cod</div><div class="fc-cal">82 kcal/100g</div></a><a href="/foods/shrimp.html" class="food-card"><div class="fc-emoji">🦐</div><div class="fc-name">Shrimp</div><div class="fc-cal">99 kcal/100g</div></a><a href="/foods/trout.html" class="food-card"><div class="fc-emoji">🐟</div><div class="fc-name">Trout</div><div class="fc-cal">190 kcal/100g</div></a><a href="/foods/chicken-breast.html" class="food-card"><div class="fc-emoji">🍗</div><div class="fc-name">Chicken Breast</div><div class="fc-cal">165 kcal/100g</div></a><a href="/foods/turkey-breast.html" class="food-card"><div class="fc-emoji">🦃</div><div class="fc-name">Turkey Breast</div><div class="fc-cal">135 kcal/100g</div></a><a href="/foods/egg.html" class="food-card"><div class="fc-emoji">🥚</div><div class="fc-name">Egg</div><div class="fc-cal">155 kcal/100g</div></a></div></div>
@@ -525,45 +644,50 @@ document.getElementById('weight-tbody').innerHTML=WW.map(g=>'<tr><td>'+g+'g</td>
 renderNutr(100);updateCalc(100);
 </script>
 <script>
-// ── Mobile Nav ──────────────────────────────────────────
+
+</script>
+<script>
+// ── Mobile Nav (v2) ──────────────────────────────────────
 (function(){
-  var hamburger = document.getElementById('nav-hamburger');
-  var navGroups = document.querySelector('.nav-groups');
-  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+  var btn = document.getElementById('nav-hamburger');
+  var groups = document.querySelector('.nav-groups');
+  if(!btn || !groups) return;
 
-  if (!hamburger || !navGroups) return;
-
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    navGroups.classList.toggle('open');
-    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = groups.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
 
-  navGroupLabels.forEach(function(label) {
-    label.addEventListener('click', function() {
-      var group = label.parentElement;
-      var wasExpanded = group.classList.contains('expanded');
-      // Закрываем все группы
-      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
-      // Открываем текущую если не была открыта
-      if (!wasExpanded) group.classList.add('expanded');
+  // Accordion для категорий
+  document.querySelectorAll('.nav-group-label').forEach(function(label){
+    label.addEventListener('click', function(e){
+      e.stopPropagation();
+      var grp = label.parentElement;
+      var wasOpen = grp.classList.contains('expanded');
+      document.querySelectorAll('.nav-group').forEach(function(g){ g.classList.remove('expanded'); });
+      if(!wasOpen) grp.classList.add('expanded');
     });
   });
 
-  // Закрываем меню при клике на ссылку
-  navGroups.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      navGroups.classList.remove('open');
+  // Закрываем при клике на ссылку
+  groups.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      groups.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
     });
   });
 
-  // Закрываем при клике вне меню
-  document.addEventListener('click', function(e) {
-    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
-      hamburger.classList.remove('open');
-      navGroups.classList.remove('open');
+  // Закрываем при клике вне
+  document.addEventListener('click', function(e){
+    if(!btn.contains(e.target) && !groups.contains(e.target)){
+      groups.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
     }
   });
