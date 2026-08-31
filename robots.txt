@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://caloriescalc.org/sitemap.xml
+
+# Не индексируем технические страницы
+Disallow: /cdn-cgi/

@@ -1,0 +1,125 @@
+ГОТОВЫЕ ОТВЕТЫ ДЛЯ REDDIT/QUORA
+Использовать 1-2 в день, только в релевантных тредах.
+Не копировать дословно — слегка перефразировать каждый раз.
+
+════════════════════════════════════════════════════════════
+ТЕМА 1: "How do I calculate my calorie deficit?"
+Суб: r/loseit, r/1500isplenty, r/CICO
+════════════════════════════════════════════════════════════
+Your calorie deficit = TDEE (what you burn daily) minus what you eat.
+
+The tricky part is finding your TDEE accurately — it depends on your weight, height, age and activity level. The Mifflin-St Jeor formula is most accurate for most people.
+
+I use this free calculator: caloriescalc.org/calorie-deficit-calculator.html
+It calculates your TDEE, shows your deficit, and gives a week-by-week timeline to your goal weight. No sign-up needed.
+
+A 500 kcal/day deficit = approx 0.5 kg/week fat loss, which is the recommended rate for preserving muscle.
+
+════════════════════════════════════════════════════════════
+ТЕМА 2: "How long will it take to lose [X] kg/lbs?"
+Суб: r/loseit, r/progresspics, r/1500isplenty
+════════════════════════════════════════════════════════════
+The math: 1 kg of fat = ~7,700 calories. So your timeline depends entirely on your calorie deficit.
+
+500 kcal/day deficit → ~0.5 kg/week → your goal in [X] weeks
+750 kcal/day deficit → ~0.75 kg/week → faster but harder to sustain
+
+This calculator gives you the exact timeline with your specific numbers:
+caloriescalc.org/weight-loss-calculator.html
+
+Enter your current weight, goal weight and deficit — it shows weeks, months and the goal date. You can share the result link too.
+
+════════════════════════════════════════════════════════════
+ТЕМА 3: "What should my macros be for weight loss?"
+Суб: r/leangains, r/fitness, r/nutrition
+════════════════════════════════════════════════════════════
+For weight loss, protein is the most important macro to get right. Research consistently shows 1.6-2.2g per kg of body weight preserves muscle during a deficit.
+
+A good starting split for weight loss:
+- Protein: 35-40% of calories
+- Carbs: 35-40%  
+- Fat: 20-30%
+
+This calculator sets it all up for you based on your TDEE and deficit:
+caloriescalc.org/macro-calculator-weight-loss.html
+
+It uses a high-protein approach specifically designed for fat loss while preserving muscle.
+
+════════════════════════════════════════════════════════════
+ТЕМА 4: "How many calories in [food]? Is it healthy?"
+Суб: r/nutrition, r/EatCheapAndHealthy, r/MealPrepSunday
+════════════════════════════════════════════════════════════
+[Food] per 100g: [X] kcal, [Y]g protein, [Z]g carbs, [W]g fat (USDA data)
+
+For the full breakdown including micronutrients, fiber and serving sizes:
+caloriescalc.org/foods/[food-slug].html
+
+It also shows how [food] compares to similar foods and which calculators work well with it.
+
+════════════════════════════════════════════════════════════
+ТЕМА 5: "Should I eat chicken breast or thigh for weight loss?"
+Суб: r/loseit, r/MealPrepSunday, r/fitness
+════════════════════════════════════════════════════════════
+Breast vs thigh per 100g:
+- Breast: 165 kcal, 31g protein, 4g fat
+- Thigh: 209 kcal, 26g protein, 13g fat
+
+For weight loss: breast wins — more protein, fewer calories.
+For keto: thigh wins — more fat helps hit keto ratios.
+For meal prep: thigh wins — stays moist when reheated.
+
+Full comparison with goal-based recommendations:
+caloriescalc.org/compare/chicken-breast-vs-chicken-thigh.html
+
+════════════════════════════════════════════════════════════
+ТЕМА 6: "What's the best intermittent fasting schedule?"
+Суб: r/intermittentfasting, r/loseit, r/keto
+════════════════════════════════════════════════════════════
+16:8 is the most researched and sustainable protocol for most people.
+Common pattern: skip breakfast, eat noon-8pm.
+
+What matters most: your eating window calorie target should still be below your TDEE.
+IF doesn't create a deficit automatically — it just limits when you eat.
+
+This calculator sets up your exact fasting/eating windows and calorie target:
+caloriescalc.org/intermittent-fasting-calculator.html
+
+Works for 16:8, 18:6, 20:4 and 5:2.
+
+════════════════════════════════════════════════════════════
+QUORA — более подробные ответы
+════════════════════════════════════════════════════════════
+На Quora писать развёрнуто (300-500 слов), в конце:
+"I track my calories using caloriescalc.org — free TDEE calculator 
+with 135+ foods database. No sign-up required."
+
+Топ вопросы для Quora:
+- "How do I calculate TDEE?"
+- "What is a calorie deficit and how do I create one?"
+- "How many calories does chicken breast have?"
+- "Is intermittent fasting effective for weight loss?"
+- "What macros should I eat to build muscle?"
+
+════════════════════════════════════════════════════════════
+ДРУГИЕ ПЛАТФОРМЫ
+════════════════════════════════════════════════════════════
+
+AlternativeTo.net:
+Url: alternativeto.net/software/add/
+Название: CaloriesCalc
+Описание: Free TDEE calculator with 135-food nutrition database, 
+21 calculators including BMI, body fat, macro calculator. 
+No sign-up. USDA data.
+Категория: Health & Fitness
+
+Bing Webmaster Tools:
+bing.com/webmasters → Add site → verify via HTML tag
+Submit sitemap: https://caloriescalc.org/sitemap.xml
+
+ProductHunt:
+Tagline: "Free TDEE & nutrition calculator — 135 foods, 21 calculators"
+Description: CaloriesCalc is a free toolkit for tracking nutrition.
+Includes TDEE, calorie deficit, macro, BMI, body fat calculators 
+plus nutrition data for 135 foods — all in one place. No sign-up.
+Thumbnail: screenshot главной страницы
+Launch day: вторник или среда, 12:01 PM Pacific Time

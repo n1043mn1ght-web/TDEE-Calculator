@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW5VYRDRB9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VW5VYRDRB9');
+</script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>About &amp; Methodology — TDEE Calculator</title>
@@ -182,7 +191,7 @@
    Референс: tdee.is
    ══════════════════════════════════════════════ */
 
-/* ── NAV: hamburger на мобильных ── */
+
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -205,10 +214,7 @@
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── MOBILE NAV OVERLAY ── */
-@media (max-width: 768px) {
-  .nav-inner { position: relative; }
-  .nav-hamburger { display: flex; }
+
 
   .nav-groups {
     display: none;
@@ -350,6 +356,114 @@
   .calc-card:hover, .food-card:hover, .hub-calc-card:hover { transform: none; }
 }
 
+
+/* ── NAV hamburger fix ── */
+.main-nav { position: sticky; top: 0; z-index: 200; }
+.nav-inner { display: flex; align-items: center; padding: 0 20px; height: 52px; background: var(--green-dark); }
+.nav-logo { color: #fff; font-weight: 800; font-size: 18px; text-decoration: none; margin-right: auto; flex-shrink: 0; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; margin-left: 12px; flex-shrink: 0; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.9); border-radius: 2px; transition: all .25s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 768px) {
+  .nav-hamburger { display: flex; }
+  .nav-groups {
+    display: none !important;
+    position: fixed;
+    top: 52px; left: 0; right: 0; bottom: 0;
+    background: #1b4332;
+    flex-direction: column !important;
+    padding: 8px 0 32px;
+    overflow-y: auto;
+    z-index: 500;
+    gap: 0 !important;
+  }
+  .nav-groups.open { display: flex !important; }
+  .nav-group { width: 100%; }
+  .nav-group-label {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    cursor: pointer;
+  }
+  .nav-group-label::after { content: '▾'; }
+  .nav-group.expanded .nav-group-label::after { content: '▴'; }
+  .nav-dropdown {
+    display: none !important;
+    position: static !important;
+    background: rgba(0,0,0,.2) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 4px 0 !important;
+    min-width: unset !important;
+  }
+  .nav-group.expanded .nav-dropdown { display: block !important; }
+  .nav-dropdown a { padding: 12px 32px !important; font-size: 15px !important; border-bottom: 1px solid rgba(255,255,255,.05); }
+  .nav-link-plain {
+    display: block !important;
+    padding: 14px 20px !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  /* Desktop hover dropdown off on mobile */
+  .nav-group:hover .nav-dropdown { display: none !important; }
+  .nav-group.expanded:hover .nav-dropdown { display: block !important; }
+}
+/* MOBILE_PADDING */
+/* ── Мобильные отступы (единые) ── */
+@media(max-width:768px){
+  .page-wrapper { padding: 0; }
+  .hub-section { padding: 0 16px; }
+  .compare-section { padding: 0 16px; }
+  .recipes-section { padding: 0 16px; }
+  .calcs-section { padding: 0 16px; }
+  .section-content { padding: 0 16px; }
+  .calc-box { margin: 0 0 16px; }
+  .calc-hero { padding: 24px 16px 20px; }
+  .next-step { margin: 16px 0; padding: 16px; }
+  .result-box { margin-top: 12px; }
+  .share-result-block { margin: 12px 0 0; }
+  main > div, main > section { padding-left: 0; padding-right: 0; }
+  .recipe-hero-info { padding: 14px 16px; }
+  .recipe-2col { padding: 0; }
+  .recipe-block { border-radius: 8px; }
+  .winner-box { margin: 12px 0; padding: 14px 16px; }
+  .compare-section { padding: 0 16px 20px; }
+  .filter-bar { padding: 0 16px; }
+  .search-bar, .search-wrap { padding: 0 16px; }
+}
+
+
+/* ── Nav mobile (v2) ── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;margin-left:12px;flex-shrink:0}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.9);border-radius:2px;transition:all .25s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:768px){
+  .nav-hamburger{display:flex}
+  .nav-groups{display:none !important;position:fixed;top:52px;left:0;right:0;bottom:0;background:#1b4332;flex-direction:column !important;padding:8px 0 32px;overflow-y:auto;z-index:500;gap:0 !important}
+  .nav-groups.open{display:flex !important}
+  .nav-group{width:100%}
+  .nav-group-label{display:flex !important;justify-content:space-between;align-items:center;padding:14px 20px;font-size:16px;font-weight:600;color:#fff;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+  .nav-group-label::after{content:'▾'}
+  .nav-group.expanded .nav-group-label::after{content:'▴'}
+  .nav-dropdown{display:none !important;position:static !important;background:rgba(0,0,0,.2) !important;border-radius:0 !important;box-shadow:none !important;padding:4px 0 !important;min-width:unset !important}
+  .nav-group.expanded .nav-dropdown{display:block !important}
+  .nav-dropdown a{padding:12px 32px !important;font-size:15px !important;border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-link-plain{display:block !important;padding:14px 20px !important;font-size:16px !important;font-weight:600;color:#fff !important;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-group:hover .nav-dropdown{display:none !important}
+  .nav-group.expanded:hover .nav-dropdown{display:block !important}
+}
+
 </style>
   <script type="application/ld+json">
   {
@@ -372,6 +486,9 @@
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-groups">
       <div class="nav-group">
         <span class="nav-group-label">Calculators ▾</span>
@@ -398,12 +515,15 @@
           <a href="/foods/">All Foods</a>
           <a href="/foods/#cat-fruits">Fruits</a>
           <a href="/foods/#cat-vegetables">Vegetables</a>
-          <a href="/foods/#cat-meat">Meat &amp; Fish</a>
+          <a href="/foods/#cat-meat">Meat &amp; Poultry</a>
+          <a href="/foods/#cat-fish">Fish &amp; Seafood</a>
           <a href="/foods/#cat-dairy">Dairy &amp; Eggs</a>
-          <a href="/foods/#cat-grains">Grains</a>
-          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+          <a href="/foods/#cat-grains">Grains &amp; Bread</a>
+          <a href="/foods/#cat-nuts">Nuts &amp; Seeds</a>
+          <a href="/foods/#cat-legumes">Legumes &amp; Beans</a>
           <a href="/foods/#cat-drinks">Drinks</a>
-        </div>
+          <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
+</div>
       </div>
       <a href="/goals/weight-loss.html" class="nav-link-plain">Goals</a>
       <a href="/about.html" class="active" class="nav-link-plain">About</a>
@@ -520,45 +640,50 @@
 </footer>
 
 <script>
-// ── Mobile Nav ──────────────────────────────────────────
+
+</script>
+<script>
+// ── Mobile Nav (v2) ──────────────────────────────────────
 (function(){
-  var hamburger = document.getElementById('nav-hamburger');
-  var navGroups = document.querySelector('.nav-groups');
-  var navGroupLabels = document.querySelectorAll('.nav-group-label');
+  var btn = document.getElementById('nav-hamburger');
+  var groups = document.querySelector('.nav-groups');
+  if(!btn || !groups) return;
 
-  if (!hamburger || !navGroups) return;
-
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    navGroups.classList.toggle('open');
-    document.body.style.overflow = navGroups.classList.contains('open') ? 'hidden' : '';
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = groups.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
 
-  navGroupLabels.forEach(function(label) {
-    label.addEventListener('click', function() {
-      var group = label.parentElement;
-      var wasExpanded = group.classList.contains('expanded');
-      // Закрываем все группы
-      document.querySelectorAll('.nav-group').forEach(function(g) { g.classList.remove('expanded'); });
-      // Открываем текущую если не была открыта
-      if (!wasExpanded) group.classList.add('expanded');
+  // Accordion для категорий
+  document.querySelectorAll('.nav-group-label').forEach(function(label){
+    label.addEventListener('click', function(e){
+      e.stopPropagation();
+      var grp = label.parentElement;
+      var wasOpen = grp.classList.contains('expanded');
+      document.querySelectorAll('.nav-group').forEach(function(g){ g.classList.remove('expanded'); });
+      if(!wasOpen) grp.classList.add('expanded');
     });
   });
 
-  // Закрываем меню при клике на ссылку
-  navGroups.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      navGroups.classList.remove('open');
+  // Закрываем при клике на ссылку
+  groups.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      groups.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
     });
   });
 
-  // Закрываем при клике вне меню
-  document.addEventListener('click', function(e) {
-    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)) {
-      hamburger.classList.remove('open');
-      navGroups.classList.remove('open');
+  // Закрываем при клике вне
+  document.addEventListener('click', function(e){
+    if(!btn.contains(e.target) && !groups.contains(e.target)){
+      groups.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
       document.body.style.overflow = '';
     }
   });

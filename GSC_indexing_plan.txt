@@ -1,0 +1,79 @@
+ПЛАН РУЧНОЙ ИНДЕКСАЦИИ В GSC
+URL Inspection → вставить URL → Request Indexing
+Лимит: ~10 URL в день
+
+════════════════════════════════════════════════
+ДЕНЬ 1 — Калькуляторы (высший приоритет)
+════════════════════════════════════════════════
+https://caloriescalc.org/weight-loss-calculator.html
+https://caloriescalc.org/body-fat-calculator.html
+https://caloriescalc.org/ideal-weight-calculator.html
+https://caloriescalc.org/keto-calculator.html
+https://caloriescalc.org/pregnancy-weight-gain-calculator.html
+https://caloriescalc.org/water-intake-calculator.html
+https://caloriescalc.org/one-rep-max-calculator.html
+https://caloriescalc.org/running-calorie-calculator.html
+https://caloriescalc.org/weight-gain-calculator.html
+https://caloriescalc.org/calorie-burn-calculator.html
+
+════════════════════════════════════════════════
+ДЕНЬ 2 — Хабы + оставшиеся калькуляторы
+════════════════════════════════════════════════
+https://caloriescalc.org/goals/weight-loss.html
+https://caloriescalc.org/goals/muscle-gain.html
+https://caloriescalc.org/goals/healthy-eating.html
+https://caloriescalc.org/calculators/
+https://caloriescalc.org/recipes/
+https://caloriescalc.org/compare/
+https://caloriescalc.org/intermittent-fasting-calculator.html
+https://caloriescalc.org/macro-calculator-weight-loss.html
+https://caloriescalc.org/lean-body-mass-calculator.html
+https://caloriescalc.org/walking-calorie-calculator.html
+
+════════════════════════════════════════════════
+ДЕНЬ 3 — Топ рецепты
+════════════════════════════════════════════════
+https://caloriescalc.org/recipes/chicken-and-rice.html
+https://caloriescalc.org/recipes/grilled-chicken-breast.html
+https://caloriescalc.org/recipes/boiled-egg.html
+https://caloriescalc.org/recipes/scrambled-eggs.html
+https://caloriescalc.org/recipes/avocado-toast.html
+https://caloriescalc.org/recipes/tuna-salad.html
+https://caloriescalc.org/recipes/salmon-with-vegetables.html
+https://caloriescalc.org/recipes/egg-white-omelette.html
+https://caloriescalc.org/recipes/high-protein-smoothie.html
+https://caloriescalc.org/recipes/chicken-salad.html
+
+════════════════════════════════════════════════
+ДЕНЬ 4 — Топ сравнения
+════════════════════════════════════════════════
+https://caloriescalc.org/compare/brown-rice-vs-white-rice.html
+https://caloriescalc.org/compare/chicken-breast-vs-chicken-thigh.html
+https://caloriescalc.org/compare/salmon-vs-tuna.html
+https://caloriescalc.org/compare/butter-vs-olive-oil.html
+https://caloriescalc.org/compare/milk-vs-almond-milk.html
+https://caloriescalc.org/compare/egg-vs-egg-white.html
+https://caloriescalc.org/compare/beef-vs-chicken.html
+https://caloriescalc.org/compare/greek-yogurt-vs-yogurt.html
+https://caloriescalc.org/compare/banana-vs-apple.html
+https://caloriescalc.org/compare/whole-wheat-bread-vs-white-bread.html
+
+════════════════════════════════════════════════
+ДЕНЬ 5 — Топ Foods (высокочастотные)
+════════════════════════════════════════════════
+https://caloriescalc.org/foods/chicken-breast.html
+https://caloriescalc.org/foods/egg.html
+https://caloriescalc.org/foods/salmon.html
+https://caloriescalc.org/foods/banana.html
+https://caloriescalc.org/foods/avocado.html
+https://caloriescalc.org/foods/apple.html
+https://caloriescalc.org/foods/oatmeal.html
+https://caloriescalc.org/foods/greek-yogurt.html
+https://caloriescalc.org/foods/tuna.html
+https://caloriescalc.org/foods/broccoli.html
+
+════════════════════════════════════════════════
+ДНИ 6-10 — Оставшиеся foods (по 10/день)
+════════════════════════════════════════════════
+Использовать sitemap.xml для получения оставшихся URLs.
+Приоритет: продукты с высоким search volume.
