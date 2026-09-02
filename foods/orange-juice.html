@@ -219,7 +219,7 @@
 }
 
 
-/* ── NAV hamburger fix ── */
+
 .main-nav { position: sticky; top: 0; z-index: 200; }
 .nav-inner { display: flex; align-items: center; padding: 0 20px; height: 52px; background: var(--green-dark); }
 .nav-logo { color: #fff; font-weight: 800; font-size: 18px; text-decoration: none; margin-right: auto; flex-shrink: 0; }
@@ -328,6 +328,256 @@
 @media(max-width:600px){.sem-links{grid-template-columns:1fr}}
 
 .food-short-answer{background:#e8f5ee;border-left:4px solid #2d6a4f;border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0 14px}.food-short-answer p{font-size:15px;color:#1b4332;margin:0;line-height:1.6;font-weight:500}
+
+/* ════════════════════════════════════════════
+   NAV — полный перезапуск
+   ════════════════════════════════════════════ */
+.main-nav{
+  background:#1b4332;
+  position:sticky;top:0;z-index:300;
+  width:100%;box-sizing:border-box;
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;
+  height:52px;padding:0 20px;
+  box-sizing:border-box;
+}
+.nav-logo{
+  color:#fff;font-weight:800;font-size:18px;
+  text-decoration:none;flex-shrink:0;
+  margin-right:auto;letter-spacing:-.3px;
+}
+.nav-logo:hover{opacity:.88;text-decoration:none}
+
+/* Desktop groups */
+.nav-groups{
+  display:flex;align-items:center;gap:2px;
+}
+.nav-group{position:relative}
+.nav-group-label{
+  color:rgba(255,255,255,.88);
+  padding:7px 11px;border-radius:6px;
+  font-size:14px;cursor:pointer;
+  display:block;user-select:none;white-space:nowrap;
+  transition:background .15s;
+}
+.nav-group:hover .nav-group-label,
+.nav-group-label:hover{
+  background:rgba(255,255,255,.16);color:#fff;
+}
+.nav-dropdown{
+  display:none;
+  position:absolute;top:calc(100% + 4px);left:0;
+  background:#1b4332;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:6px 0;
+  min-width:210px;z-index:400;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+}
+.nav-group:hover .nav-dropdown{display:block}
+.nav-dropdown a{
+  display:block;color:rgba(255,255,255,.85);
+  padding:9px 16px;font-size:14px;
+  text-decoration:none;white-space:nowrap;
+  transition:background .12s;
+}
+.nav-dropdown a:hover,
+.nav-dropdown a.active{
+  background:rgba(255,255,255,.12);color:#fff;
+}
+.nav-dropdown a.active{font-weight:700}
+.nav-link-plain{
+  color:rgba(255,255,255,.88);
+  padding:7px 11px;border-radius:6px;
+  font-size:14px;text-decoration:none;
+  white-space:nowrap;transition:background .15s;
+}
+.nav-link-plain:hover{
+  background:rgba(255,255,255,.16);
+  color:#fff;text-decoration:none;
+}
+
+/* Hamburger — скрыт на десктопе */
+.nav-hamburger{display:none}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-inner{padding:0 16px}
+  .nav-hamburger{
+    display:flex;flex-direction:column;
+    justify-content:center;gap:5px;
+    width:40px;height:40px;padding:8px;
+    background:none;border:none;
+    cursor:pointer;flex-shrink:0;
+    margin-left:8px;
+  }
+  .nav-hamburger span{
+    display:block;width:22px;height:2px;
+    background:#fff;border-radius:2px;
+    transition:all .25s;
+    transform-origin:center;
+  }
+  .nav-hamburger.open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg);
+  }
+  .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .nav-hamburger.open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg);
+  }
+
+  /* Мобильное меню — overlay */
+  .nav-groups{
+    display:none;
+    position:fixed;
+    top:52px;left:0;right:0;bottom:0;
+    background:#1b4332;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    overflow-y:auto;
+    z-index:500;
+    padding:8px 0 40px;
+  }
+  .nav-groups.mob-open{display:flex}
+
+  /* Группы в мобильном меню */
+  .nav-group{width:100%}
+  .nav-group-label{
+    display:flex !important;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 20px;
+    font-size:16px;font-weight:600;
+    color:#fff !important;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    border-radius:0;
+  }
+  .nav-group-label::after{content:'▾';font-size:13px;transition:transform .2s}
+  .nav-group.mob-expanded .nav-group-label::after{
+    transform:rotate(180deg);
+  }
+
+  /* Dropdown в мобильном */
+  .nav-dropdown{
+    display:none !important;
+    position:static !important;
+    background:rgba(0,0,0,.25) !important;
+    border:none !important;border-radius:0 !important;
+    box-shadow:none !important;
+    padding:4px 0 !important;min-width:0 !important;
+  }
+  .nav-group.mob-expanded .nav-dropdown{display:block !important}
+  .nav-dropdown a{
+    padding:12px 32px !important;
+    font-size:15px !important;
+    border-bottom:1px solid rgba(255,255,255,.05);
+  }
+
+  .nav-link-plain{
+    display:block;
+    padding:14px 20px;
+    font-size:16px;font-weight:600;
+    color:#fff !important;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    border-radius:0;
+  }
+
+  /* Запрещаем hover-dropdown на touch */
+  .nav-group:hover .nav-dropdown{display:none !important}
+  .nav-group.mob-expanded .nav-dropdown{display:block !important}
+}
+
+
+/* ════════════════════════════════════════════
+   MOBILE FIX — overflow, padding, tables
+   ════════════════════════════════════════════ */
+
+/* Глобальный запрет горизонтального overflow */
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+
+/* Обёртка таблиц */
+.table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{min-width:300px}
+
+/* Macro strip — 5 колонок на десктопе, 2+1 на мобильном */
+.macro-strip{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+@media(max-width:600px){
+  .macro-strip{grid-template-columns:repeat(2,1fr)}
+  .macro-strip .ms-card:first-child{grid-column:1/-1}
+}
+
+/* Убираем лишние отступы между блоками */
+@media(max-width:768px){
+  .calc-box + .share-result-block,
+  .result-box + .share-result-block{margin-top:12px}
+
+  /* Контент страниц */
+  .page-wrapper{padding:0}
+  main{padding:0 16px}
+  .section{margin-bottom:20px}
+
+  /* Таблицы */
+  .vitals-table,.micro-table,table{
+    display:block;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    white-space:nowrap;
+  }
+  .vitals-table td,.micro-table td,
+  .vitals-table th,.micro-table th{
+    white-space:normal;min-width:80px;
+  }
+
+  /* Height inputs в калькуляторах */
+  .height-row,.height-inputs{
+    display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .height-inputs input,.height-row input{
+    min-width:0;flex:1;
+  }
+
+  /* Кнопки минимум 44px */
+  .btn-calc,.unit-btn,.sex-btn,
+  .serving-btn,.filter-btn,button{min-height:44px}
+
+  /* Пустые отступы убираем */
+  .calc-box{margin-bottom:16px}
+  .result-box{margin-top:0}
+
+  /* Nutrition hero на foods */
+  .hero-wrap{display:block !important}
+  .hero-left,.hero-right{width:100%}
+
+  /* Сравнения */
+  .compare-cards{
+    grid-template-columns:1fr auto 1fr !important;
+  }
+  .cc-emoji{font-size:36px}
+  .cc-name{font-size:13px}
+  .cc-cal{font-size:22px}
+
+  /* use-grid */
+  .use-grid{grid-template-columns:1fr}
+
+  /* Убираем лишние пробелы */
+  .calc-section + .calc-section{margin-top:0}
+}
+
+/* "Free · No sign-up · Instant results" badge */
+.nav-badge{
+  font-size:11px;color:rgba(255,255,255,.7);
+  white-space:nowrap;margin-left:auto;
+  padding-right:4px;
+  display:flex;align-items:center;gap:4px;
+}
+.nav-badge::before{content:'Free · No sign-up · Instant results'}
+@media(max-width:768px){.nav-badge{display:none}}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://caloriescalc.org/"},{"@type":"ListItem","position":2,"name":"Foods Database","item":"https://caloriescalc.org/foods/"},{"@type":"ListItem","position":3,"name":"Orange Juice — Calories per 100ml","item":"https://caloriescalc.org/foods/orange-juice.html"}]}</script>
 </head>
@@ -335,7 +585,8 @@
 <nav class="main-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo">CaloriesCalc</a>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span class="nav-badge"></span>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-groups">
@@ -343,14 +594,19 @@
         <span class="nav-group-label">Calculators ▾</span>
         <div class="nav-dropdown">
           <a href="/">TDEE Calculator</a>
-          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
+          <a href="/weight-loss-calculator.html">Weight Loss</a>
+          <a href="/weight-gain-calculator.html">Weight Gain</a>
+          <a href="/body-fat-calculator.html">Body Fat %</a>
+          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
           <a href="/macro-calculator.html">Macro Calculator</a>
           <a href="/protein-calculator.html">Protein Calculator</a>
           <a href="/bmi-calculator.html">BMI Calculator</a>
-          <a href="/calorie-deficit-calculator.html">Calorie Deficit</a>
-          <a href="/weight-loss-calculator.html">Weight Loss</a>
-          <a href="/body-fat-calculator.html">Body Fat</a>
-          <a href="/ideal-weight-calculator.html">Ideal Weight</a>
+          <a href="/bmr-calculator.html">BMR Calculator</a>
+          <a href="/keto-calculator.html">Keto Calculator</a>
+          <a href="/water-intake-calculator.html">Water Intake</a>
+          <a href="/intermittent-fasting-calculator.html">Intermittent Fasting</a>
+          <a href="/calorie-burn-calculator.html">Calories Burned</a>
         </div>
       </div>
       <div class="nav-group">
@@ -367,8 +623,9 @@
           <a href="/foods/#cat-legumes">Legumes &amp; Beans</a>
           <a href="/foods/#cat-drinks">Drinks</a>
           <a href="/foods/#cat-desserts">Snacks &amp; Sweets</a>
-</div>
+        </div>
       </div>
+      <a href="/goals/weight-loss.html" class="nav-link-plain">Goals</a>
       <a href="/about.html" class="nav-link-plain">About</a>
     </div>
   </div>
@@ -504,51 +761,139 @@ renderNutr(100);updateCalc(250);
 
 </script>
 <script>
-// ── Mobile Nav (v2) ──────────────────────────────────────
-(function(){
-  var btn = document.getElementById('nav-hamburger');
-  var groups = document.querySelector('.nav-groups');
-  if(!btn || !groups) return;
 
-  btn.addEventListener('click', function(e){
+</script>
+<script>
+
+// ── Share Result ──────────────────────────────────────
+function updateShareURL(params) {
+  var url = new URL(window.location.href);
+  url.search = '';
+  if (params) {
+    Object.keys(params).forEach(function(k){
+      if (params[k] !== undefined && params[k] !== null && String(params[k]) !== '') {
+        url.searchParams.set(k, String(params[k]));
+      }
+    });
+  }
+  try { history.replaceState(null, '', url.toString()); } catch(e){}
+
+  var bar = document.getElementById('share-bar');
+  var inp = document.getElementById('share-url-text');
+  var nativeBtn = document.getElementById('share-native-btn');
+  var copyBtn  = document.getElementById('share-copy-btn');
+
+  if (!bar) return;
+  bar.style.display = 'block';
+  if (inp) inp.value = url.toString();
+
+  // Web Share API — мобильные браузеры
+  if (nativeBtn && navigator.share) {
+    nativeBtn.style.display = 'block';
+    if (copyBtn) copyBtn.style.display = 'none';
+    if (inp) inp.style.display = 'none';
+    nativeBtn.onclick = function(){
+      navigator.share({
+        title: document.title,
+        text: 'My result on CaloriesCalc',
+        url: url.toString()
+      }).catch(function(){});
+    };
+  }
+
+  setTimeout(function(){
+    if (bar) bar.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 150);
+}
+
+function copyShareURL() {
+  var inp = document.getElementById('share-url-text');
+  var btn = document.getElementById('share-copy-btn');
+  if (!inp) return;
+  var val = inp.value;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(val).then(function(){
+      if(btn){btn.textContent='✓ Copied!';btn.classList.add('copied');
+        setTimeout(function(){btn.textContent='📋 Copy link';btn.classList.remove('copied');},2500);}
+    }).catch(function(){_fbCopy(val,btn);});
+  } else { _fbCopy(val,btn); }
+}
+function _fbCopy(val,btn) {
+  var ta = document.createElement('textarea');
+  ta.value=val; ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy');
+    if(btn){btn.textContent='✓ Copied!';btn.classList.add('copied');
+      setTimeout(function(){btn.textContent='📋 Copy link';btn.classList.remove('copied');},2500);}
+  } catch(e){}
+  document.body.removeChild(ta);
+}
+
+
+// ── Mobile Nav v3 ─────────────────────────────────────
+(function(){
+  'use strict';
+  var hamburger = document.getElementById('nav-hamburger');
+  var navGroups = document.querySelector('.nav-groups');
+  if (!hamburger || !navGroups) return;
+
+  // Открыть/закрыть меню
+  hamburger.addEventListener('click', function(e){
     e.stopPropagation();
-    var open = groups.classList.toggle('open');
-    btn.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    var isOpen = navGroups.classList.toggle('mob-open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Accordion для категорий
+  // Аккордеон категорий
   document.querySelectorAll('.nav-group-label').forEach(function(label){
     label.addEventListener('click', function(e){
+      if (window.innerWidth > 768) return; // на десктопе — hover
       e.stopPropagation();
-      var grp = label.parentElement;
-      var wasOpen = grp.classList.contains('expanded');
-      document.querySelectorAll('.nav-group').forEach(function(g){ g.classList.remove('expanded'); });
-      if(!wasOpen) grp.classList.add('expanded');
+      var group = label.parentElement;
+      var wasOpen = group.classList.contains('mob-expanded');
+      document.querySelectorAll('.nav-group').forEach(function(g){
+        g.classList.remove('mob-expanded');
+      });
+      if (!wasOpen) group.classList.add('mob-expanded');
     });
   });
 
   // Закрываем при клике на ссылку
-  groups.querySelectorAll('a').forEach(function(a){
+  navGroups.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){
-      groups.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
+      navGroups.classList.remove('mob-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     });
   });
 
   // Закрываем при клике вне
   document.addEventListener('click', function(e){
-    if(!btn.contains(e.target) && !groups.contains(e.target)){
-      groups.classList.remove('open');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
+    if (!hamburger.contains(e.target) && !navGroups.contains(e.target)){
+      navGroups.classList.remove('mob-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
   });
+
+  // Закрываем при resize > 768
+  window.addEventListener('resize', function(){
+    if (window.innerWidth > 768){
+      navGroups.classList.remove('mob-open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      document.querySelectorAll('.nav-group').forEach(function(g){
+        g.classList.remove('mob-expanded');
+      });
+    }
+  });
 })();
+
 </script>
 </body>
 </html>
