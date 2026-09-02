@@ -1,1250 +1,318 @@
-# CaloriesCalc.org — Master Development & Data Integrity Specification
+# CaloriesCalc.org — Development Rules
 
-## 1. Главная задача
+This file is the permanent development contract for CaloriesCalc.org.
 
-Ты работаешь над существующим сайтом CaloriesCalc.org.
+All future code changes, new pages, refactors, UI changes, SEO changes, calculator changes, and integrations must follow these rules.
 
-Твоя задача — не просто создавать или исправлять отдельные страницы.
+## Priorities
 
-Ты должен привести проект к архитектуре, в которой:
+1. Correctness
+2. Data integrity
+3. Visual consistency
+4. Maintainability
+5. SEO stability
+6. Deterministic calculations
+7. Reusable architecture
+8. Development speed
 
-1. Все страницы используют единую визуальную систему.
-2. Header, navigation, footer, container, typography, spacing, buttons, cards и другие общие элементы имеют единый источник.
-3. Разные типы страниц используют заранее определённые шаблоны.
-4. Нельзя создавать уникальную визуальную реализацию общего элемента на отдельной странице без явного разрешения.
-5. Числовые данные о продуктах питания должны иметь единый канонический источник.
-6. Один и тот же food/food variant не может иметь разные значения калорийности или нутриентов на разных страницах.
-7. Recipes и Compare не должны содержать независимо придуманные или вручную продублированные значения, если эти значения уже существуют в Food Database.
-8. Любые изменения должны сохранять совместимость со всей существующей архитектурой сайта.
-9. Нельзя исправлять одну страницу способом, который ломает другие страницы.
-10. Перед созданием новых страниц необходимо использовать существующие шаблоны и компоненты.
+Never sacrifice correctness or architecture merely to generate pages faster.
 
----
+## 1. Single Source of Truth
 
-# 2. ПРИНЦИП №1 — SINGLE SOURCE OF TRUTH
+Do not duplicate information that already has a canonical source.
 
-Это главное правило проекта.
+This applies to:
+- UI components
+- templates
+- CSS/design tokens
+- calculator formulas
+- calculator constants
+- food nutrition data
+- serving sizes
+- structured data
 
-Для каждого числового показателя должен существовать один канонический источник.
+If the same information is needed in multiple places, reference the canonical source instead of creating independent copies.
 
-Например:
+## 2. Fix Problems at the Correct Architectural Level
 
-```text
-Food
- └── Food Variant
-      └── Nutrition Record
-```
+If a problem exists across multiple pages, fix the shared component, template, data source, or utility.
 
-Для каждого Food Variant хранятся:
+Do not patch individual pages when the underlying problem is systemic.
 
-* calories
-* protein
-* carbohydrates
-* fat
-* fiber
-* sugar
-* sodium
-* serving weight
-* serving description
-* preparation state
-* source
-* source identifier
-* source date/version, если доступна
+Bad: separate header fixes on individual pages.
 
-Пример:
+Good: fix the global Header component once and verify all affected page types.
 
-```text
-brown-rice
-    variant: cooked
-    basis: 100 g
-    calories: X
-    protein: X
-    carbs: X
-    fat: X
-    source: USDA
-```
+## 3. Do Not Invent Authoritative Data
 
-Другие страницы не имеют права самостоятельно придумывать другое значение для этого же варианта.
+Never invent nutrition values, serving weights, source IDs, scientific claims, medical claims, calculator constants, or formulas.
 
----
+If authoritative information is unavailable, report that it is unavailable.
 
-# 3. НЕЛЬЗЯ СМЕШИВАТЬ ВАРИАНТЫ ПРОДУКТА
+Nutrition-specific rules are defined in `DATA_RULES.md`.
 
-Одинаковое название продукта не означает одинаковый Nutrition Record.
+## 4. Never Silently Resolve Conflicts
 
-Обязательно различать:
+If two existing values conflict, do not arbitrarily choose one. Identify the affected pages, values, food variants, preparation states, nutritional basis, sources, and likely reason for the discrepancy. Resolve it using `DATA_RULES.md`.
 
-* raw / uncooked
-* cooked
-* boiled
-* baked
-* grilled
-* fried
-* canned
-* drained
-* dry
-* prepared
-* low-fat
-* full-fat
-* non-fat
+## 5. Preserve Existing Functionality
 
-и другие существенные варианты.
+Before changing a shared component or architecture, determine what pages and components depend on it. Never fix one page by breaking another page type.
 
-Например:
+# Frontend Architecture
 
-```text
-Brown Rice — dry
-Brown Rice — cooked
-```
+## 6. Global UI Components
 
-это два разных Food Variant.
+Global UI elements must have one reusable implementation.
 
-Нельзя использовать данные cooked rice на странице dry rice и наоборот.
+This includes Header, Main Navigation, Mobile Navigation, Footer, Page Container, Breadcrumbs, Buttons, Cards, Tables, Form Controls, common alerts/notes, and common calculator UI.
 
----
+Do not manually create separate copies for individual pages.
 
-# 4. ЕДИНАЯ ЕДИНИЦА СРАВНЕНИЯ
+## 7. Design System
 
-Основная единица для сравнения продуктов:
+Visual rules must be centralized for colors, spacing, typography, line heights, border radius, shadows, container widths, breakpoints, buttons, forms, cards, and tables.
 
-**per 100 g**
+Do not introduce arbitrary page-specific values when a shared token or component should be used.
 
-Если используются serving/cup/tbsp/etc., они должны быть производными от базовой записи.
+Avoid CSS hacks whose only purpose is to make one page look correct.
 
-Например:
+Before adding page-specific CSS ask: Is this truly unique, or is the shared component/template wrong?
 
-```text
-Base:
-100 g = 111 kcal
+## 8. Header and Navigation
 
-Serving:
-195 g = 216.45 kcal
-```
+Header and navigation are global components. All relevant page types must use the same implementation.
 
-Не разрешается вручную вводить:
+Test desktop, tablet, mobile, dropdowns, mobile menu, closing behavior, outside click, keyboard navigation, focus states, tap targets, long labels, narrow screens, and overflow.
 
-```text
-100 g = 111 kcal
-1 cup = 216 kcal
-```
+A header/navigation change must be checked across all page types.
 
-если 216 не вычисляется из канонического значения и массы serving.
+## 9. Page Templates
 
-Округление допускается только на этапе отображения.
+Do not create pages from scratch when a matching template exists.
 
-Исходные значения не должны заменяться округлёнными значениями.
+Maintain reusable templates for at least:
 
----
+### Food pages
+- Global layout
+- Header
+- Navigation
+- Breadcrumbs
+- Food hero/summary
+- Nutrition section
+- Serving information
+- Description
+- Nutrition notes
+- FAQ
+- Related content
+- Footer
 
-# 5. ИСТОЧНИКИ ДАННЫХ
+### Calculator pages
+- Global layout
+- Header
+- Navigation
+- Breadcrumbs
+- Calculator inputs
+- Results
+- Explanation
+- Formula/methodology
+- Example
+- Limitations/notes
+- FAQ
+- Related calculators
+- Footer
 
-Для nutrition data использовать авторитетные внешние базы.
+### Recipe pages
+- Global layout
+- Header
+- Navigation
+- Breadcrumbs
+- Recipe information
+- Ingredients
+- Instructions
+- Nutrition
+- Notes
+- FAQ
+- Related recipes
+- Footer
 
-Приоритет:
+### Comparison pages
+- Global layout
+- Header
+- Navigation
+- Breadcrumbs
+- Comparison summary
+- Comparison table
+- Explanation
+- Notes
+- FAQ
+- Related comparisons
+- Footer
 
-1. USDA FoodData Central
-2. Другие официальные государственные/международные базы
-3. Авторитетные научные источники
-4. Иные источники — только если нет подходящего первичного источника
+If the technology changes, preserve the architectural principle.
 
-Нельзя:
+## 10. New Page Process
 
-* придумывать значения;
-* брать значения из случайных SEO-сайтов;
-* смешивать несколько источников без явного объяснения;
-* выбирать значение только потому, что оно лучше выглядит;
-* изменять значение ради SEO;
-* подгонять цифры под уже существующий текст.
+Before creating a new page:
+1. Identify the page type.
+2. Identify the existing template.
+3. Identify reusable components.
+4. Identify canonical data sources.
+5. Identify SEO requirements.
+6. Identify internal linking requirements.
+7. Identify structured data requirements.
+8. Check whether the required data/content already exists.
 
-Если первичный источник содержит конкретный nutrition record, именно он является основой.
+Do not immediately write a standalone implementation.
 
----
+# Calculators
 
-# 6. SOURCE ID
+## 11. Deterministic Calculator Architecture
 
-Для каждого nutrition record желательно хранить идентификатор внешнего источника.
+Calculator formulas must be deterministic. The same valid inputs must produce the same result.
 
-Например:
+A formula used by multiple pages must have one implementation. Do not duplicate formulas in individual pages.
 
-```text
-source:
-USDA FoodData Central
+Future AI must call deterministic calculation functions instead of independently calculating authoritative results.
 
-source_id:
-<external record id>
+Preferred:
 
-basis:
-100 g
+    User → UI → Deterministic calculation function → Result → UI / explanation
 
-state:
-cooked
+Future AI:
 
-retrieved:
-YYYY-MM-DD
-```
+    User → AI → Calculation tool → Deterministic calculation → Result → AI explanation
 
-Если внешний источник изменил данные, необходимо создать новую версию record или явно обновить существующий record.
+# Recipes and Comparisons
 
-Нельзя незаметно менять цифры на отдельных страницах.
+## 12. Recipes
 
----
+Recipe nutrition should use canonical Food Variants.
 
-# 7. DATA NORMALIZATION
+    Recipe → Ingredients → Canonical Food Variants → Nutrition calculation → Recipe nutrition
 
-Перед созданием страницы необходимо определить:
+Ingredient preparation state must be explicit, e.g. rice dry/cooked and chicken raw/cooked.
 
-```text
-Food name
-Food variant
-Preparation state
-Serving basis
-Source
-Source ID
-Nutrition values
-```
+## 13. Comparisons
 
-Только после этого можно создавать страницу.
+Comparison pages must use canonical Food Variants and normally compare equivalent preparation states, nutritional bases, and units.
 
-Пример:
+Do not compare cooked food A with dry food B unless intentional and explicitly explained.
 
-```text
-Food:
-Tuna
+# SEO
 
-Variant:
-Fresh tuna, cooked
+## 14. SEO Stability
 
-Basis:
-100 g
+The architecture must preserve crawlability and indexability.
 
-Calories:
-...
+Each indexable page should have appropriate unique title, meta description, canonical, H1, logical heading hierarchy, breadcrumbs, internal links, and structured data where appropriate.
 
-Protein:
-...
+Do not make important SEO content dependent on client-side rendering if that harms crawlability.
 
-Source:
-USDA
-```
+## 15. Structured Data
 
-Отдельно:
+Structured data must match visible content.
 
-```text
-Tuna
-Variant:
-Canned in water, drained
+Never allow Visible value != Schema value.
 
-Basis:
-100 g
+Schema should use the same canonical data source as the visible UI whenever practical.
 
-Calories:
-...
+# Responsive Design
 
-Source:
-USDA
-```
+## 16. Responsive Rules
 
-Эти значения нельзя объединять в одно абстрактное "Tuna".
+Every shared template must work on mobile and desktop. Avoid page-specific responsive hacks. If a responsive issue affects a shared component, fix the shared component.
 
----
+# Code Quality
 
-# 8. FOOD PAGES
+## 17. Prefer
 
-Все страницы `/foods/*` должны использовать единый шаблон.
+- reusable components
+- small focused functions
+- centralized constants
+- clear data models
+- predictable naming
+- minimal duplication
+- explicit variants
+- deterministic calculations
 
-Общая структура:
+## Avoid
 
-```text
-Header
-Navigation
-Breadcrumbs
+- unnecessary duplication
+- magic numbers
+- hidden dependencies
+- page-specific copies of shared logic
+- repeated HTML
+- CSS hacks
+- silently overridden values
 
-Food Hero
-Food Summary
+# Change Management
 
-Nutrition per 100 g
+## 18. Before a Significant Change
 
-Nutrition Table
+1. Inspect the existing repository.
+2. Identify affected components.
+3. Identify affected page types.
+4. Identify affected data.
+5. Identify SEO implications.
+6. Make the smallest architectural change that solves the problem.
+7. Test affected page types.
 
-Serving Sizes
+Do not rewrite working architecture without a clear reason.
 
-Preparation / Variant information
+## 19. Before Mass Content Creation
 
-Description
+Before generating many pages, verify templates, global UI, canonical data, calculations, responsive layout, and structured data are stable.
 
-Nutrition Notes
+Do not multiply technical debt by generating hundreds of pages from unstable templates.
 
-FAQ
+# Future Backend and AI
 
-Related Foods
+## 20. Future Architecture
 
-Related Recipes
+The site may remain largely static while preparing for future backend/API functionality.
 
-Related Comparisons
+Future backend/API/AI must connect to canonical data and deterministic functions.
 
-Footer
-```
+Preferred:
 
-Порядок блоков нельзя менять без необходимости.
+    Frontend → API → Canonical Data + Deterministic Calculation Engine + AI
 
-Если требуется изменить структуру всех Food Pages, сначала изменить общий template/component, а не редактировать десятки страниц вручную.
+AI is not a second source of truth. AI may explain, organize, personalize, and orchestrate tools. AI must not override authoritative nutrition records or deterministic calculator results.
 
----
+# Uncertainty Protocol
 
-# 9. CALCULATOR PAGES
+## 21. When Unsure
 
-Все calculator pages должны использовать общий шаблон.
+If unsure about the correct template, component, canonical food variant, source, conflicting numerical data, preparation state, or calculator methodology, do not guess. Report the uncertainty and explain what must be resolved.
 
-Структура:
+# Required Final Check
 
-```text
-Header
-Navigation
-Breadcrumbs
+## 22. After Significant Changes
 
-Calculator title
-Calculator input section
-Calculator result section
-
-Explanation
-
-Formula / Methodology
-
-Example
-
-Important notes / limitations
-
-FAQ
-
-Related Calculators
-
-Footer
-```
-
-Общий UI должен быть реализован через reusable components.
-
----
-
-# 10. RECIPE PAGES
-
-Recipe nutrition нельзя считать независимым от Food Database.
-
-Правильная архитектура:
-
-```text
-Recipe
- ↓
-Ingredients
- ↓
-Canonical Food Variants
- ↓
-Nutrition calculation
- ↓
-Recipe Nutrition
-```
-
-Например:
-
-```text
-Chicken
-200 g
- ↓
-canonical chicken record
-
-Rice
-75 g dry
- ↓
-canonical dry rice record
-```
-
-Recipe nutrition должна рассчитываться из этих записей.
-
-Нельзя одновременно иметь:
-
-```text
-Food Database:
-Rice = 365 kcal / 100 g dry
-
-Recipe:
-Rice = 350 kcal / 100 g dry
-```
-
-без документированного и обоснованного источника.
-
----
-
-# 11. COMPARE PAGES
-
-Comparison pages также должны получать значения из Food Database.
-
-Например:
-
-```text
-Brown Rice vs White Rice
-```
-
-должна использовать:
-
-```text
-Brown Rice — cooked
-White Rice — cooked
-```
-
-или:
-
-```text
-Brown Rice — dry
-White Rice — dry
-```
-
-но никогда:
-
-```text
-Brown Rice — cooked
-White Rice — dry
-```
-
-если сравнение не предназначено именно для этого.
-
-На странице сравнения обязательно явно указывать basis/state.
-
----
-
-# 12. КРИТИЧЕСКОЕ ПРАВИЛО ПРОТИВ КОНФЛИКТОВ
-
-Перед публикацией или изменением любой страницы необходимо выполнить проверку:
-
-```text
-Does this food already exist?
-
-Does this food variant already exist?
-
-Does the nutrition record already exist?
-
-Is the source identical?
-
-Is the preparation state identical?
-
-Is the serving basis identical?
-
-Are the values identical?
-```
-
-Если ответ на последний вопрос "нет" — нельзя автоматически продолжать.
-
-Необходимо найти причину расхождения.
-
----
-
-# 13. ПРИМЕРЫ КОНФЛИКТОВ, КОТОРЫЕ НЕЛЬЗЯ ДОПУСКАТЬ
-
-## Brown Rice
-
-Недопустимо:
-
-```text
-/foods/brown-rice
-111 kcal / 100 g cooked
-
-/compare/brown-rice-vs-white-rice
-216 kcal / 100 g
-```
-
-если comparison использует тот же cooked variant.
-
-Нужно определить:
-
-```text
-111 kcal = cooked
-
-216 kcal = approximately 195 g serving
-```
-
-или определить, что comparison использует dry variant.
-
-Состояние продукта должно быть явно указано.
-
----
-
-## Tuna
-
-Недопустимо:
-
-```text
-Tuna:
-144 kcal / 100 g
-
-Comparison:
-Tuna:
-109 kcal / 100 g
-```
-
-если оба блока относятся к одному и тому же Food Variant.
-
-Если это:
-
-```text
-Fresh cooked tuna
-```
-
-и:
-
-```text
-Canned tuna in water
-```
-
-они должны быть представлены как разные variants.
-
----
-
-## Greek Yogurt
-
-Недопустимо объединять:
-
-```text
-non-fat Greek yogurt
-low-fat Greek yogurt
-full-fat Greek yogurt
-```
-
-в один Nutrition Record.
-
-Каждый вариант должен быть идентифицирован отдельно.
-
----
-
-# 14. VISUAL SINGLE SOURCE OF TRUTH
-
-Визуальные элементы также должны иметь единый источник.
-
-Не допускается:
-
-```text
-Page A:
-padding: 24px
-
-Page B:
-padding: 20px
-
-Page C:
-padding: 28px
-```
-
-если это один и тот же компонент.
-
-Использовать design tokens.
-
-Например:
-
-```css
---container-width
---spacing-xs
---spacing-sm
---spacing-md
---spacing-lg
---spacing-xl
-
---radius-sm
---radius-md
---radius-lg
-
---font-size-sm
---font-size-md
---font-size-lg
---font-size-xl
-
---color-primary
---color-background
---color-text
---color-muted
-```
-
-Конкретные значения должны быть определены централизованно.
-
----
-
-# 15. HEADER И NAVIGATION
-
-Header и navigation являются глобальными компонентами.
-
-Они должны существовать в одном месте.
-
-Нельзя копировать HTML header вручную на каждую страницу.
-
-Все страницы должны использовать один компонент:
-
-```text
-Header
-Navigation
-Mobile Navigation
-```
-
-При изменении header изменение должно автоматически распространяться на весь сайт.
-
-Необходимо протестировать:
-
-* desktop;
-* tablet;
-* mobile;
-* dropdown;
-* navigation overflow;
-* tap targets;
-* keyboard navigation;
-* focus states;
-* outside click;
-* menu closing;
-* long page titles;
-* small screens.
-
----
-
-# 16. FOOTER
-
-Footer также является глобальным компонентом.
-
-Нельзя создавать разные footer implementations для разных типов страниц без объективной необходимости.
-
----
-
-# 17. PAGE CONTAINER
-
-Все основные страницы должны использовать единый content container.
-
-Например:
-
-```text
-Page
- ↓
-Global Layout
- ↓
-Page Container
- ↓
-Content
-```
-
-Нельзя самостоятельно задавать ширину основного контента на каждой странице.
-
----
-
-# 18. TYPOGRAPHY
-
-Typography должна быть централизована.
-
-Определить:
-
-* H1
-* H2
-* H3
-* body
-* small
-* caption
-* labels
-* buttons
-
-Размеры, line-height, font-weight и spacing должны быть единообразными.
-
----
-
-# 19. RESPONSIVE DESIGN
-
-Каждый template должен быть responsive.
-
-Нельзя исправлять mobile layout одной страницы через хаки, которые могут повлиять на другие страницы.
-
-Если проблема относится к общему компоненту:
-
-```text
-fix component
-```
-
-а не:
-
-```text
-fix individual page
-```
-
----
-
-# 20. НЕ СОЗДАВАТЬ CSS-ХАКИ
-
-Не использовать бессистемно:
-
-```css
-.page-specific .something {
-    margin-top: -17px;
-}
-```
-
-только для визуального исправления конкретной страницы.
-
-Перед добавлением page-specific CSS необходимо определить:
-
-> Это действительно уникальный элемент или проблема общего компонента?
-
-Если проблема общего компонента — исправить общий компонент.
-
----
-
-# 21. НОВАЯ СТРАНИЦА
-
-При создании новой страницы ИИ обязан сначала определить:
-
-```text
-Page type
-Template
-Reusable components
-Data source
-Canonical records
-Internal links
-Schema
-```
-
-После этого создавать страницу.
-
-Нельзя начинать с написания HTML "с нуля".
-
----
-
-# 22. НОВЫЕ КОМПОНЕНТЫ
-
-Перед созданием нового компонента необходимо проверить:
-
-```text
-Does an existing component already solve this problem?
-```
-
-Если да — использовать существующий.
-
-Если нет — создать reusable component.
-
-Не создавать компонент, предназначенный только для одной страницы, если тот же UI потенциально используется в других местах.
-
----
-
-# 23. CONTENT VS DATA
-
-Всегда разделять:
+### UI
+Check Header, Navigation, Footer, Container, Typography, Spacing, Buttons, Cards, Tables, Forms, Mobile, Desktop.
 
 ### Data
-
-Факты и числовые значения:
-
-* calories
-* protein
-* carbs
-* fat
-* fiber
-* sugar
-* serving size
-* weight
-* measurements
-* calculator constants
-
-### Content
-
-* description
-* explanation
-* editorial text
-* FAQ
-* usage information
-
-AI может генерировать content, но **не должен самостоятельно придумывать authoritative numerical data**.
-
----
-
-# 24. CALCULATOR DATA
-
-Все calculator formulas должны иметь один источник.
-
-Например:
-
-```text
-Mifflin-St Jeor
-activity multipliers
-protein formulas
-BMI
-BMR
-TDEE
-1RM
-MET values
-```
-
-Если одна формула используется несколькими страницами, она должна быть реализована один раз.
-
-Нельзя:
-
-```text
-TDEE page → formula A
-
-another page → manually copied formula B
-```
-
----
-
-# 25. CALCULATION ENGINE
-
-Расчёты должны быть детерминированными.
-
-Одинаковый input:
-
-```text
-weight
-height
-age
-sex
-activity
-goal
-```
-
-должен всегда давать одинаковый result.
-
-LLM не должен самостоятельно вычислять критические числовые результаты, если существует deterministic calculation function.
-
-Правильно:
-
-```text
-User
- ↓
-AI
- ↓
-calculate_tdee()
- ↓
-deterministic result
- ↓
-AI explains result
-```
-
-Неправильно:
-
-```text
-User
- ↓
-AI
- ↓
-AI самостоятельно считает TDEE
-```
-
----
-
-# 26. AI FUTURE COMPATIBILITY
-
-Архитектура должна оставлять возможность в будущем добавить:
-
-```text
-AI Assistant
-AI Meal Planner
-Food Diary
-User Accounts
-Saved Plans
-Personalization
-```
-
-Но не создавать эти функции преждевременно.
-
-Главное сейчас — стабильный frontend, canonical data и deterministic calculations.
-
----
-
-# 27. SEO
-
-Общий frontend не должен ухудшать SEO.
-
-Каждая индексируемая страница должна иметь:
-
-* unique title;
-* unique meta description;
-* canonical;
-* H1;
-* logical heading hierarchy;
-* breadcrumbs;
-* internal links;
-* appropriate structured data;
-* crawlable content.
-
-Не превращать весь сайт в client-side-only приложение, если это приводит к ухудшению доступности контента поисковым системам.
-
----
-
-# 28. STRUCTURED DATA
-
-Structured data должна соответствовать видимому содержимому страницы.
-
-Нельзя помещать в schema значение:
-
-```text
-216 kcal
-```
-
-если пользователь на странице видит:
-
-```text
-111 kcal
-```
-
-Schema и visible content должны использовать один и тот же canonical data source.
-
----
-
-# 29. ПРОЦЕСС ПЕРЕД ИЗМЕНЕНИЕМ КОДА
-
-Перед любым существенным изменением:
-
-1. Проанализировать существующую архитектуру.
-2. Найти существующие components/templates.
-3. Найти canonical data.
-4. Определить, является ли проблема локальной или системной.
-5. Если проблема системная — исправлять architecture/component.
-6. Проверить, какие страницы будут затронуты.
-7. После изменения проверить affected page types.
-
----
-
-# 30. ОБЯЗАТЕЛЬНАЯ ПРОВЕРКА ПОСЛЕ ИЗМЕНЕНИЙ
-
-После каждого существенного изменения проверить:
-
-### Visual
-
-* Header
-* Navigation
-* Footer
-* spacing
-* typography
-* buttons
-* cards
-* tables
-* forms
-* mobile layout
-* desktop layout
-
-### Data
-
-* calories
-* protein
-* carbs
-* fat
-* fiber
-* serving sizes
-* preparation state
-* source
-* source ID
+Check nutrition values, units, serving sizes, preparation state, source, source ID, canonical record.
 
 ### SEO
-
-* title
-* description
-* canonical
-* H1
-* headings
-* breadcrumbs
-* structured data
-* internal links
-
-### Functional
-
-* calculator inputs
-* calculations
-* validation
-* edge cases
-* links
-* navigation
-* forms
-
----
-
-# 31. DATA CONSISTENCY AUDIT
-
-Перед массовым созданием новых страниц провести аудит существующего сайта.
-
-Проверить минимум:
-
-```text
-Foods
-Food variants
-Nutrition values
-Serving sizes
-Recipes
-Recipe ingredients
-Comparisons
-Calculator examples
-Structured data
-Visible values
-```
-
-Особенно искать случаи:
-
-```text
-same food
-+
-same preparation state
-+
-same basis
-=
-different nutrition values
-```
-
-Все найденные конфликты перечислить отдельно.
-
-Не скрывать конфликт и не выбирать произвольное значение.
-
----
-
-# 32. ИЗВЕСТНЫЕ ТИПЫ ПРОБЛЕМ, КОТОРЫЕ НЕОБХОДИМО ПРОВЕРИТЬ
-
-Особое внимание обратить на:
-
-* cooked vs dry rice;
-* fresh vs canned tuna;
-* different Greek yogurt fat levels;
-* dry vs cooked oatmeal;
-* recipe ingredient states;
-* comparison states;
-* serving weights;
-* calculator examples;
-* nutrition values in structured data;
-* values displayed in cards vs full food pages.
-
----
-
-# 33. ПРАВИЛО ПРИ НЕУВЕРЕННОСТИ
-
-Если тебе неизвестно:
-
-* какой вариант продукта используется;
-* какой источник является canonical;
-* откуда взялось число;
-* почему два числа отличаются;
-* какой template является правильным;
-
-**не придумывай ответ.**
-
-Остановись и сообщи:
-
-```text
-CONFLICT / UNCERTAINTY DETECTED
-```
-
-после чего укажи:
-
-1. проблему;
-2. затронутые страницы;
-3. существующие значения;
-4. источники;
-5. какое решение необходимо принять.
-
----
-
-# 34. ПРАВИЛО "DO NOT INVENT"
-
-Категорически запрещается:
-
-* придумывать nutrition values;
-* придумывать serving weights;
-* придумывать source IDs;
-* придумывать medical claims;
-* придумывать scientific claims;
-* подменять данные ради красивого результата;
-* создавать разные цифры для разных страниц ради SEO;
-* копировать цифры из другой страницы без проверки canonical source.
-
-Если данные отсутствуют — обозначить их как отсутствующие.
-
----
-
-# 35. ПРАВИЛО МИНИМАЛЬНОГО ИЗМЕНЕНИЯ
-
-При исправлении существующего сайта:
-
-**не переписывай работающую архитектуру без необходимости.**
-
-Сначала определить:
-
-```text
-Can this be fixed by:
-1. component
-2. template
-3. data normalization
-4. CSS token
-5. shared utility
-```
-
-Если да — использовать это решение.
-
-Не создавать новый параллельный механизм.
-
----
-
-# 36. ПРАВИЛО ОБРАТНОЙ СОВМЕСТИМОСТИ
-
-Перед изменением существующего компонента проверить все места его использования.
-
-Например:
-
-```text
-Header
- ↓
-all page types
-```
-
-Если изменить Header, необходимо проверить:
-
-* homepage;
-* calculators;
-* foods;
-* recipes;
-* compare;
-* goals;
-* about;
-* legal pages.
-
----
-
-# 37. РАЗДЕЛЕНИЕ ОТВЕТСТВЕННОСТИ
-
-Архитектура должна стремиться к:
-
-```text
-UI Components
-      ↓
-Templates
-      ↓
-Page Data
-      ↓
-Canonical Data
-      ↓
-External Sources
-```
-
-Не должно быть:
-
-```text
-Page HTML
- ├── random CSS
- ├── random nutrition value
- ├── random calculator formula
- └── random schema value
-```
-
----
-
-# 38. ПЕРЕД НАЧАЛОМ РАБОТЫ
-
-Сначала НЕ изменяй код.
-
-Сначала проанализируй repository и подготовь отчёт:
-
-### A. Existing architecture
-
-* структура проекта;
-* где находятся страницы;
-* где находятся CSS;
-* где находятся JS;
-* где находятся templates;
-* где находятся components;
-* где находятся nutrition data.
-
-### B. Template analysis
-
-Определи существующие типы страниц.
-
-### C. Design inconsistencies
-
-Найди различия:
-
-* header;
-* navigation;
-* spacing;
-* typography;
-* cards;
-* buttons;
-* containers;
-* tables;
-* mobile behaviour.
-
-### D. Data inconsistencies
-
-Найди конфликты числовых данных.
-
-### E. Proposed architecture
-
-Предложи структуру, которая минимально изменяет существующий проект.
-
-Только после этого приступай к изменениям.
-
----
-
-# 39. ФИНАЛЬНЫЙ КРИТЕРИЙ КАЧЕСТВА
-
-Работа считается выполненной только тогда, когда:
-
-### Frontend
-
-Одна и та же UI-система используется всеми соответствующими страницами.
-
-### Data
-
-Один canonical Food Variant имеет одно authoritative nutrition значение.
-
-### Recipes
-
-Используют canonical food records.
-
-### Comparisons
-
-Используют canonical food records.
-
-### Calculators
-
-Используют deterministic calculation functions.
-
-### Schema
-
-Использует те же данные, что и visible content.
-
-### Future AI
-
-AI сможет обращаться к canonical data и deterministic functions, а не генерировать критические числа самостоятельно.
-
----
-
-# 40. ГЛАВНОЕ ПРАВИЛО ПРОЕКТА
-
-Запомни и соблюдай это правило при каждой последующей задаче:
-
-> **Никогда не исправляй отдельную страницу способом, который должен был быть исправлен на уровне общего компонента, шаблона или canonical data source.**
-
-И второе:
-
-> **Никогда не создавай новое числовое значение для продукта, если соответствующий canonical Food Variant уже существует. Сначала используй существующую запись или явно создай новый variant с новым источником.**
-
-И третье:
-
-> **Визуальная консистентность и data consistency важнее скорости генерации новых страниц.**
-
-Перед каждой новой страницей или массовым изменением сначала проверяй существующие шаблоны, компоненты и canonical data.
-
----
-
-## Результат, который необходимо получить
-
-В конечном итоге CaloriesCalc должен иметь архитектуру:
-
-```text
-                    CALORIESCALC
-                         │
-              ┌──────────┴──────────┐
-              │                     │
-        DESIGN SYSTEM          DATA SYSTEM
-              │                     │
-        ┌─────┼─────┐         ┌─────┼─────┐
-        │     │     │         │     │     │
-      Header Cards Forms     Foods Recipes Compare
-        │                     │
-     Templates          Canonical Variants
-        │                     │
-     Pages              Nutrition Records
-                              │
-                         External Sources
-```
-
-При этом будущий backend/API/AI должен подключаться к этой системе, а не создавать собственную параллельную систему данных.
+Check title, description, canonical, H1, headings, breadcrumbs, internal links, structured data.
+
+### Functionality
+Check inputs, calculations, validation, edge cases, links, navigation.
+
+# Core Rules
+
+1. One global component should have one implementation.
+2. One calculator formula should have one implementation.
+3. One Food Variant should have one canonical nutrition record.
+4. Recipes should use canonical Food Variants.
+5. Comparisons should use canonical Food Variants.
+6. Schema and visible data must agree.
+7. Fix systemic problems at the system level.
+8. Never invent authoritative numbers.
+9. Never silently resolve data conflicts.
+10. Stability and correctness are more important than generating pages quickly.
+
+The detailed nutrition-data rules are in `DATA_RULES.md`.
