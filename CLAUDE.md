@@ -316,3 +316,91 @@ Check inputs, calculations, validation, edge cases, links, navigation.
 10. Stability and correctness are more important than generating pages quickly.
 
 The detailed nutrition-data rules are in `DATA_RULES.md`.
+
+# MANDATORY PROJECT RULES
+
+Before performing ANY task in this repository, Claude MUST read:
+
+1. `CLAUDE.md`
+2. `DATA_RULES.md`
+3. `DESIGN_SYSTEM.md`
+
+These documents are mandatory project rules.
+
+They are not suggestions.
+
+---
+
+## DESIGN SYSTEM ENFORCEMENT
+
+`DESIGN_SYSTEM.md` is the canonical authority for all visual and layout decisions.
+
+Any task involving:
+
+* HTML;
+* CSS;
+* layout;
+* responsive behavior;
+* header;
+* navigation;
+* footer;
+* calculator UI;
+* forms;
+* cards;
+* spacing;
+* typography;
+* containers;
+* page structure
+
+MUST comply with `DESIGN_SYSTEM.md`.
+
+Before modifying UI code, inspect the existing implementation and determine whether the requested change should be made globally or locally.
+
+Do NOT create a local CSS workaround when the problem belongs to a global component.
+
+Do NOT introduce a second container system.
+
+Do NOT introduce a second navigation system.
+
+Do NOT introduce page-specific spacing values when a canonical token exists.
+
+Do NOT add CSS overrides merely to compensate for previous CSS overrides.
+
+---
+
+## REFERENCE WEBSITE
+
+The visual reference for container geometry, spacing rhythm and overall layout consistency is:
+
+https://tdee.co/
+
+The reference is a design benchmark only.
+
+Do NOT copy its source code, CSS, assets or text.
+
+Use measurable layout characteristics as inspiration for the CaloriesCalc design system.
+
+---
+
+## CHANGE DISCIPLINE
+
+Before making UI changes:
+
+1. identify affected global components;
+2. inspect all existing implementations;
+3. identify duplicate/obsolete CSS;
+4. determine the canonical implementation;
+5. make the smallest correct change;
+6. test representative pages;
+7. verify desktop and mobile layouts.
+
+If a change conflicts with `DESIGN_SYSTEM.md`, stop and resolve the conflict instead of silently violating the rule.
+
+---
+
+## IMPORTANT
+
+Never assume that making one page visually correct is sufficient.
+
+A change is successful only if it preserves the unified visual system across the website.
+
