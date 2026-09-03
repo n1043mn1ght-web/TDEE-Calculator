@@ -1,11 +1,6 @@
 # Cloudflare Pages _redirects
-# Формат: /old-url /new-url 301
-
-# Если кто-то зайдёт без trailing slash
-/foods /foods/ 301
-
-# Старый домен уже редиректит через Cloudflare dashboard — не дублируем
-
-# Заготовки для будущих категорий (раскомментировать когда появятся)
-# /vegetables /foods/ 301
-# /fruits /foods/ 301
+/foods/index.html   /foods/   301
+/recipes/index.html /recipes/ 301
+/compare/index.html /compare/ 301
+/calculators/index.html /calculators/ 301
+/* /404.html 404
